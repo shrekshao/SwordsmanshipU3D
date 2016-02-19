@@ -19,6 +19,8 @@ obj/
 *.unityproj
 *.booproj
 
+.vs/
+
 # ============ #
 # OS generated #
 # ============ #
