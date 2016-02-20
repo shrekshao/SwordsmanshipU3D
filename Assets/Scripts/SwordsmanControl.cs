@@ -38,7 +38,12 @@ namespace Swordsmanship
         {
             if (!m_Jump)
             {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                m_Jump = UnityStandardAssets.CrossPlatformInput.CrossPlatformInputManager.GetButtonDown("Jump");
+                if(m_Jump)
+                {
+                    Debug.Log(m_Jump);
+                }
+                
             }
         }
 
@@ -47,8 +52,8 @@ namespace Swordsmanship
         private void FixedUpdate()
         {
             // read inputs
-            float h = CrossPlatformInputManager.GetAxis("Horizontal");
-            float v = CrossPlatformInputManager.GetAxis("Vertical");
+            float h = UnityStandardAssets.CrossPlatformInput.CrossPlatformInputManager.GetAxis("Horizontal");
+            float v = UnityStandardAssets.CrossPlatformInput.CrossPlatformInputManager.GetAxis("Vertical");
             bool crouch = Input.GetKey(KeyCode.C);
 
             // calculate move direction to pass to character
