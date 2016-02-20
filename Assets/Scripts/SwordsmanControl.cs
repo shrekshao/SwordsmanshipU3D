@@ -15,8 +15,11 @@ namespace Swordsmanship
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
 
 
-        private MouseInputStruct mouseInput;
+        //private MouseInputStruct mouseInput;
+
         
+
+
         private void Start()
         {
             // get the transform of the main camera
@@ -36,7 +39,9 @@ namespace Swordsmanship
 
 
             // init mouseInput
-            mouseInput = new MouseInputStruct();
+            //mouseInput = new MouseInputStruct();
+
+            MouseBehavior.mouseInputDelegate += MouseInputHandle;
         }
 
 
@@ -66,31 +71,31 @@ namespace Swordsmanship
             // DELETE ME: Test input
             
 
-            if(Input.GetKey(KeyCode.B))
-            {
-                mouseInput.mouseMovementInput = MouseMovementsInput.Block_Front;
-            }
-            else
-            {
-                mouseInput.mouseMovementInput = MouseMovementsInput.Block_Exit;
-            }
+            //if(Input.GetKey(KeyCode.B))
+            //{
+            //    mouseInput.mouseMovementInput = MouseMovementsInput.Block_Front;
+            //}
+            //else
+            //{
+            //    mouseInput.mouseMovementInput = MouseMovementsInput.Block_Exit;
+            //}
 
 
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                mouseInput.mouseMovementInput = MouseMovementsInput.Attack_SwingLeftIdle;
-            }
+            //if (Input.GetKeyDown(KeyCode.Z))
+            //{
+            //    mouseInput.mouseMovementInput = MouseMovementsInput.Attack_SwingLeftIdle;
+            //}
 
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                mouseInput.mouseMovementInput = MouseMovementsInput.Attack_SwingLeft;
-            }
+            //if (Input.GetKeyDown(KeyCode.X))
+            //{
+            //    mouseInput.mouseMovementInput = MouseMovementsInput.Attack_SwingLeft;
+            //}
 
             /////////////////////////
 
 
             //attack
-            Attack();
+            //Attack();
             
 
 
@@ -117,10 +122,10 @@ namespace Swordsmanship
         }
 
 
-        private void Attack()
+        private void MouseInputHandle(MouseInputStruct m_input)
         {
 
-            switch(mouseInput.mouseMovementInput)
+            switch(m_input.mouseMovementInput)
             {
                 case MouseMovementsInput.Attack_SwingLeftIdle:
                     m_Character.AttackSwingLeftIdle();

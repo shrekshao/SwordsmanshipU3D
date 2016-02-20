@@ -25,13 +25,18 @@ namespace Swordsmanship
 
     public class MouseInputStruct
     {
-        public MouseMovementsInput mouseMovementInput;
+        public MouseMovementsInput mouseMovementInput = MouseMovementsInput.Idle;
 
         //TODO: speed, pattern completions...
 
-        public MouseInputStruct()
-        {
+        //public MouseInputStruct()
+        //{
+        //    mouseMovementInput = MouseMovementsInput.Idle;
+        //}
 
+        public MouseInputStruct(MouseMovementsInput m)
+        {
+            mouseMovementInput = m;
         }
     }
 }
