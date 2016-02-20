@@ -7,8 +7,11 @@ namespace Swordsmanship
     {
         Idle,
 
+        Attack_SwingLeftIdle,
         Attack_SwingLeft,
+        Attack_SwingRightIdle,
         Attack_SwingRight,
+        Attack_StabIdle,
         Attack_Stab,
 
         Block_Front,
