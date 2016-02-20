@@ -223,5 +223,21 @@ namespace Swordsmanship
 				m_Animator.applyRootMotion = false;
 			}
 		}
-	}
+
+
+
+
+        public void AttackSwingLeftIdle()
+        {
+            m_Animator.SetBool("SwingLeftStart",true);
+            m_Animator.SetBool("SwingLeftAttack", false);
+        }
+
+        public void AttackSwingLeftAttack()
+        {
+            m_Animator.SetBool("SwingLeftAttack",true);
+            m_Animator.SetBool("SwingLeftStart", false);
+        }
+
+    }
 }

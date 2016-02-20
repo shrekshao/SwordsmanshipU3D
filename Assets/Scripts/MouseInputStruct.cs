@@ -27,7 +27,7 @@ namespace Swordsmanship
 
         //TODO: speed, pattern completions...
 
-        MouseInputStruct()
+        public MouseInputStruct()
         {
 
         }

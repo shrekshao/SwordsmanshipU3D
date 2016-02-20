@@ -14,6 +14,8 @@ namespace Swordsmanship
         private Vector3 m_Move;
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
 
+
+        private MouseInputStruct mouseInput;
         
         private void Start()
         {
@@ -31,6 +33,10 @@ namespace Swordsmanship
 
             // get the third person character ( this should never be null due to require component )
             m_Character = GetComponent<SwordsmanCharacter>();
+
+
+            // init mouseInput
+            mouseInput = new MouseInputStruct();
         }
 
 
@@ -56,6 +62,25 @@ namespace Swordsmanship
             float v = UnityStandardAssets.CrossPlatformInput.CrossPlatformInputManager.GetAxis("Vertical");
             bool crouch = Input.GetKey(KeyCode.C);
 
+
+            // DELETE ME: Test swing left
+            if(Input.GetKeyDown(KeyCode.Z))
+            {
+                mouseInput.mouseMovementInput = MouseMovementsInput.Attack_SwingLeftIdle;
+            }
+
+            if(Input.GetKeyDown(KeyCode.X))
+            {
+                mouseInput.mouseMovementInput = MouseMovementsInput.Attack_SwingLeft;
+            }
+
+
+
+            //attack
+            Attack();
+            
+
+
             // calculate move direction to pass to character
             if (m_Cam != null)
             {
@@ -77,5 +102,26 @@ namespace Swordsmanship
             m_Character.Move(m_Move, crouch, m_Jump);
             m_Jump = false;
         }
+
+
+        private void Attack()
+        {
+
+            switch(mouseInput.mouseMovementInput)
+            {
+                case MouseMovementsInput.Attack_SwingLeftIdle:
+                    m_Character.AttackSwingLeftIdle();
+                    break;
+                case MouseMovementsInput.Attack_SwingLeft:
+                    m_Character.AttackSwingLeftAttack();
+                    break;
+
+                default:
+                    break;
+            }
+
+        }
+
+
     }
 }
