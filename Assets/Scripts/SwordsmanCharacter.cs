@@ -31,7 +31,14 @@ namespace Swordsmanship
 		bool m_Crouching;
 
 
-		void Start()
+        //
+        GameObject sword;
+        [SerializeField]
+        Transform sword_hand_position;
+        [SerializeField]
+        Transform sword_back_position;
+
+        void Start()
 		{
 			m_Animator = GetComponent<Animator>();
 			m_Rigidbody = GetComponent<Rigidbody>();
@@ -41,6 +48,10 @@ namespace Swordsmanship
 
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
+
+
+            //TMP, dynamic initialize
+            sword = GameObject.Find("Sword");
 		}
 
 
@@ -250,6 +261,15 @@ namespace Swordsmanship
             m_Animator.SetBool("BlockFront", false);
             //m_Animator.SetBool("BlockLeft", false);
             //m_Animator.SetBool("BlockRight", false);
+        }
+
+
+        //Draw sword, change sword parent
+        public void DrawSwordChangeParent()
+        {
+            sword.transform.SetParent(sword_hand_position);
+            sword.transform.localPosition = Vector3.zero;
+            sword.transform.localRotation = Quaternion.identity;
         }
     }
 }
