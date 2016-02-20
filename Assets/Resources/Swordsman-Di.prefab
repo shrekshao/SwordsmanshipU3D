@@ -627,7 +627,7 @@ GameObject:
   - 23: {fileID: 2359516}
   - 111: {fileID: 11197556}
   m_Layer: 0
-  m_Name: Broadsword (1)
+  m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1323,9 +1323,9 @@ Transform:
   m_GameObject: {fileID: 162582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1403811, y: 0.1403811, z: 0.1403811}
+  m_LocalScale: {x: 0.14038111, y: 0.14038111, z: 0.1403811}
   m_Children: []
-  m_Father: {fileID: 492812}
+  m_Father: {fileID: 467590}
   m_RootOrder: 0
 --- !u!4 &467590
 Transform:
@@ -1336,7 +1336,8 @@ Transform:
   m_LocalRotation: {x: 0.63892615, y: -0.33668748, z: -0.31388006, w: -0.6163556}
   m_LocalPosition: {x: -0.256, y: -0.11, z: -0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 467370}
   m_Father: {fileID: 477610}
   m_RootOrder: 3
 --- !u!4 &469072
@@ -1639,8 +1640,7 @@ Transform:
   m_LocalRotation: {x: -0.71067345, y: -0.0000000018745094, z: 0.00000020457524, w: 0.703522}
   m_LocalPosition: {x: 0.036, y: -0.008, z: 0.033}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 467370}
+  m_Children: []
   m_Father: {fileID: 478212}
   m_RootOrder: 0
 --- !u!4 &493568
@@ -1820,6 +1820,8 @@ MonoBehaviour:
   m_MoveSpeedMultiplier: 1
   m_AnimSpeedMultiplier: 1
   m_GroundCheckDistance: 0.3
+  sword_hand_position: {fileID: 492812}
+  sword_back_position: {fileID: 467590}
 --- !u!114 &11470314
 MonoBehaviour:
   m_ObjectHideFlags: 1
