@@ -6,7 +6,7 @@ using UnityStandardAssets.CrossPlatformInput;
 namespace Swordsmanship
 {
     [RequireComponent(typeof (SwordsmanCharacter))]
-    public class CharacterUserControl : MonoBehaviour
+    public class SwordsmanControl : MonoBehaviour
     {
         private SwordsmanCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
         private Transform m_Cam;                  // A reference to the main camera in the scenes transform

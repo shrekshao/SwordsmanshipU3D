@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 8d7b1fd82045f2743b4e614e45febbfb
-timeCreated: 1455760423
+timeCreated: 1455910615
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -345,6 +345,22 @@ ModelImporter:
         modified: 0
     - boneName: right_hand
       humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: left_toe
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: right_toe
+      humanName: RightToes
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}

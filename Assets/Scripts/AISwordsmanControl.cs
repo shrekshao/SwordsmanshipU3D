@@ -1,14 +1,15 @@
 using System;
 using UnityEngine;
 
-namespace UnityStandardAssets.Characters.ThirdPerson
+//namespace UnityStandardAssets.Characters.ThirdPerson
+namespace Swordsmanship
 {
     [RequireComponent(typeof (NavMeshAgent))]
-    [RequireComponent(typeof (ThirdPersonCharacter))]
-    public class AICharacterControl : MonoBehaviour
+    [RequireComponent(typeof (SwordsmanCharacter))]
+    public class AISwordsmanControl : MonoBehaviour
     {
         public NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
-        public ThirdPersonCharacter character { get; private set; } // the character we are controlling
+        public SwordsmanCharacter character { get; private set; } // the character we are controlling
         public Transform target;                                    // target to aim for
 
 
@@ -16,7 +17,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             // get the components on the object we need ( should not be null due to require component so no need to check )
             agent = GetComponentInChildren<NavMeshAgent>();
-            character = GetComponent<ThirdPersonCharacter>();
+            character = GetComponent<SwordsmanCharacter>();
 
 	        agent.updateRotation = false;
 	        agent.updatePosition = true;
