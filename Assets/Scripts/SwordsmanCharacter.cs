@@ -226,7 +226,7 @@ namespace Swordsmanship
 
 
 
-
+        //Attack
         public void AttackSwingLeftIdle()
         {
             m_Animator.SetBool("SwingLeftStart",true);
@@ -239,5 +239,17 @@ namespace Swordsmanship
             m_Animator.SetBool("SwingLeftStart", false);
         }
 
+        //Block
+        public void BlockFront()
+        {
+            m_Animator.SetBool("BlockFront", true);
+        }
+
+        public void BlockExit()
+        {
+            m_Animator.SetBool("BlockFront", false);
+            //m_Animator.SetBool("BlockLeft", false);
+            //m_Animator.SetBool("BlockRight", false);
+        }
     }
 }

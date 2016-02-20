@@ -18,6 +18,8 @@ namespace Swordsmanship
         Block_Left,
         Block_Right,
 
+        Block_Exit,
+
         Special_DragonRoar
     };
 

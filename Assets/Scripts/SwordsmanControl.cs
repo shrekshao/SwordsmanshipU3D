@@ -63,17 +63,30 @@ namespace Swordsmanship
             bool crouch = Input.GetKey(KeyCode.C);
 
 
-            // DELETE ME: Test swing left
-            if(Input.GetKeyDown(KeyCode.Z))
+            // DELETE ME: Test input
+            
+
+            if(Input.GetKey(KeyCode.B))
+            {
+                mouseInput.mouseMovementInput = MouseMovementsInput.Block_Front;
+            }
+            else
+            {
+                mouseInput.mouseMovementInput = MouseMovementsInput.Block_Exit;
+            }
+
+
+            if (Input.GetKeyDown(KeyCode.Z))
             {
                 mouseInput.mouseMovementInput = MouseMovementsInput.Attack_SwingLeftIdle;
             }
 
-            if(Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X))
             {
                 mouseInput.mouseMovementInput = MouseMovementsInput.Attack_SwingLeft;
             }
 
+            /////////////////////////
 
 
             //attack
@@ -114,6 +127,14 @@ namespace Swordsmanship
                     break;
                 case MouseMovementsInput.Attack_SwingLeft:
                     m_Character.AttackSwingLeftAttack();
+                    break;
+
+                case MouseMovementsInput.Block_Front:
+                    m_Character.BlockFront();
+                    break;
+
+                case MouseMovementsInput.Block_Exit:
+                    m_Character.BlockExit();
                     break;
 
                 default:
