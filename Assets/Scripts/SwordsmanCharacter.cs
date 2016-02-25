@@ -257,6 +257,18 @@ namespace Swordsmanship
             m_Animator.SetBool("SwingLeftStart", false);
         }
 
+        public void AttackSwingRightIdle()
+        {
+            m_Animator.SetBool("SwingRightStart", true);
+            m_Animator.SetBool("SwingRightAttack", false);
+        }
+
+        public void AttackSwingRightAttack()
+        {
+            m_Animator.SetBool("SwingRightAttack", true);
+            m_Animator.SetBool("SwingRightStart", false);
+        }
+
         //Block
         public void BlockFront()
         {
