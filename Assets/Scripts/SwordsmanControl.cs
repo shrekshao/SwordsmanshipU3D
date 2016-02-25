@@ -143,6 +143,12 @@ namespace Swordsmanship
                 case MouseMovementsInput.Block_Front:
                     m_Character.BlockFront();
                     break;
+                case MouseMovementsInput.Block_Left:
+                    m_Character.BlockLeft();
+                    break;
+                case MouseMovementsInput.Block_Right:
+                    m_Character.BlockRight();
+                    break;
 
                 case MouseMovementsInput.Block_Exit:
                     m_Character.BlockExit();

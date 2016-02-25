@@ -274,12 +274,20 @@ namespace Swordsmanship
         {
             m_Animator.SetBool("BlockFront", true);
         }
+        public void BlockLeft()
+        {
+            m_Animator.SetBool("BlockLeft", true);
+        }
+        public void BlockRight()
+        {
+            m_Animator.SetBool("BlockRight", true);
+        }
 
         public void BlockExit()
         {
             m_Animator.SetBool("BlockFront", false);
-            //m_Animator.SetBool("BlockLeft", false);
-            //m_Animator.SetBool("BlockRight", false);
+            m_Animator.SetBool("BlockLeft", false);
+            m_Animator.SetBool("BlockRight", false);
         }
 
 
