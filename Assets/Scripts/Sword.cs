@@ -42,7 +42,8 @@ namespace Swordsmanship
         //    }
         //}
 
-        void OnTriggerStay(Collider other)
+        //void OnTriggerStay(Collider other)
+        void OnTriggerEnter(Collider other)
         {
             if(sword_state == SwordState.Attack)
             {
