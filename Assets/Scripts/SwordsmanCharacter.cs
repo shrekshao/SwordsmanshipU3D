@@ -51,9 +51,22 @@ namespace Swordsmanship
 
 
             //TMP, dynamic initialize
-            sword = GameObject.Find("Sword");
+            //sword = GameObject.Find("Sword");
+
+            InitSwordOnBack("Sword0");
 		}
 
+        public void InitSwordOnBack(string sword_name)
+        {
+            sword = GameObject.Instantiate(Resources.Load(sword_name)) as GameObject;
+            sword.transform.SetParent(sword_back_position);
+            sword.transform.localPosition = Vector3.zero;
+            sword.transform.localRotation = Quaternion.identity;
+
+            sword.GetComponent<Collider>().enabled = false;
+
+            sword.GetComponent<Sword>().master = this.gameObject;
+        }
 
 		public void Move(Vector3 move, bool crouch, bool jump)
 		{
@@ -243,6 +256,7 @@ namespace Swordsmanship
 		}
 
 
+        // --------- Animator Control related ----------------
 
         //Attack
         public void AttackSwingLeftIdle()
@@ -257,17 +271,55 @@ namespace Swordsmanship
             m_Animator.SetBool("SwingLeftStart", false);
         }
 
+        public void AttackSwingRightIdle()
+        {
+            m_Animator.SetBool("SwingRightStart", true);
+            m_Animator.SetBool("SwingRightAttack", false);
+        }
+
+        public void AttackSwingRightAttack()
+        {
+            m_Animator.SetBool("SwingRightAttack", true);
+            m_Animator.SetBool("SwingRightStart", false);
+        }
+
         //Block
         public void BlockFront()
         {
             m_Animator.SetBool("BlockFront", true);
         }
+        public void BlockLeft()
+        {
+            m_Animator.SetBool("BlockLeft", true);
+        }
+        public void BlockRight()
+        {
+            m_Animator.SetBool("BlockRight", true);
+        }
 
         public void BlockExit()
         {
             m_Animator.SetBool("BlockFront", false);
-            //m_Animator.SetBool("BlockLeft", false);
-            //m_Animator.SetBool("BlockRight", false);
+            m_Animator.SetBool("BlockLeft", false);
+            m_Animator.SetBool("BlockRight", false);
+        }
+
+
+        //Idle, clear all bool
+        public void IdleClearStates()
+        {
+            m_Animator.SetBool("BlockFront", false);
+            m_Animator.SetBool("BlockLeft", false);
+            m_Animator.SetBool("BlockRight", false);
+
+            m_Animator.SetBool("SwingRightStart", false);
+            m_Animator.SetBool("SwingRightAttack", false);
+
+            m_Animator.SetBool("SwingLeftStart", false);
+            m_Animator.SetBool("SwingLeftAttack", false);
+
+            //animator.SetBool("StabStart", false);
+            //animator.SetBool("StabAttack", false);
         }
 
 
@@ -278,5 +330,23 @@ namespace Swordsmanship
             sword.transform.localPosition = Vector3.zero;
             sword.transform.localRotation = Quaternion.identity;
         }
+
+        // -----------------------------------------------------------
+
+
+
+
+        // --------- Enviornment Interacting------------------
+        public void EnableSwordAttack()
+        {
+            sword.GetComponent<Collider>().enabled = true;
+        }
+
+        public void DisableSwordAttack()
+        {
+            sword.GetComponent<Collider>().enabled = false;
+        }
+
+
     }
 }
