@@ -53,7 +53,7 @@ namespace Swordsmanship
 		// Late Update
 		void LateUpdate () {
 			
-			if (freeMove == false) 
+			if (freeMove == false && lockEnemy != null) 
 			{
 				// find nearest enemy inside range LockDistance		
 				LockEnemyCameraUpdate ();
