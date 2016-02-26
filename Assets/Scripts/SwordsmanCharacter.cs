@@ -396,6 +396,7 @@ namespace Swordsmanship
         public void BeHit(GameObject attacker_gb, SwordsmanCharacter attacker)
         {
             Debug.Log("Be Hit!!!");
+            m_Animator.SetTrigger("Damage");
         }
 
         
