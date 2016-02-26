@@ -291,6 +291,24 @@ namespace Swordsmanship
         }
 
 
+        //Idle, clear all bool
+        public void IdleClearStates()
+        {
+            m_Animator.SetBool("BlockFront", false);
+            m_Animator.SetBool("BlockLeft", false);
+            m_Animator.SetBool("BlockRight", false);
+
+            m_Animator.SetBool("SwingRightStart", false);
+            m_Animator.SetBool("SwingRightAttack", false);
+
+            m_Animator.SetBool("SwingLeftStart", false);
+            m_Animator.SetBool("SwingLeftAttack", false);
+
+            //animator.SetBool("StabStart", false);
+            //animator.SetBool("StabAttack", false);
+        }
+
+
         //Draw sword, change sword parent
         public void DrawSwordChangeParent()
         {

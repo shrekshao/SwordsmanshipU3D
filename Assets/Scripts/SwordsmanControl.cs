@@ -127,6 +127,9 @@ namespace Swordsmanship
 
             switch(m_input.mouseMovementInput)
             {
+                case MouseMovementsInput.Idle:
+                    m_Character.IdleClearStates();
+                    break;
                 case MouseMovementsInput.Attack_SwingLeftIdle:
                     m_Character.AttackSwingLeftIdle();
                     break;

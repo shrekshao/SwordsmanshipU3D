@@ -34,9 +34,13 @@ public class MouseBehavior : MonoBehaviour {
     void Update() {
 
         if( Input.GetKeyDown( "mouse 0" ) ) { statusLMB = 1; prepareDelay = prepareResponseTime; }
-        if( Input.GetKeyUp( "mouse 0" ) ) statusLMB = 0;
+        if (Input.GetKeyUp("mouse 0")) {
+            statusLMB = 0;
+            Debug.Log("Release");
+            mouseInputDelegate(new MouseInputStruct(MouseMovementsInput.Idle));
+        }
         if( Input.GetKeyDown( "mouse 1" ) ) statusRMB = 1;
-        if( Input.GetKeyUp( "mouse 1" ) ) { if( statusRMB == 1 ) mouseInputDelegate(new MouseInputStruct(MouseMovementsInput.Block_Exit)); statusRMB = 0; }
+        if( Input.GetKeyUp( "mouse 1" ) ) { mouseInputDelegate(new MouseInputStruct(MouseMovementsInput.Block_Exit)); statusRMB = 0; }
 
         float moveX = Input.GetAxis( "Mouse X" );
         float moveY = Input.GetAxis( "Mouse Y" );
