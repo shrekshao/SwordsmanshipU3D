@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Attackable
+  - Pattern System Controller
+  - Cursor
+  - WorldStuff
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - 
   - Pattern System Layer
   - EnemyLayer
-  - 
+  - UILayer
   - 
   - 
   - 

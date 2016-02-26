@@ -18,6 +18,7 @@ public class PromptAttributes : MonoBehaviour {
 
         //---touched by cursor---
         if(other.tag != "Cursor") return;
+        if( !controller.isTouched[ 0 ] && id != 0 ) return;
 
         controller.isTouched[id] = true;
         if( !ps.isPlaying ) ps.Play();

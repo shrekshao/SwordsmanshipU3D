@@ -44,7 +44,7 @@ public class PatternSystemController : MonoBehaviour {
         //---destroy prompts---
         for( int i = 0; i < nPrompts; ++i ) {
 
-            //---destroy prompt---
+            //---destroy prompt---f
             if( prompts[ i ] ) Destroy( prompts[ i ] );
         }
     }
