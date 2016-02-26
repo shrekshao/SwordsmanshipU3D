@@ -4,6 +4,9 @@
 Temp/
 Library/
 
+# Unity scene file
+*.scene
+
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
