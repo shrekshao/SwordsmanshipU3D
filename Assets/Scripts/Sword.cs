@@ -34,6 +34,7 @@ namespace Swordsmanship
             if (other.tag == "Attackable" && other.gameObject != master)
             {
                 Debug.Log("Attack Hit!!!!!");
+                GameObject.Instantiate(Resources.Load("Particles/hitEffect"), transform.position, Quaternion.identity);
                 GetComponent<Collider>().enabled = false;
             }
         }

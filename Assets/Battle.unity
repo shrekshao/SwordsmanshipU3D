@@ -749,7 +749,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
 --- !u!4 &1617754843 stripped
 Transform:
   m_PrefabParentObject: {fileID: 466970, guid: 497084edc28c5294294d4b0a909406eb, type: 2}
