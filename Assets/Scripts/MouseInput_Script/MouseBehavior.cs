@@ -36,7 +36,7 @@ public class MouseBehavior : MonoBehaviour {
         if( Input.GetKeyDown( "mouse 0" ) ) { statusLMB = 1; prepareDelay = prepareResponseTime; }
         if (Input.GetKeyUp("mouse 0")) {
             statusLMB = 0;
-            Debug.Log("Release");
+            //Debug.Log("Release");
             mouseInputDelegate(new MouseInputStruct(MouseMovementsInput.Idle));
         }
         if( Input.GetKeyDown( "mouse 1" ) ) statusRMB = 1;
@@ -61,17 +61,17 @@ public class MouseBehavior : MonoBehaviour {
                     statusLMB = 0;
                 }else if( Mathf.Abs( dirX ) > Mathf.Abs( dirY ) ) {
                     if( dirX < 0 ) {
-                        Debug.Log( "prepare swing left" );
+                        //Debug.Log( "prepare swing left" );
                         mouseInputDelegate(new MouseInputStruct(MouseMovementsInput.Attack_SwingLeftIdle));
                         statusLMB = 3;
                     }else {
-                        Debug.Log( "prepare swing right" );
+                        //Debug.Log( "prepare swing right" );
                         mouseInputDelegate(new MouseInputStruct(MouseMovementsInput.Attack_SwingRightIdle));
                         statusLMB = 4;
                     }
                 }else {
                     if( dirY < 0 ) {
-                        Debug.Log( "prepare stab" );
+                        //Debug.Log( "prepare stab" );
                         mouseInputDelegate(new MouseInputStruct(MouseMovementsInput.Attack_StabIdle));
                         statusLMB = 5;
                     }else {
@@ -82,21 +82,21 @@ public class MouseBehavior : MonoBehaviour {
             case 3:
                 if( moveX > attackResponseSpeed ) {
                     statusLMB = 0;
-                    Debug.Log( "swing left" );
+                    //Debug.Log( "swing left" );
                     mouseInputDelegate(new MouseInputStruct(MouseMovementsInput.Attack_SwingLeft));
                 }
                 break;
             case 4:
                 if( moveX < -attackResponseSpeed ) {
                     statusLMB = 0;
-                    Debug.Log( "swing right" );
+                    //Debug.Log( "swing right" );
                     mouseInputDelegate(new MouseInputStruct(MouseMovementsInput.Attack_SwingRight));
                 }
                 break;
             case 5:
                 if( moveY > attackResponseSpeed ) {
                     statusLMB = 0;
-                    Debug.Log( "stab" );
+                    //Debug.Log( "stab" );
                     mouseInputDelegate(new MouseInputStruct(MouseMovementsInput.Attack_Stab));
                 }
                 break;
@@ -109,15 +109,15 @@ public class MouseBehavior : MonoBehaviour {
             case 1:
                 statusRMB = 0;
                 if( moveX < -blockResponseSpeed ) {
-                    Debug.Log( "block left" );
+                    //Debug.Log( "block left" );
                     mouseInputDelegate(new MouseInputStruct(MouseMovementsInput.Block_Left));
                 }
                 else if( moveX > blockResponseSpeed ) {
-                    Debug.Log( "block right" );
+                    //Debug.Log( "block right" );
                     mouseInputDelegate(new MouseInputStruct(MouseMovementsInput.Block_Right));
                 }
                 else if( moveY > blockResponseSpeed ) {
-                    Debug.Log( "block middle" );
+                    //Debug.Log( "block middle" );
                     mouseInputDelegate(new MouseInputStruct(MouseMovementsInput.Block_Front));
                 }
                 else{

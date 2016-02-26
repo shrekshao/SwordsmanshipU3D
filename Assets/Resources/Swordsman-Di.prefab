@@ -843,7 +843,7 @@ GameObject:
   - 114: {fileID: 11431536}
   m_Layer: 0
   m_Name: Swordsman-Di
-  m_TagString: Untagged
+  m_TagString: Attackable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1764,10 +1764,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3
+  m_Radius: 0.14729384
   m_Height: 1.1653914
   m_Direction: 1
-  m_Center: {x: 0, y: 0.57, z: 0}
+  m_Center: {x: 0, y: 0.57, z: 0.03}
 --- !u!137 &13708506
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

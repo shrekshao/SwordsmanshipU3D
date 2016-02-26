@@ -62,6 +62,10 @@ namespace Swordsmanship
             sword.transform.SetParent(sword_back_position);
             sword.transform.localPosition = Vector3.zero;
             sword.transform.localRotation = Quaternion.identity;
+
+            sword.GetComponent<Collider>().enabled = false;
+
+            sword.GetComponent<Sword>().master = this.gameObject;
         }
 
 		public void Move(Vector3 move, bool crouch, bool jump)
@@ -252,6 +256,7 @@ namespace Swordsmanship
 		}
 
 
+        // --------- Animator Control related ----------------
 
         //Attack
         public void AttackSwingLeftIdle()
@@ -325,5 +330,23 @@ namespace Swordsmanship
             sword.transform.localPosition = Vector3.zero;
             sword.transform.localRotation = Quaternion.identity;
         }
+
+        // -----------------------------------------------------------
+
+
+
+
+        // --------- Enviornment Interacting------------------
+        public void EnableSwordAttack()
+        {
+            sword.GetComponent<Collider>().enabled = true;
+        }
+
+        public void DisableSwordAttack()
+        {
+            sword.GetComponent<Collider>().enabled = false;
+        }
+
+
     }
 }

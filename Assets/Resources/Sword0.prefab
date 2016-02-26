@@ -11,6 +11,9 @@ GameObject:
   - 33: {fileID: 3330132}
   - 23: {fileID: 2320494}
   - 111: {fileID: 11164824}
+  - 54: {fileID: 5489914}
+  - 65: {fileID: 6533338}
+  - 114: {fileID: 11438132}
   m_Layer: 0
   m_Name: Sword0
   m_TagString: Untagged
@@ -63,6 +66,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105538}
   m_Mesh: {fileID: 4300000, guid: cfb8b4469f173ec4f9d2b3a2d42c38aa, type: 3}
+--- !u!54 &5489914
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 105538}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &6533338
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 105538}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.45, y: 4.9, z: 0.21213204}
+  m_Center: {x: 0, y: -1.55, z: -0.000000011175871}
 --- !u!111 &11164824
 Animation:
   m_ObjectHideFlags: 1
@@ -77,6 +107,18 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &11438132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 105538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddfb529b190e76040babd545e767990d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  master: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -91,6 +133,26 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Name
       value: Sword0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.x
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
