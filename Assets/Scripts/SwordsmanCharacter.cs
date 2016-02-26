@@ -346,6 +346,8 @@ namespace Swordsmanship
             sword.transform.SetParent(sword_hand_position);
             sword.transform.localPosition = Vector3.zero;
             sword.transform.localRotation = Quaternion.identity;
+
+            m_Animator.SetBool("UpperLocked", false);
         }
 
         // -----------------------------------------------------------
@@ -396,7 +398,13 @@ namespace Swordsmanship
         public void BeHit(GameObject attacker_gb, SwordsmanCharacter attacker)
         {
             Debug.Log("Be Hit!!!");
-            m_Animator.SetTrigger("Damage");
+            m_Animator.SetTrigger("Damaged");
+
+
+            //be Knocked back
+            Vector3 dir = transform.position - attacker_gb.transform.position;
+
+            GetComponent<Rigidbody>().AddForce(150 * dir.normalized);
         }
 
         
@@ -405,6 +413,11 @@ namespace Swordsmanship
             Debug.Log("Be Blocked!!!!");
 			m_Animator.SetBool ("isBlocked",true);
         }
+
+        
+
+
+
 
     }
 }

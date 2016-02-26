@@ -34,7 +34,31 @@ namespace Swordsmanship
             //else
             //    character.Move(Vector3.zero, false, false);
 
-            character.BlockLeft();
+
+            //tmp for test
+
+            //float r = UnityEngine.Random.value;
+
+            //if(r < 0.15f)
+            //{
+            //    character.BlockLeft();
+            //}
+            //else if (r < 0.3f)
+            //{
+            //    character.BlockFront();
+            //}
+            //else if (r < 0.45f)
+            //{
+            //    character.BlockRight();
+            //}
+            //else
+            //{
+            //    character.AttackStabIdle();
+            //    character.AttackStabAttack();
+            //}
+
+            character.BlockRight();
+
         }
 
 

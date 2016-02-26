@@ -110,6 +110,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: UpperLocked
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 1
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -964,6 +970,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: BlockRight
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: UpperLocked
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110240122}
   m_Solo: 0
@@ -1008,6 +1017,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: SwingRightStart
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: UpperLocked
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110231706}
@@ -1465,6 +1477,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: BlockLeft
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: UpperLocked
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110265256}
   m_Solo: 0
@@ -1557,6 +1572,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: SwingLeftStart
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: UpperLocked
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110267118}
@@ -1716,6 +1734,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: BlockFront
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: UpperLocked
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110268726}
@@ -1921,6 +1942,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: StabStart
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: UpperLocked
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110213110}
   m_Solo: 0
@@ -2122,7 +2146,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400006, guid: 0d9d26e2162aa4d11ab075b34c029673, type: 3}
+  m_Motion: {fileID: 7400000, guid: 5e3a4b12b3088446e94ba11a5cc25899, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -2545,7 +2569,7 @@ AnimatorStateMachine:
     m_Position: {x: 600, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110276412}
-    m_Position: {x: 900, y: -48, z: 0}
+    m_Position: {x: 960, y: -36, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110250888}
     m_Position: {x: 960, y: 72, z: 0}
@@ -2554,7 +2578,7 @@ AnimatorStateMachine:
     m_Position: {x: 696, y: 144, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110269806}
-    m_Position: {x: 960, y: 156, z: 0}
+    m_Position: {x: 936, y: 156, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110217030}
     m_Position: {x: 1236, y: 72, z: 0}
