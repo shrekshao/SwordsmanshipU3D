@@ -122,6 +122,7 @@ MonoBehaviour:
   swordsman: {fileID: 0}
   sword_state: 0
   hitEffect: {fileID: 173550, guid: b480fd3b82133e248ab98ba201628129, type: 2}
+  blockEffect: {fileID: 115036, guid: e6c1989c1684942d9b528a8951db892f, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -165,6 +166,10 @@ Prefab:
       propertyPath: hitEffect
       value: 
       objectReference: {fileID: 173550, guid: b480fd3b82133e248ab98ba201628129, type: 2}
+    - target: {fileID: 0}
+      propertyPath: blockEffect
+      value: 
+      objectReference: {fileID: 115036, guid: e6c1989c1684942d9b528a8951db892f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 105538}

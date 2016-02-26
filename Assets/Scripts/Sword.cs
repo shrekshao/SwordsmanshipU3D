@@ -22,6 +22,10 @@ namespace Swordsmanship
         [SerializeField]
         GameObject hitEffect;
 
+		[SerializeField]
+		GameObject blockEffect;
+
+
         // Use this for initialization
         void Start()
         {
@@ -51,6 +55,8 @@ namespace Swordsmanship
                 {
                     // be blocked
                     GetComponent<Collider>().enabled = false;
+					CreateBlockedEffect ();
+
                     swordsman.BeBlocked();
                     return;
                 }
@@ -74,6 +80,11 @@ namespace Swordsmanship
         {
             GameObject.Instantiate(hitEffect, transform.position, Quaternion.identity);
         }
+
+		void CreateBlockedEffect()
+		{
+			GameObject.Instantiate(blockEffect, transform.position, Quaternion.identity);
+		}
         //void OnTriggerExit(Collider other)
         //{
         //    if (other.tag == "Attackable" && other.gameObject != master)

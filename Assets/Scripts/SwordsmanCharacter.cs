@@ -402,6 +402,7 @@ namespace Swordsmanship
         public void BeBlocked()
         {
             Debug.Log("Be Blocked!!!!");
+			m_Animator.SetBool ("isBlocked",true);
         }
 
     }

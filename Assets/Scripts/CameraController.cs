@@ -60,8 +60,8 @@ namespace Swordsmanship
 			} 
 			else // normal moving camera control
 			{
-				MouseAimCameraUpdate ();
-				//FollowCameraUpdate();
+				//MouseAimCameraUpdate ();
+				FollowCameraUpdate();
 			}
 		}
 
