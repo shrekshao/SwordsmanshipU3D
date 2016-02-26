@@ -3,6 +3,15 @@ using System.Collections;
 
 namespace Swordsmanship
 {
+    //public enum AttackDirection
+    //{
+    //    Left = 0,
+    //    Right,
+    //    Front,
+    //    Up
+    //};
+
+
     public enum MouseMovementsInput
     {
         Idle,

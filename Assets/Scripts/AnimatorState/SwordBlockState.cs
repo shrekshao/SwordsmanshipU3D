@@ -1,23 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UpperBodyIdleState : StateMachineBehaviour {
+public class SwordBlockState : StateMachineBehaviour {
 
-    //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool("BlockFront", false);
-        animator.SetBool("BlockLeft", false);
-        animator.SetBool("BlockRight", false);
-
-        animator.SetBool("SwingRightStart", false);
-        animator.SetBool("SwingRightAttack", false);
-
-        animator.SetBool("SwingLeftStart", false);
-        animator.SetBool("SwingLeftAttack", false);
-
-        animator.SetBool("StabStart", false);
-        animator.SetBool("StabAttack", false);
+        animator.gameObject.GetComponent<Swordsmanship.SwordsmanCharacter>().EnableSwordBlock();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -26,9 +15,10 @@ public class UpperBodyIdleState : StateMachineBehaviour {
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    //
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.gameObject.GetComponent<Swordsmanship.SwordsmanCharacter>().DisableSwordBlock();
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {

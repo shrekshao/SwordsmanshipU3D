@@ -31,12 +31,17 @@ namespace Swordsmanship
 		bool m_Crouching;
 
 
-        //
+        //sword
         GameObject sword;
+        Sword m_Sword;
         [SerializeField]
         Transform sword_hand_position;
         [SerializeField]
         Transform sword_back_position;
+
+
+
+
 
         void Start()
 		{
@@ -51,8 +56,6 @@ namespace Swordsmanship
 
 
             //TMP, dynamic initialize
-            //sword = GameObject.Find("Sword");
-
             InitSwordOnBack("Sword0");
 		}
 
@@ -65,7 +68,9 @@ namespace Swordsmanship
 
             sword.GetComponent<Collider>().enabled = false;
 
-            sword.GetComponent<Sword>().master = this.gameObject;
+            m_Sword = sword.GetComponent<Sword>();
+            m_Sword.master = this.gameObject;
+            m_Sword.swordsman = this;
         }
 
 		public void Move(Vector3 move, bool crouch, bool jump)
@@ -283,6 +288,18 @@ namespace Swordsmanship
             m_Animator.SetBool("SwingRightStart", false);
         }
 
+        public void AttackStabIdle()
+        {
+            m_Animator.SetBool("StabStart", true);
+            m_Animator.SetBool("StabAttack", false);
+        }
+
+        public void AttackStabAttack()
+        {
+            m_Animator.SetBool("StabAttack", true);
+            m_Animator.SetBool("StabStart", false);
+        }
+
         //Block
         public void BlockFront()
         {
@@ -318,8 +335,8 @@ namespace Swordsmanship
             m_Animator.SetBool("SwingLeftStart", false);
             m_Animator.SetBool("SwingLeftAttack", false);
 
-            //animator.SetBool("StabStart", false);
-            //animator.SetBool("StabAttack", false);
+            m_Animator.SetBool("StabStart", false);
+            m_Animator.SetBool("StabAttack", false);
         }
 
 
@@ -334,12 +351,11 @@ namespace Swordsmanship
         // -----------------------------------------------------------
 
 
-
-
         // --------- Enviornment Interacting------------------
         public void EnableSwordAttack()
         {
             sword.GetComponent<Collider>().enabled = true;
+            m_Sword.sword_state = SwordState.Attack;
         }
 
         public void DisableSwordAttack()
@@ -347,6 +363,46 @@ namespace Swordsmanship
             sword.GetComponent<Collider>().enabled = false;
         }
 
+        public void EnableSwordBlock()
+        {
+            sword.GetComponent<Collider>().enabled = true;
+            m_Sword.sword_state = SwordState.Block;
+        }
+
+        public void DisableSwordBlock()
+        {
+            sword.GetComponent<Collider>().enabled = false;
+        }
+
+
+
+        // --------- Attack Effect-----------------
+        public void AttackCharacter(Collider other)
+        {
+            //tmp
+            if(other.tag == "Human")
+            {
+                SwordsmanCharacter target = other.gameObject.GetComponent<SwordsmanCharacter>();
+
+                // Knock back
+                target.BeHit(gameObject, this);
+                //
+            }
+            
+
+        }
+
+
+        public void BeHit(GameObject attacker_gb, SwordsmanCharacter attacker)
+        {
+            Debug.Log("Be Hit!!!");
+        }
+
+        
+        public void BeBlocked()
+        {
+            Debug.Log("Be Blocked!!!!");
+        }
 
     }
 }
