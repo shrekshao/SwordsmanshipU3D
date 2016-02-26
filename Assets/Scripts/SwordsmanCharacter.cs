@@ -51,9 +51,18 @@ namespace Swordsmanship
 
 
             //TMP, dynamic initialize
-            sword = GameObject.Find("Sword");
+            //sword = GameObject.Find("Sword");
+
+            InitSwordOnBack("Sword0");
 		}
 
+        public void InitSwordOnBack(string sword_name)
+        {
+            sword = GameObject.Instantiate(Resources.Load(sword_name)) as GameObject;
+            sword.transform.SetParent(sword_back_position);
+            sword.transform.localPosition = Vector3.zero;
+            sword.transform.localRotation = Quaternion.identity;
+        }
 
 		public void Move(Vector3 move, bool crouch, bool jump)
 		{
