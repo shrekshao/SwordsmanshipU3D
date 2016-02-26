@@ -136,6 +136,22 @@ Prefab:
       propertyPath: m_Constraints
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 13632252, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
+      propertyPath: m_Center.x
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 13632252, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
+      propertyPath: m_Radius
+      value: 0.097
+      objectReference: {fileID: 0}
+    - target: {fileID: 13632252, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
+      propertyPath: m_Height
+      value: 1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 13632252, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
+      propertyPath: m_Center.y
+      value: 0.54
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11470314, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
@@ -595,6 +611,26 @@ Prefab:
     - target: {fileID: 476324, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 13632252, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
+      propertyPath: m_Radius
+      value: 0.09769463
+      objectReference: {fileID: 0}
+    - target: {fileID: 13632252, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
+      propertyPath: m_Height
+      value: 1.0436344
+      objectReference: {fileID: 0}
+    - target: {fileID: 13632252, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
+      propertyPath: m_Center.y
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 13632252, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
+      propertyPath: m_Center.z
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 13632252, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
+      propertyPath: m_Center.x
+      value: 0.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
