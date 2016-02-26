@@ -142,6 +142,12 @@ namespace Swordsmanship
                 case MouseMovementsInput.Attack_SwingRight:
                     m_Character.AttackSwingRightAttack();
                     break;
+                case MouseMovementsInput.Attack_StabIdle:
+                    m_Character.AttackStabIdle();
+                    break;
+                case MouseMovementsInput.Attack_Stab:
+                    m_Character.AttackStabAttack();
+                    break;
 
                 case MouseMovementsInput.Block_Front:
                     m_Character.BlockFront();

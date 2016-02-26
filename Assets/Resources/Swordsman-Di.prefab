@@ -843,7 +843,7 @@ GameObject:
   - 114: {fileID: 11431536}
   m_Layer: 0
   m_Name: Swordsman-Di
-  m_TagString: Attackable
+  m_TagString: Human
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2474,6 +2474,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 94a4c5ba77d2be34c9ff74ab7bcd079b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Human
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 186968}

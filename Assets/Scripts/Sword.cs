@@ -3,16 +3,29 @@ using System.Collections;
 
 namespace Swordsmanship
 {
+    public enum SwordState
+    {
+        Attack = 0,
+        Block
+    };
+
     public class Sword : MonoBehaviour
     {
-        //TODO: Sword Status
+        //TODO: Sword Status, attack, effect ...
 
         public GameObject master;  //user of the sword
+
+        public SwordsmanCharacter swordsman;
+
+        public SwordState sword_state;
+
+        [SerializeField]
+        GameObject hitEffect;
 
         // Use this for initialization
         void Start()
         {
-
+            sword_state = SwordState.Block;
         }
 
         // Update is called once per frame
@@ -29,15 +42,38 @@ namespace Swordsmanship
         //    }
         //}
 
-        void OnTriggerStay(Collider other)
+        //void OnTriggerStay(Collider other)
+        void OnTriggerEnter(Collider other)
         {
-            if (other.tag == "Attackable" && other.gameObject != master)
+            if(sword_state == SwordState.Attack)
             {
-                Debug.Log("Attack Hit!!!!!");
-                GetComponent<Collider>().enabled = false;
+                if (other.tag == "Sword" /*|| other.tag == "Shield"*/)
+                {
+                    // be blocked
+                    GetComponent<Collider>().enabled = false;
+                    swordsman.BeBlocked();
+                    return;
+                }
+
+                if ((other.tag == "Attackable" || other.tag == "Human") && other.gameObject != master)
+                {
+                    // Hit human
+
+                    GetComponent<Collider>().enabled = false;
+                    //GameObject.Instantiate(Resources.Load("Particles/hitEffect"), transform.position, Quaternion.identity);
+                    //GameObject.Instantiate(hitEffect, transform.position, Quaternion.identity);
+                    CreateHitEffect();
+
+                    swordsman.AttackCharacter(other);
+                }
             }
+            
         }
 
+        void CreateHitEffect()
+        {
+            GameObject.Instantiate(hitEffect, transform.position, Quaternion.identity);
+        }
         //void OnTriggerExit(Collider other)
         //{
         //    if (other.tag == "Attackable" && other.gameObject != master)

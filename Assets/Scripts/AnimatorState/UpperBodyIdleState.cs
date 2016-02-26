@@ -16,8 +16,8 @@ public class UpperBodyIdleState : StateMachineBehaviour {
         animator.SetBool("SwingLeftStart", false);
         animator.SetBool("SwingLeftAttack", false);
 
-        //animator.SetBool("StabStart", false);
-        //animator.SetBool("StabAttack", false);
+        animator.SetBool("StabStart", false);
+        animator.SetBool("StabAttack", false);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

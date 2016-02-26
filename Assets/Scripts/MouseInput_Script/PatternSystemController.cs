@@ -32,6 +32,7 @@ public class PatternSystemController : MonoBehaviour {
             prompts[ i ] = Instantiate( prompt, new Vector3(), new Quaternion() ) as GameObject;
             prompts[ i ].transform.parent = gameObject.transform;
             prompts[ i ].transform.localPosition = new Vector3( rand1.x, rand1.y, 0 ) * rand2;
+            prompts[ i ].transform.localRotation = new Quaternion();
             prompts[ i ].GetComponent< PromptAttributes >().setID( i );
             isTouched[ i ] = false;
         }
