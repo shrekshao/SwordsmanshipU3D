@@ -71,7 +71,7 @@ namespace Swordsmanship
 			error.y = 0;
 
 			float desiredAngle = Mathf.Atan2 (error.x, error.z) * 180.0f / Mathf.PI;
-			float angle = Mathf.Lerp (target.transform.rotation.eulerAngles.y, desiredAngle,Time.deltaTime * dampling);
+			// angle = Mathf.Lerp (target.transform.rotation.eulerAngles.y, desiredAngle,Time.deltaTime * dampling);
 
 			Quaternion rotation = Quaternion.Euler (0, desiredAngle, 0);
 

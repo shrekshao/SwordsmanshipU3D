@@ -17,7 +17,10 @@ namespace Swordsmanship
 
         //private MouseInputStruct mouseInput;
 
-        
+		// special moves varible
+		//int m_specialMoveIndex;
+		int m_specialMoveStage;
+		float m_specialMoveCDTime;
 
 
         private void Start()
@@ -42,6 +45,10 @@ namespace Swordsmanship
             //mouseInput = new MouseInputStruct();
 
             MouseBehavior.mouseInputDelegate += MouseInputHandle;
+
+			//special move initialization
+			m_Character.m_specialMoveIndex = -1;
+			m_specialMoveStage = 0;
         }
 
 
@@ -56,6 +63,9 @@ namespace Swordsmanship
                 }
                 
             }
+
+			// special move handler
+			SpecialMoveHandle ();
         }
 
 
@@ -119,8 +129,80 @@ namespace Swordsmanship
             // pass all parameters to the character control script
             m_Character.Move(m_Move, crouch, m_Jump);
             m_Jump = false;
+
         }
 
+		private void SpecialMoveHandle()
+		{	
+			m_specialMoveCDTime -= Time.deltaTime;
+			if (m_specialMoveCDTime < 0) 
+			{
+				m_specialMoveCDTime = 0;
+				m_Character.m_specialMoveIndex = -1;
+				m_Character.SetSpecialMoveIndex ();
+			}
+
+			if (m_specialMoveCDTime > 0) 
+			{ 	//not cooled down, not receive input 
+
+				float percent = 1.0f - m_specialMoveCDTime / SpecialMovesDefination.cdInterval [m_Character.m_specialMoveIndex];
+				// percentCoolDown
+				Debug.Log ("percentCoolDown: index = " + m_Character.m_specialMoveIndex + ", percent = " + percent);
+				return;
+			}
+
+			if (Input.GetKey (KeyCode.Alpha1)) 
+			{
+				m_Character.m_specialMoveIndex = 0;
+				m_Character.SetSpecialMoveIndex ();
+			} 
+			else if (Input.GetKey (KeyCode.Alpha2)) 
+			{
+				m_Character.m_specialMoveIndex = 1;
+				m_Character.SetSpecialMoveIndex ();
+			} 
+			else if (Input.GetKey (KeyCode.Alpha3)) 
+			{
+				m_Character.m_specialMoveIndex = 2;
+				m_Character.SetSpecialMoveIndex ();
+			}
+
+			if (m_Character.m_specialMoveIndex >= 0) 
+			{
+				m_specialMoveCDTime = SpecialMovesDefination.cdInterval [m_Character.m_specialMoveIndex];
+
+				// perform special move pattern system
+				Debug.Log ("performSpecial:" + m_Character.m_specialMoveIndex);
+			}
+		}
+
+		public void SpecialMoveNextStage()
+		{
+			m_specialMoveStage ++;
+
+			if (m_specialMoveStage > SpecialMovesDefination.specialMoveSteps[m_Character.m_specialMoveIndex]) {
+				m_specialMoveStage = 0; // finish movement
+				//m_animator.SetTrigger("SpecialMoveExitTrigger");
+				m_Character.ExitSpecialMoveTrigger();
+
+				m_Character.m_specialMoveIndex = -1;
+				m_Character.SetSpecialMoveIndex ();
+			} 
+			else 
+			{
+				//m_animator.SetTrigger ("NextStepTrigger");
+				m_Character.NextStageTrigger();
+			}
+		}
+
+		public void SpecialMoveStop()
+		{
+			m_specialMoveStage = 0;
+			m_Character.m_specialMoveIndex = -1;
+			m_Character.SetSpecialMoveIndex ();
+			//m_animator.SetTrigger ("Stop");
+			m_Character.StopSpecialMoveTrigger();
+		}
 
         private void MouseInputHandle(MouseInputStruct m_input)
         {

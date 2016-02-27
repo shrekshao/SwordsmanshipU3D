@@ -40,7 +40,8 @@ namespace Swordsmanship
         Transform sword_back_position;
 
 
-
+		//special move  index
+		public int m_specialMoveIndex;
 
 
         void Start()
@@ -57,6 +58,9 @@ namespace Swordsmanship
 
             //TMP, dynamic initialize
             InitSwordOnBack("Sword0");
+
+			// initialize 
+			m_specialMoveIndex = -1;
 		}
 
         public void InitSwordOnBack(string sword_name)
@@ -320,8 +324,7 @@ namespace Swordsmanship
             m_Animator.SetBool("BlockLeft", false);
             m_Animator.SetBool("BlockRight", false);
         }
-
-
+			
         //Idle, clear all bool
         public void IdleClearStates()
         {
@@ -350,6 +353,23 @@ namespace Swordsmanship
             m_Animator.SetBool("UpperLocked", false);
         }
 
+		// Special moves 
+		public void NextStageTrigger()
+		{
+			m_Animator.SetTrigger ("NextStage");
+		}
+		public void ExitSpecialMoveTrigger()
+		{
+			m_Animator.SetTrigger ("ExitSpecialMove");		
+		}
+		public void StopSpecialMoveTrigger()
+		{
+			m_Animator.SetTrigger ("StopSpecialMove");
+		}
+		public void SetSpecialMoveIndex()
+		{
+			m_Animator.SetInteger("SpecialMoveID",m_specialMoveIndex);
+		}
         // -----------------------------------------------------------
 
 
@@ -413,11 +433,6 @@ namespace Swordsmanship
             Debug.Log("Be Blocked!!!!");
 			m_Animator.SetBool ("isBlocked",true);
         }
-
-        
-
-
-
-
+			
     }
 }
