@@ -5,10 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Attackable
-  - Pattern System Controller
+  - PatternSystemController
   - Cursor
   - Sword
   - Human
+  - Special1Controller
+  - Special2Controller
+  - Special3Controller
+  - SpecialSystem
   layers:
   - Default
   - TransparentFX

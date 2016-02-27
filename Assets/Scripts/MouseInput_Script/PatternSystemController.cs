@@ -124,14 +124,14 @@ public class PatternSystemController : MonoBehaviour {
             if( Time.time > nextTime ) {
                 ClearPattern();
                 isDrawing = false;
-                //Debug.Log( "stop()" );
+                Debug.Log("stop()");
                 swordsmanshipController.SpecialMoveStop();
             } else {
                 for( int i = 1; i < nPrompts; ++i ) {
                     if( isTouched[ i ] && !isTouched[ i - 1 ] ) {
                         ClearPattern();
                         isDrawing = false;
-                        //Debug.Log( "stop()" );
+                        Debug.Log("stop()");
                         swordsmanshipController.SpecialMoveStop();
                     }
                 }
