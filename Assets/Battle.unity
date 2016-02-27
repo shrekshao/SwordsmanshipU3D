@@ -744,7 +744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3048ce2d319ca544c9aa86f4bc4130a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDownPercent: 0
+  coolDownPercent: 0.3
   iconTransform: {fileID: 639515549}
 --- !u!1 &745492927
 GameObject:
@@ -1078,6 +1078,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11462146, guid: 69fd03adbf1ca7245955bc741ba9d4ee, type: 2}
+      propertyPath: interval
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 69fd03adbf1ca7245955bc741ba9d4ee, type: 2}
   m_IsPrefabParent: 0
@@ -1180,7 +1184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3048ce2d319ca544c9aa86f4bc4130a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDownPercent: 0
+  coolDownPercent: 0.8
   iconTransform: {fileID: 962071325}
 --- !u!1 &1489062474
 GameObject:
@@ -1381,7 +1385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3048ce2d319ca544c9aa86f4bc4130a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDownPercent: 0
+  coolDownPercent: 0.5
   iconTransform: {fileID: 2009805295}
 --- !u!1001 &1851461145
 Prefab:

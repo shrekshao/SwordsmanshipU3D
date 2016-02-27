@@ -14,7 +14,7 @@ public class Special2Behavior : MonoBehaviour {
 
     IEnumerator spawnFlame() {
 
-        float[] angle = { 0, 30, -30 };
+        float[] angle = { 20, -20, 90 };
 
         for(int i = 0; i < nFlames; ++i) {
             yield return new WaitForSeconds(interval);
