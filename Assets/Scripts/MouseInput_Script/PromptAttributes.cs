@@ -7,11 +7,16 @@ public class PromptAttributes : MonoBehaviour {
 
     private ParticleSystem ps;
     private PatternSystemController controller;
+    private Swordsmanship.SwordsmanControl swordsmanshipController;
 
     public void Start() {
+
+        //---swordsman controller---
+        swordsmanshipController = GameObject.FindGameObjectWithTag( "Player" ).GetComponent< Swordsmanship.SwordsmanControl >();
+
         ps = gameObject.GetComponentInChildren< ParticleSystem >();
         if( ps.isPlaying ) ps.Stop();
-        controller = GameObject.FindGameObjectWithTag( "Pattern System Controller" ).GetComponent< PatternSystemController >();
+        controller = GameObject.FindGameObjectWithTag( "PatternSystemController" ).GetComponent< PatternSystemController >();
     }
 
     public void OnTriggerEnter(Collider other) {
@@ -19,7 +24,13 @@ public class PromptAttributes : MonoBehaviour {
         //---touched by cursor---
         if(other.tag != "Cursor") return;
 
+        //---first touch must be patter 1---
+        if( !controller.isTouched[ 0 ] && id != 0 ) return;
+
+        //Debug.Log( "nextState()" );
+        swordsmanshipController.SpecialMoveNextStage();
         controller.isTouched[id] = true;
+        controller.nextTime = Time.time + controller.interval;
         if( !ps.isPlaying ) ps.Play();
     }
 

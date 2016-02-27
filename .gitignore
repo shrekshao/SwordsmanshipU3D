@@ -4,6 +4,9 @@
 Temp/
 Library/
 
+# Unity scene file
+*.unity
+
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
@@ -31,3 +34,6 @@ obj/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Unity scene file
+.scene

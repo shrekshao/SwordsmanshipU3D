@@ -61,7 +61,7 @@ namespace Swordsmanship
                     return;
                 }
 
-                if ((other.tag == "Attackable" || other.tag == "Human") && other.gameObject != master)
+                if ((other.tag == "Attackable" || other.tag == "Human" || other.tag == "Player" ) && other.gameObject != master)
                 {
                     // Hit human
 

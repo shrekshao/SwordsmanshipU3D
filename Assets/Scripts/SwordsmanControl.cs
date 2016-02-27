@@ -22,9 +22,17 @@ namespace Swordsmanship
 		int m_specialMoveStage;
 		float m_specialMoveCDTime;
 
+        private PatternSystemController psController;
+        private SpecialSystem specialSystem;
 
         private void Start()
         {
+            //---get pattern system controller---
+            psController = GameObject.FindGameObjectWithTag( "PatternSystemController" ).GetComponent< PatternSystemController >();
+
+            //---get special system---
+            specialSystem = GameObject.FindGameObjectWithTag( "SpecialSystem" ).GetComponent< SpecialSystem >();
+
             // get the transform of the main camera
             if (Camera.main != null)
             {
@@ -147,7 +155,8 @@ namespace Swordsmanship
 
 				float percent = 1.0f - m_specialMoveCDTime / SpecialMovesDefination.cdInterval [m_Character.m_specialMoveIndex];
 				// percentCoolDown
-				Debug.Log ("percentCoolDown: index = " + m_Character.m_specialMoveIndex + ", percent = " + percent);
+				//Debug.Log ("percentCoolDown: index = " + m_Character.m_specialMoveIndex + ", percent = " + percent);
+                specialSystem.updateCooldown( m_Character.m_specialMoveIndex, percent );
 				return;
 			}
 
@@ -172,7 +181,8 @@ namespace Swordsmanship
 				m_specialMoveCDTime = SpecialMovesDefination.cdInterval [m_Character.m_specialMoveIndex];
 
 				// perform special move pattern system
-				Debug.Log ("performSpecial:" + m_Character.m_specialMoveIndex);
+				//Debug.Log ("performSpecial:" + m_Character.m_specialMoveIndex);
+                psController.performSpecial( m_Character.m_specialMoveIndex );
 			}
 		}
 
