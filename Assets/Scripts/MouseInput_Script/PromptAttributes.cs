@@ -37,7 +37,7 @@ public class PromptAttributes : MonoBehaviour {
     public void OnTriggerExit(Collider other) {
 
         //---same as enter---
-        OnTriggerEnter(other);
+        //OnTriggerEnter(other);
     }
 
     public void setID( int _id ) {

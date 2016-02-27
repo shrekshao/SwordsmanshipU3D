@@ -20,7 +20,7 @@ namespace Swordsmanship
 		// special moves varible
 		//int m_specialMoveIndex;
 		int m_specialMoveStage;
-		float m_specialMoveCDTime;
+		float[] m_specialMoveCDTime={0,0,0};
 
         private PatternSystemController psController;
         private SpecialSystem specialSystem;
@@ -142,35 +142,38 @@ namespace Swordsmanship
 
 		private void SpecialMoveHandle()
 		{	
-			m_specialMoveCDTime -= Time.deltaTime;
-			if (m_specialMoveCDTime < 0) 
+			for (int i = 0; i < 3; i++) 
 			{
-				m_specialMoveCDTime = 0;
-				m_Character.m_specialMoveIndex = -1;
-				m_Character.SetSpecialMoveIndex ();
+				m_specialMoveCDTime[i] -= Time.deltaTime;
+				if (m_specialMoveCDTime[i] < 0) {
+					m_specialMoveCDTime[i] = 0;
+				}
+
+				if (m_specialMoveCDTime[i] > 0) { 	//not cooled down, not receive input 
+
+					float percent = 1.0f - m_specialMoveCDTime[i] / SpecialMovesDefination.cdInterval [i];
+					// percentCoolDown
+					//Debug.Log ("percentCoolDown: index = " + m_Character.m_specialMoveIndex + ", percent = " + percent);
+					specialSystem.updateCooldown (i, percent);
+					//return;
+				}
 			}
 
-			if (m_specialMoveCDTime > 0) 
-			{ 	//not cooled down, not receive input 
-
-				float percent = 1.0f - m_specialMoveCDTime / SpecialMovesDefination.cdInterval [m_Character.m_specialMoveIndex];
-				// percentCoolDown
-				//Debug.Log ("percentCoolDown: index = " + m_Character.m_specialMoveIndex + ", percent = " + percent);
-                specialSystem.updateCooldown( m_Character.m_specialMoveIndex, percent );
+			// special move playing
+			if (m_Character.m_specialMoveIndex >= 0) 
 				return;
-			}
-
-			if (Input.GetKey (KeyCode.Alpha1)) 
+			
+			if (Input.GetKey (KeyCode.Alpha1) && m_specialMoveCDTime[0] == 0) 
 			{
 				m_Character.m_specialMoveIndex = 0;
 				m_Character.SetSpecialMoveIndex ();
 			} 
-			else if (Input.GetKey (KeyCode.Alpha2)) 
+			else if (Input.GetKey (KeyCode.Alpha2) && m_specialMoveCDTime[1] == 0) 
 			{
 				m_Character.m_specialMoveIndex = 1;
 				m_Character.SetSpecialMoveIndex ();
 			} 
-			else if (Input.GetKey (KeyCode.Alpha3)) 
+			else if (Input.GetKey (KeyCode.Alpha3) && m_specialMoveCDTime[2] == 0) 
 			{
 				m_Character.m_specialMoveIndex = 2;
 				m_Character.SetSpecialMoveIndex ();
@@ -178,7 +181,7 @@ namespace Swordsmanship
 
 			if (m_Character.m_specialMoveIndex >= 0) 
 			{
-				m_specialMoveCDTime = SpecialMovesDefination.cdInterval [m_Character.m_specialMoveIndex];
+				m_specialMoveCDTime[m_Character.m_specialMoveIndex] = SpecialMovesDefination.cdInterval [m_Character.m_specialMoveIndex];
 
 				// perform special move pattern system
 				//Debug.Log ("performSpecial:" + m_Character.m_specialMoveIndex);
@@ -188,12 +191,15 @@ namespace Swordsmanship
 
 		public void SpecialMoveNextStage()
 		{
+			if (m_Character.m_specialMoveIndex < 0)
+				return;
+			
 			m_specialMoveStage ++;
 
 			if (m_specialMoveStage > SpecialMovesDefination.specialMoveSteps[m_Character.m_specialMoveIndex]) {
 				m_specialMoveStage = 0; // finish movement
 				//m_animator.SetTrigger("SpecialMoveExitTrigger");
-				m_Character.ExitSpecialMoveTrigger();
+				//m_Character.ExitSpecialMoveTrigger();
 
 				m_Character.m_specialMoveIndex = -1;
 				m_Character.SetSpecialMoveIndex ();
@@ -208,9 +214,11 @@ namespace Swordsmanship
 		public void SpecialMoveStop()
 		{
 			m_specialMoveStage = 0;
+
 			m_Character.m_specialMoveIndex = -1;
 			m_Character.SetSpecialMoveIndex ();
 			//m_animator.SetTrigger ("Stop");
+
 			m_Character.StopSpecialMoveTrigger();
 		}
 

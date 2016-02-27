@@ -365,10 +365,11 @@ namespace Swordsmanship
 		public void StopSpecialMoveTrigger()
 		{
 			m_Animator.SetTrigger ("StopSpecialMove");
+			m_specialMoveIndex = -1;
 		}
 		public void SetSpecialMoveIndex()
 		{
-			m_Animator.SetInteger("SpecialMoveID",m_specialMoveIndex);
+			m_Animator.SetInteger("SpecialMoveID", m_specialMoveIndex);
 		}
         // -----------------------------------------------------------
 
