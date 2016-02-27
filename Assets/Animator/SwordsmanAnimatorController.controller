@@ -2772,7 +2772,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Step-3-stop
-  m_Speed: 0
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110154912}
@@ -2786,7 +2786,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 76fd8009a3544cc478253424f6bdc93f, type: 3}
+  m_Motion: {fileID: 7400002, guid: 76fd8009a3544cc478253424f6bdc93f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -2904,7 +2904,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Step-2-stop
-  m_Speed: 0
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110179402}
@@ -2918,7 +2918,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5fa3e3247bed4794db68e0712c0d2b9d, type: 3}
+  m_Motion: {fileID: 7400002, guid: 5fa3e3247bed4794db68e0712c0d2b9d, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -3345,7 +3345,7 @@ AnimatorStateMachine:
     m_Position: {x: 600, y: 108, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110231404}
-    m_Position: {x: 420, y: 276, z: 0}
+    m_Position: {x: 432, y: 276, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

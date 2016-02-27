@@ -48,6 +48,11 @@ namespace Swordsmanship
 				freeMove = !freeMove;
 				lockEnemy = FindLockEnemy ();
 			}
+			if (Input.GetKeyDown (KeyCode.Q)) 
+			{
+				lockEnemy = FindLockEnemy ();
+				LockEnemyCameraUpdate ();
+			}
 		}
 
 		// Late Update
@@ -67,6 +72,9 @@ namespace Swordsmanship
 
 		void LockEnemyCameraUpdate()
 		{
+			if (lockEnemy == null)
+				return;
+			
 			Vector3 error = lockEnemy.transform.position - transform.position;
 			error.y = 0;
 
@@ -83,8 +91,8 @@ namespace Swordsmanship
 
 		GameObject FindLockEnemy()
 		{
-			if (freeMove)
-				return null;
+			//if (freeMove)
+			//	return null;
 			
 			int index = -1;
 			float nearestDis = float.MaxValue;

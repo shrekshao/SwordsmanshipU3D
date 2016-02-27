@@ -27,6 +27,10 @@ public class PromptAttributes : MonoBehaviour {
         //---first touch must be patter 1---
         if( !controller.isTouched[ 0 ] && id != 0 ) return;
 
+		if (controller.isTouched [id])
+			return;
+		
+
         //Debug.Log( "nextState()" );
         swordsmanshipController.SpecialMoveNextStage();
         controller.isTouched[id] = true;

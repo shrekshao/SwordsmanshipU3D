@@ -64,6 +64,7 @@ ModelImporter:
     400054: waist1
     400056: waist2
     7400000: Special-1-3
+    7400002: Special 1-3-stop
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -92,8 +93,94 @@ ModelImporter:
     - serializedVersion: 16
       name: Special-1-3
       takeName: Take 001
-      firstFrame: 6
+      firstFrame: 12
       lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: root
+        weight: 1
+      - path: root/hip
+        weight: 1
+      - path: root/hip/left_leg_root
+        weight: 1
+      - path: root/hip/left_leg_root/left_upper_leg
+        weight: 1
+      - path: root/hip/left_leg_root/left_upper_leg/left_knee
+        weight: 1
+      - path: root/hip/left_leg_root/left_upper_leg/left_knee/left_ankle
+        weight: 1
+      - path: root/hip/left_leg_root/left_upper_leg/left_knee/left_ankle/left_toe
+        weight: 1
+      - path: root/hip/right_leg_root
+        weight: 1
+      - path: root/hip/right_leg_root/right_upper_leg
+        weight: 1
+      - path: root/hip/right_leg_root/right_upper_leg/right_knee
+        weight: 1
+      - path: root/hip/right_leg_root/right_upper_leg/right_knee/right_ankle
+        weight: 1
+      - path: root/hip/right_leg_root/right_upper_leg/right_knee/right_ankle/right_toe
+        weight: 1
+      - path: root/waist1
+        weight: 1
+      - path: root/waist1/waist2
+        weight: 1
+      - path: root/waist1/waist2/chest
+        weight: 1
+      - path: root/waist1/waist2/chest/left_arm_root
+        weight: 1
+      - path: root/waist1/waist2/chest/left_arm_root/left_shoulder
+        weight: 1
+      - path: root/waist1/waist2/chest/left_arm_root/left_shoulder/left_elbow
+        weight: 1
+      - path: root/waist1/waist2/chest/left_arm_root/left_shoulder/left_elbow/left_hand
+        weight: 1
+      - path: root/waist1/waist2/chest/left_arm_root/left_shoulder/left_elbow/left_hand/left_finger_tip
+        weight: 0
+      - path: root/waist1/waist2/chest/neck
+        weight: 1
+      - path: root/waist1/waist2/chest/neck/head
+        weight: 1
+      - path: root/waist1/waist2/chest/neck/head/head_top
+        weight: 0
+      - path: root/waist1/waist2/chest/right_arm_root
+        weight: 1
+      - path: root/waist1/waist2/chest/right_arm_root/right_shoulder
+        weight: 1
+      - path: root/waist1/waist2/chest/right_arm_root/right_shoulder/right_elbow
+        weight: 1
+      - path: root/waist1/waist2/chest/right_arm_root/right_shoulder/right_elbow/right_hand
+        weight: 1
+      - path: root/waist1/waist2/chest/right_arm_root/right_shoulder/right_elbow/right_hand/right_finger_tip
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0.96
+    - serializedVersion: 16
+      name: Special 1-3-stop
+      takeName: Take 001
+      firstFrame: 6
+      lastFrame: 12
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
