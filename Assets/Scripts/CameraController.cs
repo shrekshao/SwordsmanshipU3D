@@ -16,6 +16,7 @@ namespace Swordsmanship
 		private GameObject[] enemies;
 		private GameObject lockEnemy;
 		private bool freeMove;
+		private float timer;
 
 		// Use this for initialization
 		void Start () {
@@ -23,6 +24,7 @@ namespace Swordsmanship
 			StoreEnemies ();
 			lockEnemy = null;
 			freeMove = true;
+			timer = 0.0f;
 		}
 
 		void StoreEnemies()
@@ -52,6 +54,7 @@ namespace Swordsmanship
 			{
 				lockEnemy = FindLockEnemy ();
 				LockEnemyCameraUpdate ();
+				timer = 0.3f;
 			}
 		}
 
@@ -68,6 +71,13 @@ namespace Swordsmanship
 				//MouseAimCameraUpdate ();
 				FollowCameraUpdate();
 			}
+
+
+			//tiemr handler
+			if (timer > 0) {
+				timer -= Time.deltaTime;
+				LockEnemyCameraUpdate ();
+			}
 		}
 
 		void LockEnemyCameraUpdate()
@@ -79,7 +89,7 @@ namespace Swordsmanship
 			error.y = 0;
 
 			float desiredAngle = Mathf.Atan2 (error.x, error.z) * 180.0f / Mathf.PI;
-			// angle = Mathf.Lerp (target.transform.rotation.eulerAngles.y, desiredAngle,Time.deltaTime * dampling);
+			//float angle = Mathf.Lerp (target.transform.rotation.eulerAngles.y, desiredAngle,Time.deltaTime * dampling);
 
 			Quaternion rotation = Quaternion.Euler (0, desiredAngle, 0);
 
