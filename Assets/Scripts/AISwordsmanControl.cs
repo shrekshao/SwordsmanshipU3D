@@ -90,21 +90,26 @@ namespace Swordsmanship
 			character.Move(m_Move, false, false);
 
 			//set attacking status
-			if (error.sqrMagnitude < 0.5f) 
+			if (attackCD <=0 && error.sqrMagnitude < 0.5f) 
 			{
 				if (!prepare) 
 				{
-					character.AttackSwingLeftIdle ();
-					prepare = true;
+					float r = UnityEngine.Random.value;
+					if (0 <= r && r < 0.5) 
+					{
+					}
+					else if (0.5 <= r && r < 1) 
+					{
+						character.AttackSwingLeftIdle (); 
+						prepare = true;
+						attackCD = 1.0f;
+					}
 				} 
 				else 
 				{
-					if (attackCD <= 0) 
-					{
-						character.AttackSwingLeftAttack ();
-						prepare = false;
-						attackCD = 1.0f;
-					}
+					character.AttackSwingLeftAttack ();
+					prepare = false;
+					attackCD = 1.5f;
 				}
 			}
 		}
