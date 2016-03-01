@@ -124,7 +124,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139344}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06623795, y: -3.3970928e-17, z: 0.955}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 452730}
@@ -208,8 +208,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8254b5d117e6aad458de7a771759cd23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 0.01
   y_rotationTrackingSpeed: 30
+  damage: 10
+  knockBackForce: 200
+  hitEffect: {fileID: 173550, guid: b480fd3b82133e248ab98ba201628129, type: 2}
 --- !u!136 &13674644
 CapsuleCollider:
   m_ObjectHideFlags: 1
