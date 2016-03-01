@@ -45,12 +45,12 @@ namespace Swordsmanship
 
 		void Update()
 		{
-			if (Input.GetKeyDown (KeyCode.E)) 
-			{
-				freeMove = !freeMove;
-				lockEnemy = FindLockEnemy ();
-			}
-			if (Input.GetKeyDown (KeyCode.Q)) 
+			//if (Input.GetKeyDown (KeyCode.E)) 
+			//{
+			//	freeMove = !freeMove;
+			//	lockEnemy = FindLockEnemy ();
+			//}
+			if (Input.GetKey(KeyCode.Q)) 
 			{
 				lockEnemy = FindLockEnemy ();
 				LockEnemyCameraUpdate ();
@@ -61,16 +61,16 @@ namespace Swordsmanship
 		// Late Update
 		void LateUpdate () {
 			
-			if (freeMove == false && lockEnemy != null) 
-			{
-				// find nearest enemy inside range LockDistance		
-				LockEnemyCameraUpdate ();
-			} 
-			else // normal moving camera control
-			{
-				//MouseAimCameraUpdate ();
-				FollowCameraUpdate();
-			}
+//			if (freeMove == false && lockEnemy != null) 
+//			{
+//				// find nearest enemy inside range LockDistance		
+//				LockEnemyCameraUpdate ();
+//			} 
+//			else // normal moving camera control
+//			{
+//				//MouseAimCameraUpdate ();
+//				FollowCameraUpdate();
+//			}
 
 
 			//tiemr handler
@@ -85,7 +85,7 @@ namespace Swordsmanship
 			if (lockEnemy == null)
 				return;
 			
-			Vector3 error = lockEnemy.transform.position - transform.position;
+			Vector3 error = lockEnemy.transform.position - target.transform.position;
 			error.y = 0;
 
 			float desiredAngle = Mathf.Atan2 (error.x, error.z) * 180.0f / Mathf.PI;
