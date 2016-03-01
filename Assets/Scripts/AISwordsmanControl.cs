@@ -11,16 +11,28 @@ namespace Swordsmanship
         //public NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
         public SwordsmanCharacter character { get; private set; } // the character we are controlling
         public Transform target;                                    // target to aim for
+	
+		private Transform m_Cam;                  // A reference to the main camera in the scenes transform
+		private Vector3 m_CamForward;             // The current forward direction of the camera
+		private Vector3 m_Move;
 
+		private bool prepare;
+		private float attackCD;
 
         private void Start()
         {
             // get the components on the object we need ( should not be null due to require component so no need to check )
             //agent = GetComponentInChildren<NavMeshAgent>();
             character = GetComponent<SwordsmanCharacter>();
+			target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
 	        //agent.updateRotation = false;
 	        //agent.updatePosition = true;
+
+			m_Cam = Camera.main.transform;
+			prepare = false;
+			attackCD = 0.0f;
+
         }
 
 
@@ -57,10 +69,45 @@ namespace Swordsmanship
             //    character.AttackStabAttack();
             //}
 
-            character.BlockRight();
-
+            //character.BlockRight();
+			attackCD -= Time.deltaTime;
+			if (attackCD < 0)
+				attackCD = 0;
         }
 
+		private void FixedUpdate()
+		{
+			Vector3 error = target.transform.position - this.transform.position;
+			error.y = 0;
+
+			//float h = error.sqrMagnitude / 4.0f;
+			//float v = UnityStandardAssets.CrossPlatformInput.CrossPlatformInputManager.GetAxis("Vertical");
+			//float v = (Vector3.Angle(transform.forward,error) - 90) / 180 * Mathf.PI;
+			//m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+
+			m_Move = error / 3;
+
+			character.Move(m_Move, false, false);
+
+			//set attacking status
+			if (error.sqrMagnitude < 0.5f) 
+			{
+				if (!prepare) 
+				{
+					character.AttackSwingLeftIdle ();
+					prepare = true;
+				} 
+				else 
+				{
+					if (attackCD <= 0) 
+					{
+						character.AttackSwingLeftAttack ();
+						prepare = false;
+						attackCD = 1.0f;
+					}
+				}
+			}
+		}
 
         public void SetTarget(Transform target)
         {

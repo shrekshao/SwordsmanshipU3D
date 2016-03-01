@@ -403,7 +403,7 @@ namespace Swordsmanship
         public void AttackCharacter(Collider other)
         {
             //tmp
-            if(other.tag == "Human")
+			if(other.tag == "Human" || other.tag == "Player")
             {
                 SwordsmanCharacter target = other.gameObject.GetComponent<SwordsmanCharacter>();
 
