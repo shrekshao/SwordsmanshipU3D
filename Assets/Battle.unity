@@ -457,7 +457,49 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
+--- !u!1001 &1589481580
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 435274, guid: 2724582fe522ff342be0882ac15f714e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.06623795
+      objectReference: {fileID: 0}
+    - target: {fileID: 435274, guid: 2724582fe522ff342be0882ac15f714e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -3.3970928e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: 435274, guid: 2724582fe522ff342be0882ac15f714e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.955
+      objectReference: {fileID: 0}
+    - target: {fileID: 435274, guid: 2724582fe522ff342be0882ac15f714e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 435274, guid: 2724582fe522ff342be0882ac15f714e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 435274, guid: 2724582fe522ff342be0882ac15f714e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 435274, guid: 2724582fe522ff342be0882ac15f714e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 435274, guid: 2724582fe522ff342be0882ac15f714e, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2724582fe522ff342be0882ac15f714e, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1730554706 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 156286, guid: 48e4d7b8ecda8a848b3fbb5da6bbf802, type: 2}
@@ -673,4 +715,4 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2

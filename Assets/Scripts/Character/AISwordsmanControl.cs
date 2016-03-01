@@ -140,7 +140,7 @@ namespace Swordsmanship
 
             m_Move = dis_error / 3;
 
-            character.Move(m_Move, false, false);
+            //character.Move(m_Move, false, false);
         }
 
 

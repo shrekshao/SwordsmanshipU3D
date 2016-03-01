@@ -40,8 +40,11 @@ namespace Swordsmanship
         Transform sword_back_position;
 
 
-		//special move  index
-		public int m_specialMoveIndex;
+		//special move index
+		public int m_specialMoveIndex;  //current operating special move index
+
+        SpecialMoveSkill[] skills;
+
 
 
         void Start()
@@ -59,11 +62,15 @@ namespace Swordsmanship
             //TMP, dynamic initialize
             InitSwordOnBack("Sword0");
 
+
+
 			// initialize 
 			m_specialMoveIndex = -1;
-		}
+            InitSpecialMoveSkills();
 
-        public void InitSwordOnBack(string sword_name)
+        }
+
+        void InitSwordOnBack(string sword_name)
         {
             sword = GameObject.Instantiate(Resources.Load(sword_name)) as GameObject;
             sword.transform.SetParent(sword_back_position);
@@ -76,6 +83,15 @@ namespace Swordsmanship
             m_Sword.master = this.gameObject;
             m_Sword.swordsman = this;
         }
+
+
+        void InitSpecialMoveSkills()
+        {
+            //tmp
+            skills = new SpecialMoveSkill[3];
+            skills[1] = new SpecialMoveSkill();
+        }
+
 
 		public void Move(Vector3 move, bool crouch, bool jump)
 		{
@@ -354,9 +370,12 @@ namespace Swordsmanship
         }
 
 		// Special moves 
-		public void NextStageTrigger()
+		public void NextStageTrigger(int special_move_stage)
 		{
 			m_Animator.SetTrigger ("NextStage");
+
+
+            skills[m_specialMoveIndex].CastSpecialMoveEffect(special_move_stage, gameObject);
 		}
 		public void ExitSpecialMoveTrigger()
 		{
@@ -402,13 +421,13 @@ namespace Swordsmanship
         // --------- Attack Effect-----------------
         public void AttackCharacter(Collider other)
         {
-            //tmp
+            //attack hit!
 			if(other.tag == "Human" || other.tag == "Player")
             {
                 SwordsmanCharacter target = other.gameObject.GetComponent<SwordsmanCharacter>();
 
                 // Knock back
-                target.BeHit(gameObject, this);
+                target.BeHit(gameObject);
                 //
             }
             
@@ -416,7 +435,7 @@ namespace Swordsmanship
         }
 
 
-        public void BeHit(GameObject attacker_gb, SwordsmanCharacter attacker)
+        public void BeHit(GameObject attacker_gb, float knockbackForce = 160)
         {
             Debug.Log("Be Hit!!!");
             m_Animator.SetTrigger("Damaged");
@@ -425,7 +444,7 @@ namespace Swordsmanship
             //be Knocked back
             Vector3 dir = transform.position - attacker_gb.transform.position;
 
-            GetComponent<Rigidbody>().AddForce(150 * dir.normalized);
+            GetComponent<Rigidbody>().AddForce(knockbackForce * dir.normalized);
         }
 
         
@@ -434,6 +453,10 @@ namespace Swordsmanship
             Debug.Log("Be Blocked!!!!");
 			m_Animator.SetBool ("isBlocked",true);
         }
-			
+		
+
+        
+
+        
     }
 }

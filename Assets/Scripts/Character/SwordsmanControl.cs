@@ -207,7 +207,7 @@ namespace Swordsmanship
 			else 
 			{
 				//m_animator.SetTrigger ("NextStepTrigger");
-				m_Character.NextStageTrigger();
+				m_Character.NextStageTrigger(m_specialMoveStage);
 			}
 		}
 
