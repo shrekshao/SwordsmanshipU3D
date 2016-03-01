@@ -44,7 +44,10 @@ namespace Swordsmanship
 		public int m_specialMoveIndex;
 
         //---swordsman status---
-        public SwordsmanStatus swordsmanStatus;
+        SwordsmanStatus swordsmanStatus;
+
+        //---HP bar---
+        GUIBarScript hpBar;
 
         void Start()
 		{
@@ -64,8 +67,11 @@ namespace Swordsmanship
 			// initialize 
 			m_specialMoveIndex = -1;
 
-            //---HP bar---
+            //---character status---
             swordsmanStatus = new SwordsmanStatus();
+
+            //---HP bar---
+            hpBar = GetComponentInChildren< GUIBarScript >();
 		}
 
         public void InitSwordOnBack(string sword_name)
@@ -428,7 +434,7 @@ namespace Swordsmanship
 
             //---lose HP and update HP bar---
             swordsmanStatus.loseHP( Random.Range( 10, 20 ) );
-            gameObject.GetComponentInChildren< GUIBarScript >().Value = swordsmanStatus.getHP() / 100.0f;
+            if( hpBar != null ) hpBar.Value = swordsmanStatus.getHP() / 100.0f;
 
             //be Knocked back
             Vector3 dir = transform.position - attacker_gb.transform.position;
