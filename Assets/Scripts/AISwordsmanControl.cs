@@ -16,8 +16,13 @@ namespace Swordsmanship
 		private Vector3 m_CamForward;             // The current forward direction of the camera
 		private Vector3 m_Move;
 
+        // Low level Attack status related
 		private bool prepare;
 		private float attackCD;
+
+        // Move static related
+        private Vector3 dis_error;
+
 
         private void Start()
         {
@@ -30,9 +35,11 @@ namespace Swordsmanship
 	        //agent.updatePosition = true;
 
 			m_Cam = Camera.main.transform;
-			prepare = false;
+
+            prepare = false;
 			attackCD = 0.0f;
 
+            dis_error = Vector3.zero;
         }
 
 
@@ -72,51 +79,71 @@ namespace Swordsmanship
             //character.BlockRight();
 			attackCD -= Time.deltaTime;
 			if (attackCD < 0)
-				attackCD = 0;
+            {
+                attackCD = 0;
+            }
         }
 
 		private void FixedUpdate()
 		{
-			Vector3 error = target.transform.position - this.transform.position;
-			error.y = 0;
 
-			//float h = error.sqrMagnitude / 4.0f;
-			//float v = UnityStandardAssets.CrossPlatformInput.CrossPlatformInputManager.GetAxis("Vertical");
-			//float v = (Vector3.Angle(transform.forward,error) - 90) / 180 * Mathf.PI;
-			//m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+            NormalMoveStrategy();
 
-			m_Move = error / 3;
-
-			character.Move(m_Move, false, false);
-
-			//set attacking status
-			if (attackCD <=0 && error.sqrMagnitude < 0.5f) 
-			{
-				if (!prepare) 
-				{
-					float r = UnityEngine.Random.value;
-					if (0 <= r && r < 0.5) 
-					{
-					}
-					else if (0.5 <= r && r < 1) 
-					{
-						character.AttackSwingLeftIdle (); 
-						prepare = true;
-						attackCD = 1.0f;
-					}
-				} 
-				else 
-				{
-					character.AttackSwingLeftAttack ();
-					prepare = false;
-					attackCD = 1.5f;
-				}
-			}
+            NormalAttackStrategy();
 		}
 
         public void SetTarget(Transform target)
         {
             this.target = target;
         }
+
+
+        public void NormalAttackStrategy()
+        {
+            //set attacking status
+            if (dis_error.sqrMagnitude < 0.5f)
+            {
+                if (attackCD <= 0)
+                {
+                    if (!prepare)
+                    {
+                        float r = UnityEngine.Random.value;
+                        if (0 <= r && r < 0.5)
+                        {
+                        }
+                        else if (0.5 <= r && r < 1)
+                        {
+                            character.AttackSwingLeftIdle();
+                            prepare = true;
+                            attackCD = 1.0f;
+                        }
+                    }
+                    else
+                    {
+                        character.AttackSwingLeftAttack();
+                        prepare = false;
+                        attackCD = 1.5f;
+                    }
+                }
+            }
+        }
+
+        public void NormalMoveStrategy()
+        {
+            dis_error = target.transform.position - this.transform.position;
+            dis_error.y = 0;
+
+            //float h = error.sqrMagnitude / 4.0f;
+            //float v = UnityStandardAssets.CrossPlatformInput.CrossPlatformInputManager.GetAxis("Vertical");
+            //float v = (Vector3.Angle(transform.forward,error) - 90) / 180 * Mathf.PI;
+            //m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+
+            m_Move = dis_error / 3;
+
+            character.Move(m_Move, false, false);
+        }
+
+
+
     }
 }
