@@ -46,6 +46,11 @@ namespace Swordsmanship
         SpecialMoveSkill[] skills;
 
 
+        //---swordsman status---
+        SwordsmanStatus swordsmanStatus;
+
+        //---HP bar---
+        GUIBarScript hpBar;
 
         void Start()
 		{
@@ -67,6 +72,13 @@ namespace Swordsmanship
 			// initialize 
 			m_specialMoveIndex = -1;
             InitSpecialMoveSkills();
+
+            //---character status---
+            swordsmanStatus = new SwordsmanStatus();
+
+            //---HP bar---
+            hpBar = GetComponentInChildren< GUIBarScript >();
+		}
 
         }
 
@@ -440,6 +452,9 @@ namespace Swordsmanship
             Debug.Log("Be Hit!!!");
             m_Animator.SetTrigger("Damaged");
 
+            //---lose HP and update HP bar---
+            swordsmanStatus.loseHP( Random.Range( 10, 20 ) );
+            if( hpBar != null ) hpBar.Value = swordsmanStatus.getHP() / 100.0f;
 
             //be Knocked back
             Vector3 dir = transform.position - attacker_gb.transform.position;
