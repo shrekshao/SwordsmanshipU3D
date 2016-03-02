@@ -39,17 +39,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c95a157734574f82b4e53cba5dae53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: 0.5
+  Value: 1
   FadeFactor: -1
-  Position: {x: 10.2, y: 335}
+  Position: {x: 0, y: 0}
   ScaleSize: 1
   DisplayText: 0
   TextString: 363025
-  TextColor:
-    r: 0
-    g: 0
-    b: 0
-    a: 1
+  TextColor: {r: 0, g: 0, b: 0, a: 1}
   OverRideTextColorWithGradient: 0
   TextFont: {fileID: 12800000, guid: 402f8cf2de0fc4f38b137a83fc99ebeb, type: 3}
   TextSize: 15.8
@@ -59,17 +55,30 @@ MonoBehaviour:
   ValueBar: {fileID: 2800000, guid: a4b19b564c3d64aebaedc4fa5f15c3ed, type: 3}
   Foreground: {fileID: 2800000, guid: f8e7d6a877dc94bb6995d1ef9e0dc3e2, type: 3}
   GradientColors:
-  - r: 1
-    g: 0
-    b: 0
-    a: 1
+  - {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: GradientColors.Array.data[0].r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: GradientColors.Array.data[0].g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: GradientColors.Array.data[0].b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ValueBar
+      value: 
+      objectReference: {fileID: 2800000, guid: a4b19b564c3d64aebaedc4fa5f15c3ed, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}
