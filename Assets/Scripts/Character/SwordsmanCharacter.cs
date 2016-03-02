@@ -432,7 +432,12 @@ namespace Swordsmanship
         public void AttackCharacter(Collider other)
         {
             //attack hit!
-			if(other.tag == "Human" || other.tag == "Player")
+            if(other.tag == "Attackable")
+            {
+                Vector3 dir = other.gameObject.transform.position - transform.position;
+                other.GetComponent<Rigidbody>().AddForce(100 * dir.normalized);
+            }
+			else if(other.tag == "Human" || other.tag == "Player")
             {
                 SwordsmanCharacter target = other.gameObject.GetComponent<SwordsmanCharacter>();
 

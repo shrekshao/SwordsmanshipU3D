@@ -40,6 +40,8 @@ namespace Swordsmanship
 		[SerializeField]
 		float acceleration;
 
+
+
         Transform target;
 
         GameObject launcher;
@@ -48,6 +50,8 @@ namespace Swordsmanship
 
 		EnemyUtil enemyUtil;
 		private float smoothTime = 0.3f;
+
+
 
         // Use this for initialization
         void Start()
@@ -143,9 +147,16 @@ namespace Swordsmanship
                 return;
             }
 
-
-            if(other.tag == "Attackable")
+            if(other.tag == "Wall")
             {
+                HitDestroy();
+            }
+            else if(other.tag == "Attackable")
+            {
+                //be Knocked back
+                Vector3 dir =  other.gameObject.transform.position - transform.position;
+                //dir.y = 0;
+                other.GetComponent<Rigidbody>().AddForce(knockBackForce * dir.normalized);
                 HitDestroy();
             }
             else if(other.tag == "Human")
