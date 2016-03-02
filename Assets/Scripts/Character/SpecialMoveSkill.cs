@@ -16,12 +16,13 @@ namespace Swordsmanship
         {
             if(stage_id == 2 || stage_id == 4 || stage_id == 6)
             {
-                GameObject spell = GameObject.Instantiate(Resources.Load("Particles/" + magicCastName), caster.transform.position, Quaternion.identity) as GameObject;
+				GameObject spell = GameObject.Instantiate(Resources.Load("Particles/" + magicCastName), caster.transform.position, caster.transform.rotation) as GameObject;
                 spell.transform.position = caster.transform.position + caster.transform.forward * 0.1f;
-                spell.GetComponent<MagicCast>().InitMagicCast_Straight(caster, MagicCastType.ConstantMoving, caster.transform.forward);
-
+                //spell.GetComponent<MagicCast>().InitMagicCast_Straight(caster, MagicCastType.ConstantMoving, caster.transform.forward);
 
                 //spell.GetComponent<MagicCast>().InitMagicCast_Tracking(caster, GameObject.Find("AI-Di").transform);
+
+				spell.GetComponent<MagicCast>().InitMagicCast(caster, MagicCastType.RandomMoving);
             }
         }
     }

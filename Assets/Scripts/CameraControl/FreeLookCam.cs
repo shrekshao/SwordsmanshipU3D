@@ -21,7 +21,6 @@ namespace Swordsmanship
         [SerializeField] private bool m_LockCursor = false;                   // Whether the cursor should be hidden and locked.
         [SerializeField] private bool m_VerticalAutoReturn = false;           // set wether or not the vertical axis should auto return
 		[SerializeField] private GameObject playerObj;
-		[SerializeField] private float LockDistance = 5.0f;
 
         private float m_LookAngle;                    // The rig's y axis rotation.
         private float m_TiltAngle;                    // The pivot's x axis rotation.
@@ -30,7 +29,7 @@ namespace Swordsmanship
 		private Quaternion m_PivotTargetRot;
 		private Quaternion m_TransformTargetRot;
 		private SwordsmanCharacter swordmanCharacter;
-		private GameObject[] enemies;
+		private EnemyUtil enemyUtil;
 
         protected override void Awake()
         {
@@ -44,7 +43,7 @@ namespace Swordsmanship
 			m_TransformTargetRot = transform.localRotation;
 
 			swordmanCharacter = playerObj.GetComponent<SwordsmanCharacter> ();
-			StoreEnemies ();
+			enemyUtil = GameObject.Find ("EnemyUtilityObj").GetComponent<EnemyUtil> ();
         }
 
 
@@ -67,10 +66,10 @@ namespace Swordsmanship
 			}
         }
 
-		void LockEnemyRotation()
+		protected void LockEnemyRotation()
 		{
 
-			GameObject obj = FindLockEnemy ();
+			GameObject obj = enemyUtil.FindLockEnemy (playerObj.transform);
 			if (obj == null)
 				return;
 
@@ -143,46 +142,6 @@ namespace Swordsmanship
 				transform.localRotation = m_TransformTargetRot;
 			}
         }
-
-		private void StoreEnemies()
-		{
-			GameObject[] gos = GameObject.FindObjectsOfType (typeof(GameObject)) as GameObject[];
-			var enemyList = new System.Collections.Generic.List<GameObject>();
-
-			foreach (GameObject ene in gos) 
-			{
-
-				if (ene.layer == LayerMask.NameToLayer ("EnemyLayer")) 
-				{
-					enemyList.Add (ene);
-				}
-			}
-			enemies = enemyList.ToArray ();
-		}
-
-		public GameObject FindLockEnemy()
-		{
-			//if (freeMove)
-			//	return null;
-
-			int index = -1;
-			float nearestDis = float.MaxValue;
-			for (int i = 0; i < enemies.Length; i++) {
-
-				float dis = Vector3.Distance (playerObj.transform.position, enemies [i].transform.position);
-				if (dis < nearestDis && dis < LockDistance) 
-				{
-					nearestDis = dis;
-					index = i;
-				}
-			}
-
-			if (index != -1)
-				return enemies [index];
-			else 
-				return null;
-
-		}
 
     }
 }

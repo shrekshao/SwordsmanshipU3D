@@ -7,7 +7,8 @@ namespace Swordsmanship
     {
         ConstantMoving,
         AccelerateMoving,
-        Tracking
+        Tracking,
+		RandomMoving
     };
 
     public class MagicCast : MonoBehaviour
@@ -18,14 +19,11 @@ namespace Swordsmanship
 
         //[SerializeField]
         MagicCastType type;
-        
-        [SerializeField]
-        float moveSpeed;
 
         //[SerializeField]
         //float y_rotationTrackingSpeed;
-        [SerializeField]
-        float rotationForce;
+//        [SerializeField]
+//        float rotationForce;
 
         [SerializeField]
         int damage;
@@ -44,67 +42,101 @@ namespace Swordsmanship
 
         Transform target;
 
-        Vector3 dir;
-
         GameObject launcher;
 
-		Rigidbody rb;
-		
+		Rigidbody rigidBody;
+
+		EnemyUtil enemyUtil;
+		private float smoothTime = 0.3f;
+
         // Use this for initialization
         void Start()
-        {
-			
+		{
+			enemyUtil = GameObject.Find ("EnemyUtilityObj").GetComponent<EnemyUtil> ();
         }
-
-        // Update is called once per frame
-        void Update()
-        {
+			
+		void Update()
+		{
+			
             switch(type)
             {
                 case MagicCastType.ConstantMoving:
 				    break;
 			    case MagicCastType.AccelerateMoving:
-				    rb.AddForce (transform.forward * acceleration);
+				    rigidBody.AddForce (transform.forward * acceleration);
                     break;
                 case MagicCastType.Tracking:
-                    {
-                        Vector3 dis = target.position - transform.position;
-                        dis.Normalize();
-                        float s = 1.5f - Vector3.Dot(dis, rb.velocity.normalized);
-                        rb.AddForce(s * dis * rotationForce);
-                    }
                     break;
+			case MagicCastType.RandomMoving:
+					rigidBody.AddForce(sampleDirectionOnCircle()*10);
+					break;
+				default:
+					break;
             }
-        }
 
-        public void GetRigidBodyReference()
+		}
+			
+        
+		private void GetRigidBodyReference()
         {
-            rb = gameObject.GetComponent<Rigidbody>();
+			rigidBody = gameObject.GetComponent<Rigidbody>();
         }
 
-        public void InitMagicCast_Tracking(GameObject launcher, Transform target)
-        {
-            GetRigidBodyReference();
-            this.launcher = launcher;
-            this.type = MagicCastType.Tracking;
-            this.target = target;
+//        public void InitMagicCast_Tracking(GameObject launcher, Transform target)
+//        {
+//            GetRigidBodyReference();
+//            this.launcher = launcher;
+//            this.type = MagicCastType.Tracking;
+//            this.target = target;
+//
+//            rigidBody.AddForce(transform.right * 50);
+//        }
 
-            rb.AddForce(transform.right * 50);
-        }
+//        public void InitMagicCast_Straight(GameObject launcher, MagicCastType type, Vector3 direction)
+//        {
+//            GetRigidBodyReference();
+//            this.launcher = launcher;
+//            this.type = type;
+//
+//            dir = direction;
+//            dir.Normalize();
+//            
+//            rigidBody.AddForce ((dir + 0.5f * (UnityEngine.Random.value - 0.5f) * transform.right) * thrust);
+//        }
 
-        public void InitMagicCast_Straight(GameObject launcher, MagicCastType type, Vector3 direction)
-        {
-            GetRigidBodyReference();
-            this.launcher = launcher;
-            this.type = type;
+		public void InitMagicCast(GameObject launcher, MagicCastType type)
+		{
+			GetRigidBodyReference();
+			this.launcher = launcher;
+			this.type = type;
 
-            dir = direction;
-            dir.Normalize();
-            
-            rb.AddForce ((dir + 0.3f * (UnityEngine.Random.value - 0.5f) * transform.right) * thrust);
-        }
+			Vector3 initDirection = launcher.transform.forward.normalized; 
 
-        public void OnTriggerEnter(Collider other)
+			if (type == MagicCastType.RandomMoving)
+				rigidBody.AddForce (getRandomDirection (initDirection) / 4.0f);
+			else
+				rigidBody.AddForce (getRandomDirection (initDirection));
+		}
+
+		Vector3 getRandomDirection(Vector3 dir)
+		{
+			Vector3 right = launcher.transform.right.normalized;
+
+			return (dir + 0.5f * (UnityEngine.Random.value - 0.5f) * right) * thrust;
+		}
+
+		Vector3 sampleDirectionOnCircle()
+		{
+			float u = UnityEngine.Random.value;
+			float v = UnityEngine.Random.value;
+
+			float r = Mathf.Sqrt (u);
+			float theta = v * Mathf.PI * 2;
+			return new Vector3 (r * Mathf.Cos (theta), 0, r * Mathf.Sin (theta));
+
+		}
+
+		public void OnTriggerEnter(Collider other)
         {
             if(other.gameObject == launcher)
             {
