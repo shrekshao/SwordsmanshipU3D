@@ -80,8 +80,6 @@ namespace Swordsmanship
             hpBar = GetComponentInChildren< GUIBarScript >();
 		}
 
-        }
-
         void InitSwordOnBack(string sword_name)
         {
             sword = GameObject.Instantiate(Resources.Load(sword_name)) as GameObject;
