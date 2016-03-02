@@ -34,6 +34,11 @@ namespace Swordsmanship
         [SerializeField]
         GameObject hitEffect;
 
+		[SerializeField]
+		float thrust;
+
+		[SerializeField]
+		float acceleration;
 
         Transform target;
 
@@ -41,12 +46,12 @@ namespace Swordsmanship
 
         GameObject launcher;
 
-
-
+		Rigidbody rb;
+		
         // Use this for initialization
         void Start()
         {
-
+			rb = gameObject.GetComponent<Rigidbody> ();
         }
 
         // Update is called once per frame
@@ -55,11 +60,10 @@ namespace Swordsmanship
             switch(type)
             {
                 case MagicCastType.ConstantMoving:
-                    transform.position += moveSpeed * dir;
-                    break;
-                case MagicCastType.AccelerateMoving:
-                    // TODO
-                    break;
+                    //transform.position += moveSpeed * dir;
+				    break;
+			    case MagicCastType.AccelerateMoving:
+				    rb.AddForce (transform.forward* acceleration);
                 case MagicCastType.Tracking:
                     {
                         Vector3 dis = target.position - transform.position;
@@ -68,6 +72,7 @@ namespace Swordsmanship
                     break;
             }
         }
+
 
 
         public void InitMagicCast_Tracking(GameObject launcher, Transform target)
@@ -84,7 +89,8 @@ namespace Swordsmanship
 
             dir = direction;
             dir.Normalize();
-            
+
+			rb.AddForce (dir * thrust);
         }
 
         public void OnTriggerEnter(Collider other)
