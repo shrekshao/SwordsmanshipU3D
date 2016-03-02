@@ -61,7 +61,7 @@ namespace Swordsmanship
                 Cursor.lockState = m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
                 Cursor.visible = !m_LockCursor;
             }
-			if (Input.GetKey (KeyCode.Q)) 
+			if (Input.GetKey (KeyCode.Q) || Input.GetKey("mouse 2")) 
 			{
 				LockEnemyRotation ();
 			}
@@ -160,7 +160,7 @@ namespace Swordsmanship
 			enemies = enemyList.ToArray ();
 		}
 
-		private GameObject FindLockEnemy()
+		public GameObject FindLockEnemy()
 		{
 			//if (freeMove)
 			//	return null;

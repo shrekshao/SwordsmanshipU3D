@@ -22,8 +22,10 @@ namespace Swordsmanship
         [SerializeField]
         float moveSpeed;
 
+        //[SerializeField]
+        //float y_rotationTrackingSpeed;
         [SerializeField]
-        float y_rotationTrackingSpeed;
+        float rotationForce;
 
         [SerializeField]
         int damage;
@@ -34,6 +36,11 @@ namespace Swordsmanship
         [SerializeField]
         GameObject hitEffect;
 
+		[SerializeField]
+		float thrust;
+
+		[SerializeField]
+		float acceleration;
 
         Transform target;
 
@@ -41,12 +48,12 @@ namespace Swordsmanship
 
         GameObject launcher;
 
-
-
+		Rigidbody rb;
+		
         // Use this for initialization
         void Start()
         {
-
+			
         }
 
         // Update is called once per frame
@@ -55,44 +62,46 @@ namespace Swordsmanship
             switch(type)
             {
                 case MagicCastType.ConstantMoving:
-                    transform.position += moveSpeed * dir;
-                    break;
-                case MagicCastType.AccelerateMoving:
-                    // TODO
+				    break;
+			    case MagicCastType.AccelerateMoving:
+				    rb.AddForce (transform.forward * acceleration);
                     break;
                 case MagicCastType.Tracking:
+                    {
+                        Vector3 dis = target.position - transform.position;
+                        dis.Normalize();
+                        float s = 1.5f - Vector3.Dot(dis, rb.velocity.normalized);
+                        rb.AddForce(s * dis * rotationForce);
+                    }
                     break;
             }
         }
 
+        public void GetRigidBodyReference()
+        {
+            rb = gameObject.GetComponent<Rigidbody>();
+        }
 
         public void InitMagicCast_Tracking(GameObject launcher, Transform target)
         {
+            GetRigidBodyReference();
             this.launcher = launcher;
             this.type = MagicCastType.Tracking;
             this.target = target;
 
-
-            switch (type)
-            {
-                case MagicCastType.ConstantMoving:
-                case MagicCastType.AccelerateMoving:
-                    dir = target.position - transform.position;
-                    dir.Normalize();
-                    break;
-                case MagicCastType.Tracking:
-                    break;
-            }
+            rb.AddForce(transform.right * 50);
         }
 
         public void InitMagicCast_Straight(GameObject launcher, MagicCastType type, Vector3 direction)
         {
+            GetRigidBodyReference();
             this.launcher = launcher;
             this.type = type;
 
             dir = direction;
             dir.Normalize();
             
+            rb.AddForce ((dir + 0.3f * (UnityEngine.Random.value - 0.5f) * transform.right) * thrust);
         }
 
         public void OnTriggerEnter(Collider other)
