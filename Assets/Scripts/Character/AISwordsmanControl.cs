@@ -24,6 +24,7 @@ namespace Swordsmanship
         // Move static related
         private Vector3 dis_error;
 
+		private bool pause;
 
         private void Start()
         {
@@ -44,6 +45,9 @@ namespace Swordsmanship
 
             //tmp
             StartCoroutine(RedecideStrategy());
+
+			//tmp 
+			pause = true;
         }
 
 
@@ -86,6 +90,10 @@ namespace Swordsmanship
             {
                 attackCD = 0;
             }
+
+			//tmp
+			if (Input.GetKeyDown (KeyCode.P))
+				pause = !pause;
         }
 
 		private void FixedUpdate()
@@ -104,6 +112,9 @@ namespace Swordsmanship
 
         public void NormalAttackStrategy()
         {
+			if (pause)
+				return;
+			
             //set attacking status
             if (dis_error.sqrMagnitude < 0.5f)
             {
@@ -134,6 +145,12 @@ namespace Swordsmanship
 
         public void NormalMoveStrategy()
         {
+			if (pause)
+			{
+				character.Move(Vector3.zero, false, false);
+				return;
+			}
+			
             dis_error = target.transform.position - this.transform.position;
             dis_error.y = 0;
 
