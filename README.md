@@ -17,6 +17,11 @@ Swordsmanship master is a Chinese martial fighting game with non standard contro
 * Di Ke 狄克 - a lonely swordsman with fast movements. 
 * ![concept](img/di.jpg)
 
+## Screenshots
+
+<img src="./img/capture1.png"></img>
+<img src="./img/capture2.png"></img>
+
 ## Roadmap
 
 * Feb 19 2016
