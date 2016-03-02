@@ -61,6 +61,10 @@ namespace Swordsmanship
                     // TODO
                     break;
                 case MagicCastType.Tracking:
+                    {
+                        Vector3 dis = target.position - transform.position;
+                        
+                    }
                     break;
             }
         }
@@ -71,18 +75,6 @@ namespace Swordsmanship
             this.launcher = launcher;
             this.type = MagicCastType.Tracking;
             this.target = target;
-
-
-            switch (type)
-            {
-                case MagicCastType.ConstantMoving:
-                case MagicCastType.AccelerateMoving:
-                    dir = target.position - transform.position;
-                    dir.Normalize();
-                    break;
-                case MagicCastType.Tracking:
-                    break;
-            }
         }
 
         public void InitMagicCast_Straight(GameObject launcher, MagicCastType type, Vector3 direction)
