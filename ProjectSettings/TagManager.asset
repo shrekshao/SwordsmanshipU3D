@@ -13,6 +13,7 @@ TagManager:
   - Special2Controller
   - Special3Controller
   - SpecialSystem
+  - Wall
   layers:
   - Default
   - TransparentFX
