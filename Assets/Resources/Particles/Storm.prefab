@@ -208,11 +208,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8254b5d117e6aad458de7a771759cd23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.01
-  y_rotationTrackingSpeed: 30
+  moveSpeed: 0.02
+  rotationForce: 2
   damage: 10
   knockBackForce: 200
   hitEffect: {fileID: 173550, guid: b480fd3b82133e248ab98ba201628129, type: 2}
+  thrust: 100
+  acceleration: 1
 --- !u!136 &13674644
 CapsuleCollider:
   m_ObjectHideFlags: 1
