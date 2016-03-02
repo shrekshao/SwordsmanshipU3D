@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 //namespace UnityStandardAssets.Characters.ThirdPerson
@@ -40,6 +41,9 @@ namespace Swordsmanship
 			attackCD = 0.0f;
 
             dis_error = Vector3.zero;
+
+            //tmp
+            StartCoroutine(RedecideStrategy());
         }
 
 
@@ -140,10 +144,32 @@ namespace Swordsmanship
 
             m_Move = dis_error / 3;
 
-            //character.Move(m_Move, false, false);
+
+            if(approach)
+            {
+                character.Move(m_Move, false, false);
+            }
+            else
+            {
+                character.Move(Vector3.zero, false, false);
+            }
+
+
         }
 
+        //tmp
+        bool approach = true;
 
+        //tmp
+        IEnumerator RedecideStrategy()
+        {
+            while(true)
+            {
+                yield return new WaitForSeconds(5);
 
+                approach = UnityEngine.Random.value > 0.5;
+            }
+            
+        }
     }
 }
