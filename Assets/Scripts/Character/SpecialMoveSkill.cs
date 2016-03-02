@@ -22,7 +22,7 @@ namespace Swordsmanship
 
                 //spell.GetComponent<MagicCast>().InitMagicCast_Tracking(caster, GameObject.Find("AI-Di").transform);
 
-				spell.GetComponent<MagicCast>().InitMagicCast(caster, MagicCastType.RandomMoving);
+				spell.GetComponent<MagicCast>().InitMagicCast(caster, MagicCastType.AccelerateMoving);
             }
         }
     }
