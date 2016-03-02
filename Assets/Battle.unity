@@ -122,7 +122,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 476324, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 186968, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
       propertyPath: m_Name
@@ -209,7 +209,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 49a0e923d39ec3c4c8bb97699e2f2903, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 49a0e923d39ec3c4c8bb97699e2f2903, type: 2}
       propertyPath: m_Target
@@ -219,6 +219,10 @@ Prefab:
       propertyPath: playerObj
       value: 
       objectReference: {fileID: 1086569718}
+    - target: {fileID: 430562, guid: 49a0e923d39ec3c4c8bb97699e2f2903, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 49a0e923d39ec3c4c8bb97699e2f2903, type: 2}
   m_IsPrefabParent: 0
@@ -310,18 +314,6 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 186968, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
   m_PrefabInternal: {fileID: 1855507722}
---- !u!114 &1086569719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1086569718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d0c8d6b9281ee1458e5523bb3efd745, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
 --- !u!4 &1086569725 stripped
 Transform:
   m_PrefabParentObject: {fileID: 476324, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
@@ -438,7 +430,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 476324, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 13632252, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
       propertyPath: m_Radius

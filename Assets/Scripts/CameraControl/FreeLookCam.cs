@@ -160,7 +160,7 @@ namespace Swordsmanship
 			enemies = enemyList.ToArray ();
 		}
 
-		private GameObject FindLockEnemy()
+		public GameObject FindLockEnemy()
 		{
 			//if (freeMove)
 			//	return null;
