@@ -4,6 +4,11 @@ Drag n Sword is a sword fighting game in Unity3D. Battle Scheme is learnt from M
 
 By Shuai Shao, Zimeng Yang, and Liang Peng. 
 
+## Screenshots
+
+<img src="./img/capture1.png"></img>
+<img src="./img/capture2.png"></img>
+
 ## Design Concept
 
 |Concept Sketch | Model Preview |
@@ -16,11 +21,6 @@ This is a Chinese martial fighting game with non standard control scheme. The mo
 
 * Di Ke 狄克 - a lonely swordsman with fast movements. 
 * ![concept](img/di.jpg)
-
-## Screenshots
-
-<img src="./img/capture1.png"></img>
-<img src="./img/capture2.png"></img>
 
 ## Roadmap
 
