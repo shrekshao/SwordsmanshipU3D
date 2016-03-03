@@ -1,6 +1,6 @@
-# Swordsmanship Master
+# Drag n Sword
 
-Swordsmanship Master Fighting game in Unity3D. Battle Scheme is learnt from Mount&Blade and 流星蝴蝶剑.
+Drag n Sword is a sword fighting game in Unity3D. Battle Scheme is learnt from Mount&Blade and 流星蝴蝶剑.
 
 By Shuai Shao, Zimeng Yang, and Liang Peng. 
 
@@ -10,7 +10,7 @@ By Shuai Shao, Zimeng Yang, and Liang Peng.
 |---------------|---------------|
 |![concept](img/concept.png)|![preview](img/preview.png)|
 
-Swordsmanship master is a Chinese martial fighting game with non standard control scheme. The most attracting feature is that the player control how its character swing and stab sword by click and drag mouse to draw certain pattern. And the skeleton animation of characters are dynamically related to how fast and well the pattern is drawn. In addition, special moves with extra damage and range can be casted by drawing a complex pattern within a limited of time, which can best demonstrate the variety of swordsmanship usually described in martial arts and swordsman novel in a much better way than a traditional fighting can do. Swordsmanship ranging from Tornado Sword, focus on the speed and rapidity, to Darksteel Sword, slow but dangerously powerful can be well reflected in their effects in drawing patterns, damage, speed, hit test zone, skeleton moves, and so on. 
+This is a Chinese martial fighting game with non standard control scheme. The most attracting feature is that the player control how its character swing and stab sword by click and drag mouse to draw certain pattern. And the skeleton animation of characters are dynamically related to how fast and well the pattern is drawn. In addition, special moves with extra damage and range can be casted by drawing a complex pattern within a limited of time, which can best demonstrate the variety of swordsmanship usually described in martial arts and swordsman novel in a much better way than a traditional fighting can do. Swordsmanship ranging from Tornado Sword, focus on the speed and rapidity, to Darksteel Sword, slow but dangerously powerful can be well reflected in their effects in drawing patterns, damage, speed, hit test zone, skeleton moves, and so on. 
 
 ## Character Design
 
@@ -36,3 +36,9 @@ Swordsmanship master is a Chinese martial fighting game with non standard contro
     * Advanced character movement control: orientation alignment
     * Basic collision test
     
+* March 16 2016
+    * All sorts of Refinement
+    * Complete AI
+    * Menu scene
+    * A second character
+    * Multiplayer with network
