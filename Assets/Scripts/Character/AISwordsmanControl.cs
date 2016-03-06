@@ -26,6 +26,10 @@ namespace Swordsmanship
 
 		private bool pause;
 
+
+        //AI state machine
+
+
         private void Start()
         {
             // get the components on the object we need ( should not be null due to require component so no need to check )
