@@ -50,7 +50,9 @@ namespace Swordsmanship
         SwordsmanStatus swordsmanStatus;
 
         //---HP bar---
-        GUIBarScript hpBar;
+        public GUIBarScript hpBar;
+        public float offsetX;
+        public float offsetY;
 
         void Start()
 		{
@@ -77,7 +79,13 @@ namespace Swordsmanship
             swordsmanStatus = new SwordsmanStatus();
 
             //---HP bar---
-            hpBar = GetComponentInChildren< GUIBarScript >();
+            //hpBar = GetComponentInChildren< GUIBarScript >();
+            if( hpBar != null ) {
+                hpBar.Position = new Vector2( 
+                    offsetX > -1 ? offsetX : Screen.width + offsetX, 
+                    offsetY > -1 ? offsetY : Screen.width + offsetY 
+                    );
+            }
 		}
 
         void InitSwordOnBack(string sword_name)
