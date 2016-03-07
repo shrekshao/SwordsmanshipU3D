@@ -53,7 +53,9 @@ namespace Swordsmanship
         SwordsmanStatus swordsmanStatus { get; set; }
 
         //---HP bar---
-        GUIBarScript hpBar;
+        public GUIBarScript hpBar;
+        public float offsetX;
+        public float offsetY;
 
         void Start()
 		{
@@ -79,13 +81,18 @@ namespace Swordsmanship
             //---character status---
             swordsmanStatus = new SwordsmanStatus();
 
-            //---HP bar---
-            hpBar = GetComponentInChildren< GUIBarScript >();
-
 
             BattleReady = false;
+            //---HP bar---
 
-        }
+            //hpBar = GetComponentInChildren< GUIBarScript >();
+            if( hpBar != null ) {
+                hpBar.Position = new Vector2( 
+                    offsetX > -1 ? offsetX : Screen.width + offsetX, 
+                    offsetY > -1 ? offsetY : Screen.width + offsetY 
+                    );
+            }
+		}
 
         void InitSwordOnBack(string sword_name)
         {
@@ -386,6 +393,16 @@ namespace Swordsmanship
             m_Animator.SetBool("UpperLocked", false);
             BattleReady = true;
         }
+
+		//Draw sword, change sword parent to back
+		public void DrawSwordChangeParentToBack()
+		{
+			sword.transform.SetParent(sword_back_position);
+			sword.transform.localPosition = Vector3.zero;
+			sword.transform.localRotation = Quaternion.identity;
+
+			m_Animator.SetBool("UpperLocked", false);
+		}
 
 		// Special moves 
 		public void NextStageTrigger(int special_move_stage)
