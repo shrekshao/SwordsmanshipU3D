@@ -3,10 +3,20 @@ using System.Collections;
 
 namespace Swordsmanship
 {
+
+    /**
+    * this ai state outline:
+    * - attack when enter a radius, swing immediately
+    * - safety first: block when necessary
+    * - keep a distance
+    * - 
+    */
+
+
     public class AIStateNormal : AIState
     {
         bool castingSpells = false;
-
+        float attackRadius = 10.0f;
 
         public override AIState Update(AISwordsmanControl ai)
         {
@@ -14,14 +24,16 @@ namespace Swordsmanship
             {
                 return this;
             }
-            //ai.NormalMoveStrategy();
+            //ai.NormalMove();
             
-            //ai.NormalAttackStrategy();
+            //ai.NormalAttack();
             
 
-            if(!castingSpells)
+            //if( !ai.character.m_Animator.GetBool("UpperLocked"))
+            if( !castingSpells )
             {
-                ai.SpecialMoveCast(1, 1.0f);
+                ai.SpecialMoveCast(1, 3.0f);
+
                 castingSpells = true;
             }
             

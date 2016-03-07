@@ -21,6 +21,13 @@ namespace Swordsmanship
         private bool prepare;
         private float attackCD { get; set;}
 
+        int attackDirection;
+
+        int blockDirection;
+
+        bool blocking;
+
+
         // Move static related
         private Vector3 dis_error;
 
@@ -32,6 +39,8 @@ namespace Swordsmanship
 
         //AI state machine
         AIState aiState;
+        GameObject playerGO { get; set; }
+        SwordsmanCharacter playerSwordsman { get; set; }
 
 
         private void Start()
@@ -47,9 +56,13 @@ namespace Swordsmanship
 			m_Cam = Camera.main.transform;
 
             prepare = false;
+            blocking = false;
 			attackCD = 0.0f;
 
             dis_error = Vector3.zero;
+
+            attackDirection = 0;
+            blockDirection = 0;
 
             //tmp
             //StartCoroutine(RedecideStrategy());
@@ -58,8 +71,10 @@ namespace Swordsmanship
 			pause = false;
 
 
-            //
+            //ai init
             aiState = new AIStateNormal();
+            playerGO = GameObject.FindGameObjectWithTag("Player");
+            playerSwordsman = playerGO.GetComponent<SwordsmanCharacter>();
         }
 
 
@@ -97,7 +112,7 @@ namespace Swordsmanship
             //}
 
             //character.BlockRight();
-
+            
 
 
             attackCD -= Time.deltaTime;
@@ -127,69 +142,131 @@ namespace Swordsmanship
         }
 
 
-        public void NormalAttackStrategy()
+
+        // -1 is random
+        public void NormalBlock(int dir = -1)
+        {
+            if(dir == -1)
+            {
+                dir = UnityEngine.Random.Range(0, 3);
+            }
+            
+            switch(dir)
+            {
+                case 0:
+                    character.BlockLeft();
+                    break;
+                case 1:
+                    character.BlockRight();
+                    break;
+                case 2:
+                    character.BlockFront();
+                    break;
+            }
+            
+        }
+
+        public void NormalBlockExit()
+        {
+            character.BlockExit();
+        }
+
+
+
+        // -1 is random direction
+        public void NormalAttack(int dir = -1)
         {
             
 			if (pause)
 				return;
 			
             //set attacking status
-            if (dis_error.sqrMagnitude < 0.5f)
+            //if (dis_error.sqrMagnitude < 0.5f)
+            //{
+            if (attackCD <= 0)
             {
-                if (attackCD <= 0)
+                if (!prepare)
                 {
-                    if (!prepare)
+                    if (dir == -1)
                     {
-                        float r = UnityEngine.Random.value;
-                        if (0 <= r && r < 0.5)
-                        {
-                        }
-                        else if (0.5 <= r && r < 1)
-                        {
-                            character.AttackSwingLeftIdle();
-                            prepare = true;
-                            attackCD = 1.0f;
-                        }
+                        attackDirection = UnityEngine.Random.Range(0, 3);
                     }
                     else
                     {
-                        character.AttackSwingLeftAttack();
-                        prepare = false;
-                        attackCD = 1.5f;
+                        attackDirection = dir;
                     }
+                    
+                    switch(attackDirection)
+                    {
+                        case 0:
+                            character.AttackSwingLeftIdle();
+                            break;
+                        case 1:
+                            character.AttackSwingRightIdle();
+                            break;
+                        case 2:
+                            character.AttackStabIdle();
+                            break;
+                    }
+                    
+                    prepare = true;
+                    attackCD = 1.0f;
+                }
+                else
+                {
+                    switch (attackDirection)
+                    {
+                        case 0:
+                            character.AttackSwingLeftAttack();
+                            break;
+                        case 1:
+                            character.AttackSwingRightAttack();
+                            break;
+                        case 2:
+                            character.AttackStabAttack();
+                            break;
+                    }
+                    prepare = false;
+                    attackCD = 1.5f;
                 }
             }
+            //}
         }
 
-        public void NormalMoveStrategy()
-        {
-			if (pause)
-			{
-				character.Move(Vector3.zero, false, false);
-				return;
-			}
+   //     public void NormalMove()
+   //     {
+			//if (pause)
+			//{
+			//	character.Move(Vector3.zero, false, false);
+			//	return;
+			//}
 			
-            dis_error = target.transform.position - this.transform.position;
-            dis_error.y = 0;
+   //         dis_error = target.transform.position - this.transform.position;
+   //         dis_error.y = 0;
 
-            //float h = error.sqrMagnitude / 4.0f;
-            //float v = UnityStandardAssets.CrossPlatformInput.CrossPlatformInputManager.GetAxis("Vertical");
-            //float v = (Vector3.Angle(transform.forward,error) - 90) / 180 * Mathf.PI;
-            //m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+   //         //float h = error.sqrMagnitude / 4.0f;
+   //         //float v = UnityStandardAssets.CrossPlatformInput.CrossPlatformInputManager.GetAxis("Vertical");
+   //         //float v = (Vector3.Angle(transform.forward,error) - 90) / 180 * Mathf.PI;
+   //         //m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
 
-            m_Move = dis_error / 3;
-
-
-            if(approach)
-            {
-                character.Move(m_Move, false, false);
-            }
-            else
-            {
-                character.Move(Vector3.zero, false, false);
-            }
+   //         m_Move = dis_error / 3;
 
 
+   //         if(approach)
+   //         {
+   //             character.Move(m_Move, false, false);
+   //         }
+   //         else
+   //         {
+   //             character.Move(Vector3.zero, false, false);
+   //         }
+
+
+   //     }
+
+        public void NormalMove(Vector3 move)
+        {
+            character.Move(move, false, false);
         }
 
         
