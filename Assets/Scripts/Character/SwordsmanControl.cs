@@ -55,7 +55,7 @@ namespace Swordsmanship
             MouseBehavior.mouseInputDelegate += MouseInputHandle;
 
 			//special move initialization
-			m_Character.m_specialMoveIndex = -1;
+			//m_Character.m_specialMoveIndex = -1;
 			m_specialMoveStage = 0;
         }
 
@@ -165,18 +165,15 @@ namespace Swordsmanship
 			
 			if (Input.GetKey (KeyCode.Alpha1) && m_specialMoveCDTime[0] == 0) 
 			{
-				m_Character.m_specialMoveIndex = 0;
-				m_Character.SetSpecialMoveIndex ();
+				m_Character.SetSpecialMoveIndex (0);
 			} 
 			else if (Input.GetKey (KeyCode.Alpha2) && m_specialMoveCDTime[1] == 0) 
 			{
-				m_Character.m_specialMoveIndex = 1;
-				m_Character.SetSpecialMoveIndex ();
+				m_Character.SetSpecialMoveIndex (1);
 			} 
 			else if (Input.GetKey (KeyCode.Alpha3) && m_specialMoveCDTime[2] == 0) 
 			{
-				m_Character.m_specialMoveIndex = 2;
-				m_Character.SetSpecialMoveIndex ();
+				m_Character.SetSpecialMoveIndex (2);
 			}
 
 			if (m_Character.m_specialMoveIndex >= 0) 
@@ -200,9 +197,8 @@ namespace Swordsmanship
 				m_specialMoveStage = 0; // finish movement
 				//m_animator.SetTrigger("SpecialMoveExitTrigger");
 				//m_Character.ExitSpecialMoveTrigger();
-
-				m_Character.m_specialMoveIndex = -1;
-				m_Character.SetSpecialMoveIndex ();
+                
+				m_Character.SetSpecialMoveIndex (-1);
 			} 
 			else 
 			{
@@ -215,8 +211,8 @@ namespace Swordsmanship
 		{
 			m_specialMoveStage = 0;
 
-			m_Character.m_specialMoveIndex = -1;
-			m_Character.SetSpecialMoveIndex ();
+			
+			m_Character.SetSpecialMoveIndex (-1);
 			//m_animator.SetTrigger ("Stop");
 
 			m_Character.StopSpecialMoveTrigger();

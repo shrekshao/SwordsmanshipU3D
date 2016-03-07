@@ -5,11 +5,27 @@ namespace Swordsmanship
 {
     public class AIStateNormal : AIState
     {
+        bool castingSpells = false;
 
-        public override AIState Update(AISwordsmanControl aiSwordsmanControl)
+
+        public override AIState Update(AISwordsmanControl ai)
         {
-            //tmp
-            return new AIStateNormal();
+            if(!ai.character.BattleReady)
+            {
+                return this;
+            }
+            //ai.NormalMoveStrategy();
+            
+            //ai.NormalAttackStrategy();
+            
+
+            if(!castingSpells)
+            {
+                ai.SpecialMoveCast(1, 1.0f);
+                castingSpells = true;
+            }
+            
+            return this;
         }
     }
 }

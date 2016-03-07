@@ -9,6 +9,12 @@ namespace Swordsmanship
     {
         String magicCastName = "Storm";
         //tmp
+        int num_stages = 7;
+
+        public int getStages()
+        {
+            return num_stages;
+        }
 
         // this should be a child class
         // Tornado sword

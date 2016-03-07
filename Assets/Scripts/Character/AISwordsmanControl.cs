@@ -6,20 +6,20 @@ using UnityEngine;
 namespace Swordsmanship
 {
     //[RequireComponent(typeof (NavMeshAgent))]
-    [RequireComponent(typeof (SwordsmanCharacter))]
+    [RequireComponent(typeof(SwordsmanCharacter))]
     public class AISwordsmanControl : MonoBehaviour
     {
         //public NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
         public SwordsmanCharacter character { get; private set; } // the character we are controlling
         public Transform target;                                    // target to aim for
-	
-		private Transform m_Cam;                  // A reference to the main camera in the scenes transform
-		private Vector3 m_CamForward;             // The current forward direction of the camera
-		private Vector3 m_Move;
+
+        private Transform m_Cam;                  // A reference to the main camera in the scenes transform
+        private Vector3 m_CamForward;             // The current forward direction of the camera
+        private Vector3 m_Move;
 
         // Low level Attack status related
-		private bool prepare;
-		private float attackCD;
+        private bool prepare;
+        private float attackCD { get; set;}
 
         // Move static related
         private Vector3 dis_error;
@@ -27,7 +27,11 @@ namespace Swordsmanship
 		private bool pause;
 
 
+        //tmp
+        bool approach = true;
+
         //AI state machine
+        AIState aiState;
 
 
         private void Start()
@@ -48,10 +52,14 @@ namespace Swordsmanship
             dis_error = Vector3.zero;
 
             //tmp
-            StartCoroutine(RedecideStrategy());
+            //StartCoroutine(RedecideStrategy());
 
 			//tmp 
-			pause = true;
+			pause = false;
+
+
+            //
+            aiState = new AIStateNormal();
         }
 
 
@@ -89,24 +97,29 @@ namespace Swordsmanship
             //}
 
             //character.BlockRight();
-			attackCD -= Time.deltaTime;
-			if (attackCD < 0)
+
+
+
+            attackCD -= Time.deltaTime;
+            if (attackCD < 0)
             {
                 attackCD = 0;
             }
 
-			//tmp
-			if (Input.GetKeyDown (KeyCode.P))
-				pause = !pause;
+            ////tmp
+            //if (Input.GetKeyDown (KeyCode.P))
+            //	pause = !pause;
+
+            aiState = aiState.Update(this);
         }
 
-		private void FixedUpdate()
-		{
+		//private void FixedUpdate()
+		//{
 
-            NormalMoveStrategy();
+  //          NormalMoveStrategy();
 
-            NormalAttackStrategy();
-		}
+  //          NormalAttackStrategy();
+		//}
 
         public void SetTarget(Transform target)
         {
@@ -116,6 +129,7 @@ namespace Swordsmanship
 
         public void NormalAttackStrategy()
         {
+            
 			if (pause)
 				return;
 			
@@ -178,19 +192,43 @@ namespace Swordsmanship
 
         }
 
-        //tmp
-        bool approach = true;
-
-        //tmp
-        IEnumerator RedecideStrategy()
+        
+        public void SpecialMoveCast(int specialMoveIndex, float stage_gap_seconds)
         {
-            while(true)
+            if (pause)
             {
-                yield return new WaitForSeconds(5);
-
-                approach = UnityEngine.Random.value > 0.5;
+                return;
             }
+
+            character.SetSpecialMoveIndex(specialMoveIndex);
+
+            int numStages = character.GetSkillStagesAt(specialMoveIndex);
+            StartCoroutine(NextStageSpecialMove(numStages, stage_gap_seconds));
             
+
         }
+
+        IEnumerator NextStageSpecialMove(int num_stages, float stage_gap_seconds)
+        {
+            for (int cur_stage = 0; cur_stage < num_stages; cur_stage++)
+            {
+                Debug.Log(cur_stage);
+                character.NextStageTrigger(cur_stage);
+                yield return new WaitForSeconds(stage_gap_seconds);
+            }
+            character.ExitSpecialMoveTrigger();
+        }
+
+        ////tmp
+        //IEnumerator RedecideStrategy()
+        //{
+        //    while(true)
+        //    {
+        //        yield return new WaitForSeconds(5);
+
+        //        approach = UnityEngine.Random.value > 0.5;
+        //    }
+            
+        //}
     }
 }

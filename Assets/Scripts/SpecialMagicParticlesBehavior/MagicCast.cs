@@ -159,7 +159,7 @@ namespace Swordsmanship
                 other.GetComponent<Rigidbody>().AddForce(knockBackForce * dir.normalized);
                 HitDestroy();
             }
-            else if(other.tag == "Human")
+            else if(other.tag == "Human" || other.tag == "Player")
             {
                 other.gameObject.GetComponent<SwordsmanCharacter>().BeHit(gameObject, knockBackForce);
                 HitDestroy();

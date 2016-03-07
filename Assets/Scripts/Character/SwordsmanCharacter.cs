@@ -46,6 +46,9 @@ namespace Swordsmanship
         SpecialMoveSkill[] skills;
 
 
+        //
+        public bool BattleReady;
+
         //---swordsman status---
         SwordsmanStatus swordsmanStatus;
 
@@ -78,7 +81,11 @@ namespace Swordsmanship
 
             //---HP bar---
             hpBar = GetComponentInChildren< GUIBarScript >();
-		}
+
+
+            BattleReady = false;
+
+        }
 
         void InitSwordOnBack(string sword_name)
         {
@@ -377,6 +384,7 @@ namespace Swordsmanship
             sword.transform.localRotation = Quaternion.identity;
 
             m_Animator.SetBool("UpperLocked", false);
+            BattleReady = true;
         }
 
 		// Special moves 
@@ -384,22 +392,37 @@ namespace Swordsmanship
 		{
 			m_Animator.SetTrigger ("NextStage");
 
-
-            skills[m_specialMoveIndex].CastSpecialMoveEffect(special_move_stage, gameObject);
+            if(m_specialMoveIndex >= 0)
+            {
+                skills[m_specialMoveIndex].CastSpecialMoveEffect(special_move_stage, gameObject);
+            }
+           
 		}
 		public void ExitSpecialMoveTrigger()
 		{
-			m_Animator.SetTrigger ("ExitSpecialMove");		
-		}
+            m_specialMoveIndex = -1;
+            m_Animator.ResetTrigger("NextStage");
+            m_Animator.SetTrigger ("ExitSpecialMove");
+            
+        }
 		public void StopSpecialMoveTrigger()
 		{
-			m_Animator.SetTrigger ("StopSpecialMove");
-			m_specialMoveIndex = -1;
+            m_specialMoveIndex = -1;
+            m_Animator.ResetTrigger("NextStage");
+            m_Animator.SetTrigger ("StopSpecialMove");
+			
 		}
-		public void SetSpecialMoveIndex()
+		public void SetSpecialMoveIndex(int speicalMoveIndex)
 		{
-			m_Animator.SetInteger("SpecialMoveID", m_specialMoveIndex);
-		}
+            //m_Animator.SetInteger("SpecialMoveID", m_specialMoveIndex);
+            m_specialMoveIndex = speicalMoveIndex;
+            m_Animator.SetInteger("SpecialMoveID", speicalMoveIndex);
+
+            m_Animator.ResetTrigger("NextStage");
+            m_Animator.ResetTrigger("StopSpecialMove");
+            m_Animator.ResetTrigger("ExitSpecialMove");
+            
+        }
         // -----------------------------------------------------------
 
 
@@ -473,6 +496,12 @@ namespace Swordsmanship
         }
 		
 
+
+        //skill special move uitl
+        public int GetSkillStagesAt(int id)
+        {
+            return skills[id].getStages();
+        }
         
 
         
