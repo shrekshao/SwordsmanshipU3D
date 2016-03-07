@@ -20,7 +20,7 @@ namespace Swordsmanship
         [SerializeField] private float m_TiltMin = 45f;                       // The minimum value of the x axis rotation of the pivot.
         [SerializeField] private bool m_LockCursor = false;                   // Whether the cursor should be hidden and locked.
         [SerializeField] private bool m_VerticalAutoReturn = false;           // set wether or not the vertical axis should auto return
-		[SerializeField] private GameObject playerObj;
+		private GameObject playerObj;
 
         private float m_LookAngle;                    // The rig's y axis rotation.
         private float m_TiltAngle;                    // The pivot's x axis rotation.
@@ -41,11 +41,12 @@ namespace Swordsmanship
 
 	        m_PivotTargetRot = m_Pivot.transform.localRotation;
 			m_TransformTargetRot = transform.localRotation;
+			playerObj = GameObject.FindGameObjectWithTag ("Player") as GameObject;
+			m_Target = playerObj.transform;
 
 			swordmanCharacter = playerObj.GetComponent<SwordsmanCharacter> ();
 			enemyUtil = GameObject.Find ("EnemyUtilityObj").GetComponent<EnemyUtil> ();
         }
-
 
         protected void Update()
         {
