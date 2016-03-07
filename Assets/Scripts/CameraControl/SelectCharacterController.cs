@@ -96,7 +96,7 @@ namespace Swordsmanship
 		private void HandleSelectObject()
 		{
 			//Vector3 deltaPos = new Vector3 (0, 0, 0);
-			if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.LeftArrow)) {
+			if (Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.LeftArrow)) {
 				int oldIdx = selectedIndex;
 				selectedIndex = selectedIndex - 1;
 
@@ -109,7 +109,7 @@ namespace Swordsmanship
 			//	deltaPos = players [selectedIndex].transform.position - players [oldIdx].transform.position;
 			}
 
-			if (Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.RightArrow)) {
+			if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.RightArrow)) {
 				int oldIdx = selectedIndex;
 				selectedIndex = selectedIndex + 1;
 
@@ -182,7 +182,7 @@ namespace Swordsmanship
 		{
 			Debug.Log ("Start !!!");
 			ApplicationGlobals.selectedCharacterName = players [selectedIndex].name;
-			SceneManager.LoadScene ("Battle");
+			SceneManager.LoadScene ("Battle_Connect");
 		}
 	}
 }
