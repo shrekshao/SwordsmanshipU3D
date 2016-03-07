@@ -379,6 +379,16 @@ namespace Swordsmanship
             m_Animator.SetBool("UpperLocked", false);
         }
 
+		//Draw sword, change sword parent to back
+		public void DrawSwordChangeParentToBack()
+		{
+			sword.transform.SetParent(sword_back_position);
+			sword.transform.localPosition = Vector3.zero;
+			sword.transform.localRotation = Quaternion.identity;
+
+			m_Animator.SetBool("UpperLocked", false);
+		}
+
 		// Special moves 
 		public void NextStageTrigger(int special_move_stage)
 		{
