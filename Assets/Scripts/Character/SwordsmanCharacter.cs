@@ -38,6 +38,8 @@ namespace Swordsmanship
         Transform sword_hand_position;
         [SerializeField]
         Transform sword_back_position;
+        [SerializeField]
+        string swordName = "Sword0";
 
 
 		//special move index
@@ -57,6 +59,11 @@ namespace Swordsmanship
         public float offsetX;
         public float offsetY;
 
+        // animator state hash
+        public static int hash_attackLeftIdle = Animator.StringToHash("UpperBody.SwingLeftIdle");
+        public static int hash_attackRightIdle = Animator.StringToHash("UpperBody.SwingRightIdle");
+        public static int hash_attackStabIdle = Animator.StringToHash("UpperBody.StabIdle");
+
         void Start()
 		{
 			m_Animator = GetComponent<Animator>();
@@ -65,12 +72,13 @@ namespace Swordsmanship
 			m_CapsuleHeight = m_Capsule.height;
 			m_CapsuleCenter = m_Capsule.center;
 
+
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
 
 
             //TMP, dynamic initialize
-            InitSwordOnBack("Sword0");
+            InitSwordOnBack(swordName);
 
 
 

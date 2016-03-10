@@ -11,7 +11,10 @@ namespace Swordsmanship
     {
         //public NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
         public SwordsmanCharacter character { get; private set; } // the character we are controlling
+
+        public GameObject targetGO;
         public Transform target;                                    // target to aim for
+        public SwordsmanCharacter targetCharacter;
 
         private Transform m_Cam;                  // A reference to the main camera in the scenes transform
         private Vector3 m_CamForward;             // The current forward direction of the camera
@@ -26,7 +29,7 @@ namespace Swordsmanship
         int blockDirection;
 
         bool blocking;
-
+        public bool castingSpells = false;
 
         // Move static related
         private Vector3 dis_error;
@@ -48,7 +51,10 @@ namespace Swordsmanship
             // get the components on the object we need ( should not be null due to require component so no need to check )
             //agent = GetComponentInChildren<NavMeshAgent>();
             character = GetComponent<SwordsmanCharacter>();
-			target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
+            targetGO = GameObject.FindGameObjectWithTag("Player");
+            target = targetGO.GetComponent<Transform>();
+            targetCharacter = targetGO.GetComponent<SwordsmanCharacter>();
 
 	        //agent.updateRotation = false;
 	        //agent.updatePosition = true;
@@ -57,6 +63,7 @@ namespace Swordsmanship
 
             prepare = false;
             blocking = false;
+            castingSpells = false;
 			attackCD = 0.0f;
 
             dis_error = Vector3.zero;
@@ -125,7 +132,12 @@ namespace Swordsmanship
             //if (Input.GetKeyDown (KeyCode.P))
             //	pause = !pause;
 
-            aiState = aiState.Update(this);
+
+            if(aiState != null)
+            {
+                aiState = aiState.Update(this);
+            }
+            
         }
 
 		//private void FixedUpdate()
@@ -173,17 +185,16 @@ namespace Swordsmanship
 
 
 
-        // -1 is random direction
-        public void NormalAttack(int dir = -1)
+        // @param: dir indicates the attack direction, -1 is random direction
+        // @return: prepare ( finish attack)
+        public bool NormalAttack(int dir = -1)
         {
             
-			if (pause)
-				return;
+			//if (pause)
+			//	return;
 			
             //set attacking status
-            //if (dis_error.sqrMagnitude < 0.5f)
-            //{
-            if (attackCD <= 0)
+            if (attackCD <= 0.0001f)
             {
                 if (!prepare)
                 {
@@ -231,6 +242,8 @@ namespace Swordsmanship
                 }
             }
             //}
+
+            return prepare;
         }
 
    //     public void NormalMove()
@@ -281,8 +294,8 @@ namespace Swordsmanship
 
             int numStages = character.GetSkillStagesAt(specialMoveIndex);
             StartCoroutine(NextStageSpecialMove(numStages, stage_gap_seconds));
-            
 
+            
         }
 
         IEnumerator NextStageSpecialMove(int num_stages, float stage_gap_seconds)
@@ -294,6 +307,7 @@ namespace Swordsmanship
                 yield return new WaitForSeconds(stage_gap_seconds);
             }
             character.ExitSpecialMoveTrigger();
+            castingSpells = false;
         }
 
         ////tmp

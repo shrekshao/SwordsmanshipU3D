@@ -1622,6 +1622,10 @@ Prefab:
       propertyPath: m_TiltMax
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 2042022, guid: 49a0e923d39ec3c4c8bb97699e2f2903, type: 2}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 2.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 49a0e923d39ec3c4c8bb97699e2f2903, type: 2}
   m_IsPrefabParent: 0
