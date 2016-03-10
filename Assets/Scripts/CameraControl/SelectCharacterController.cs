@@ -184,5 +184,10 @@ namespace Swordsmanship
 			ApplicationGlobals.selectedCharacterName = players [selectedIndex].name;
 			SceneManager.LoadScene ("Battle_Connect");
 		}
+
+		public Vector3 GetTargetPos()
+		{
+			return m_TargetPos;
+		}
 	}
 }
