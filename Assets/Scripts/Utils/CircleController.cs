@@ -31,8 +31,10 @@ namespace Swordsmanship
 
 		void UpdatePosition()
 		{
-			Vector3 newPos = Vector3.Lerp (transform.position, m_TargetPos, Time.deltaTime * circle_speed);
-			transform.position = new Vector3 (newPos.x, transform.position.y, newPos.z);
+			Vector3 tarPos = new Vector3 (m_TargetPos.x,m_TargetPos.y+0.01f,m_TargetPos.z);
+			Vector3 newPos = Vector3.Lerp (transform.position, tarPos, Time.deltaTime * circle_speed);
+			//transform.position = new Vector3 (newPos.x, transform.position.y, newPos.z);
+			transform.position = new Vector3 (newPos.x, newPos.y, newPos.z);
 		}
 	}
 }

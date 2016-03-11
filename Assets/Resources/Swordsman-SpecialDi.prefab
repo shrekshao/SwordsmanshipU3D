@@ -337,7 +337,7 @@ GameObject:
   - 114: {fileID: 11492854}
   - 114: {fileID: 11477002}
   m_Layer: 0
-  m_Name: 'Swordsman-StrangeDi '
+  m_Name: Swordsman-SpecialDi
   m_TagString: Human
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1742,9 +1742,15 @@ MonoBehaviour:
   m_MoveSpeedMultiplier: 1
   m_AnimSpeedMultiplier: 1
   m_GroundCheckDistance: 0.3
+  m_Animator: {fileID: 0}
   sword_hand_position: {fileID: 448962}
   sword_back_position: {fileID: 493258}
+  swordName: Sword0
   m_specialMoveIndex: 0
+  BattleReady: 0
+  hpBar: {fileID: 0}
+  offsetX: 0
+  offsetY: 0
 --- !u!114 &11492854
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -90,7 +90,7 @@ namespace Swordsmanship
 
 		private void UpdateGUI()
 		{
-			text.text = "Character Name:\n    " + players [selectedIndex].name;
+			text.text = "    " + players [selectedIndex].name;
 		}
 
 		private void HandleSelectObject()
