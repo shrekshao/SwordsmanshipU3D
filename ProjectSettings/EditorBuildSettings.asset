@@ -13,3 +13,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/Battle.unity
   - enabled: 0
     path: Assets/_Scenes/Battle_Connect.unity
+  - enabled: 1
+    path: Assets/_Scenes/LoseScene.unity
+  - enabled: 1
+    path: Assets/_Scenes/WinScene.unity

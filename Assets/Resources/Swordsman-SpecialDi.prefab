@@ -1777,7 +1777,7 @@ MonoBehaviour:
   swordName: Sword0
   m_specialMoveIndex: 0
   BattleReady: 0
-  hpBar: {fileID: 0}
+  hpBar: {fileID: 11496228}
   offsetX: 0
   offsetY: 0
 --- !u!114 &11492854
@@ -2544,6 +2544,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 94a4c5ba77d2be34c9ff74ab7bcd079b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: hpBar
+      value: 
+      objectReference: {fileID: 11496228}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 140846}

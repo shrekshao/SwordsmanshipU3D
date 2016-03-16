@@ -13,6 +13,9 @@ namespace Swordsmanship
 
 		// Use this for initialization
 		void Start () {
+			// fix resolution of screnn
+			Screen.SetResolution (1473,733,true);
+
 			angle = 0;
 			sCC = GameObject.Find ("SelectCamera").GetComponent<SelectCharacterController> ();
 		}

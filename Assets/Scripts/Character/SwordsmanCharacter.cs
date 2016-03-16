@@ -64,6 +64,12 @@ namespace Swordsmanship
         public static int hash_attackRightIdle = Animator.StringToHash("UpperBody.SwingRightIdle");
         public static int hash_attackStabIdle = Animator.StringToHash("UpperBody.StabIdle");
 
+		// character died statues
+		public bool isDead()
+		{
+			return swordsmanStatus.getHP () > 0 ? false : true; 	
+		}
+
         void Start()
 		{
 			m_Animator = GetComponent<Animator>();
