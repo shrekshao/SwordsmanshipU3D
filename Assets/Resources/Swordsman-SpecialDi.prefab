@@ -756,6 +756,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &189850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 403494}
+  - 114: {fileID: 11496228}
+  m_Layer: 0
+  m_Name: CircuitBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &193064
 GameObject:
   m_ObjectHideFlags: 1
@@ -923,6 +939,18 @@ Transform:
   - {fileID: 497316}
   - {fileID: 493258}
   m_Father: {fileID: 459610}
+  m_RootOrder: 0
+--- !u!4 &403494
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189850}
+  m_LocalRotation: {x: 0, y: 0.00000032584137, z: 0, w: -1}
+  m_LocalPosition: {x: -1.839, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 470530}
   m_RootOrder: 0
 --- !u!4 &405052
 Transform:
@@ -1193,7 +1221,7 @@ Transform:
   - {fileID: 474494}
   - {fileID: 475646}
   m_Father: {fileID: 470530}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &447510
 Transform:
   m_ObjectHideFlags: 1
@@ -1376,6 +1404,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 403494}
   - {fileID: 446560}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1762,6 +1791,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f952ea03c754924cbc2725bcf0ea90c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11496228
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c95a157734574f82b4e53cba5dae53b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 1
+  FadeFactor: 5
+  Position: {x: 0, y: 0}
+  ScaleSize: 1
+  DisplayText: 1
+  TextString: 323925
+  TextColor: {r: 0, g: 0, b: 0, a: 1}
+  OverRideTextColorWithGradient: 0
+  TextFont: {fileID: 12800000, guid: 402f8cf2de0fc4f38b137a83fc99ebeb, type: 3}
+  TextSize: 42.4
+  TextOffset: {x: 71.9, y: 22.2}
+  Background: {fileID: 2800000, guid: ae39a077b2e33476c996e14812f41de2, type: 3}
+  Mask: {fileID: 2800000, guid: 07ce12f689e9e4a2c9e271dbd45267e1, type: 3}
+  ValueBar: {fileID: 2800000, guid: 1ac00b06995344f6585af0949b67f6e2, type: 3}
+  Foreground: {fileID: 0}
+  GradientColors:
+  - {r: 0, g: 0.8745098, b: 1, a: 0}
+  - {r: 0, g: 0.8758621, b: 1, a: 0}
+  - {r: 0, g: 0.8745098, b: 1, a: 0}
 --- !u!136 &13637868
 CapsuleCollider:
   m_ObjectHideFlags: 1

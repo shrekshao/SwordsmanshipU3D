@@ -182,7 +182,7 @@ namespace Swordsmanship
 		{
 			Debug.Log ("Start !!!");
 			ApplicationGlobals.selectedCharacterName = players [selectedIndex].name;
-			SceneManager.LoadScene ("Battle_Connect");
+			SceneManager.LoadScene ("Battle");
 		}
 
 		public Vector3 GetTargetPos()

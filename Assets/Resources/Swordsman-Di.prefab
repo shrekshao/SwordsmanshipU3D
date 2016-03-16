@@ -322,6 +322,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &134030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 426026}
+  - 114: {fileID: 11404020}
+  m_Layer: 0
+  m_Name: CircuitBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &135512
 GameObject:
   m_ObjectHideFlags: 1
@@ -1046,6 +1062,18 @@ Transform:
   - {fileID: 424458}
   m_Father: {fileID: 477610}
   m_RootOrder: 0
+--- !u!4 &426026
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134030}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: -0.00000016292068}
+  m_LocalPosition: {x: 1.839, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 476324}
+  m_RootOrder: 0
 --- !u!4 &426738
 Transform:
   m_ObjectHideFlags: 1
@@ -1122,7 +1150,7 @@ Transform:
   - {fileID: 475398}
   - {fileID: 487032}
   m_Father: {fileID: 476324}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &444752
 Transform:
   m_ObjectHideFlags: 1
@@ -1439,6 +1467,7 @@ Transform:
   m_LocalPosition: {x: 1.839, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 426026}
   - {fileID: 443608}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1723,6 +1752,36 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11404020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c95a157734574f82b4e53cba5dae53b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 1
+  FadeFactor: 5
+  Position: {x: 0, y: 0}
+  ScaleSize: 1
+  DisplayText: 1
+  TextString: 323925
+  TextColor: {r: 0, g: 0, b: 0, a: 1}
+  OverRideTextColorWithGradient: 0
+  TextFont: {fileID: 12800000, guid: 402f8cf2de0fc4f38b137a83fc99ebeb, type: 3}
+  TextSize: 42.4
+  TextOffset: {x: 71.9, y: 22.2}
+  Background: {fileID: 2800000, guid: ae39a077b2e33476c996e14812f41de2, type: 3}
+  Mask: {fileID: 2800000, guid: 07ce12f689e9e4a2c9e271dbd45267e1, type: 3}
+  ValueBar: {fileID: 2800000, guid: 1ac00b06995344f6585af0949b67f6e2, type: 3}
+  Foreground: {fileID: 0}
+  GradientColors:
+  - {r: 0, g: 0.8745098, b: 1, a: 0}
+  - {r: 0, g: 0.8758621, b: 1, a: 0}
+  - {r: 0, g: 0.8745098, b: 1, a: 0}
 --- !u!114 &11431536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1742,9 +1801,15 @@ MonoBehaviour:
   m_MoveSpeedMultiplier: 1
   m_AnimSpeedMultiplier: 1
   m_GroundCheckDistance: 0.3
+  m_Animator: {fileID: 0}
   sword_hand_position: {fileID: 492812}
   sword_back_position: {fileID: 467590}
+  swordName: Sword0
   m_specialMoveIndex: 0
+  BattleReady: 0
+  hpBar: {fileID: 0}
+  offsetX: 0
+  offsetY: 0
 --- !u!114 &11470314
 MonoBehaviour:
   m_ObjectHideFlags: 1

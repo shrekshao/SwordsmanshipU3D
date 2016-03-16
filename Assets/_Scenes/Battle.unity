@@ -621,7 +621,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a85de004a881b764cbc3189ed225b58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetGO: {fileID: 0}
   target: {fileID: 0}
+  targetCharacter: {fileID: 0}
+  castingSpells: 0
 --- !u!4 &21675893 stripped
 Transform:
   m_PrefabParentObject: {fileID: 476324, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
@@ -5545,7 +5548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &440070008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22708,7 +22711,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 186968, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11431536, guid: 4c9f0329870b05a44bf7feeee912cc79, type: 2}
       propertyPath: hpBar
