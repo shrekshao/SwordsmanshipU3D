@@ -17,11 +17,12 @@ namespace Swordsmanship
     {
         public const int MAX_IDLE_TIME = 100;
         public const float IDLE_RATE = 0.1f;
-        public const float SPECIAL_RATE = 0.5f;
-        
+        public const float SPECIAL_RATE = 0.0001f;
+
+        public const float SPRINT_DISTANCE = 3.0f;
 
         
-        float attackRadius = 1.0f;
+        float attackRadius = 0.7f;
         float blockRadius = 2.0f;
 
         int idleTime = 0;
@@ -105,17 +106,21 @@ namespace Swordsmanship
             {
                 return new AIStateInstantAttack();
             }
+            else if (dis > SPRINT_DISTANCE)
+            {
+                ai.character.Move(dis * disVec3, false, false);
+            }
             else
             {
-                ai.character.Move(0.2f * disVec3, false, false);
+                ai.character.Move(0.5f * disVec3, false, false);
             }
 
 
-            //// cast special
-            //if(Random.value < SPECIAL_RATE)
-            //{
-            //    return new AIStateInstantCastSpeical();
-            //}
+            // cast special
+            if (Random.value < SPECIAL_RATE && !ai.castingSpells)
+            {
+                return new AIStateInstantCastSpeical();
+            }
 
 
             return this;

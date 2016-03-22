@@ -26,10 +26,12 @@ namespace Swordsmanship
 
             if (!ai.castingSpells)
             {
+                Debug.Log("cast spells");
+
                 ai.castingSpells = true;
                 ai.SpecialMoveCast(1, SPECIAL_GAP);
 
-                
+                //ai.castingSpells = false;
             }
 
             return new AIStateNormal();

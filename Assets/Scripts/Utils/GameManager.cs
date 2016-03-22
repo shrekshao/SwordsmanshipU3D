@@ -8,12 +8,14 @@ namespace Swordsmanship
 
 		private float timeScale;
 
-		private GameObject[] players;
+        //private GameObject[] players;
+        System.Collections.Generic.List<GameObject> players;
+        //ArrayList players;
 
         //public EnemyGenerator enemyGenerator;
         public Transform[] birthPoint;
 
-        int MAX_RESPAWN_ENEMY_TIME = 1000;
+        int MAX_RESPAWN_ENEMY_TIME = 800;
         int respawnEnemyTime;
 
 
@@ -25,10 +27,17 @@ namespace Swordsmanship
 
         }
 
+
+        GameObject playerCharacter;
+        SwordsmanCharacter playerCharacter_Character;
+
 		void StorePlayer()
 		{
 			GameObject[] gos = GameObject.FindGameObjectsWithTag("Human") as GameObject[];
 			GameObject[] gos2 = GameObject.FindGameObjectsWithTag ("Player") as GameObject[];
+
+            playerCharacter = gos2[0];
+            playerCharacter_Character = playerCharacter.GetComponent<SwordsmanCharacter>();
 
 			var objList = new System.Collections.Generic.List<GameObject>();
 
@@ -42,7 +51,10 @@ namespace Swordsmanship
 				objList.Add (player);
 			}
 
-			players = objList.ToArray ();
+
+            //players = objList.ToArray ();
+            //players = objList;
+            players = objList;
 		}
 
 		void HandlePause()
@@ -66,16 +78,27 @@ namespace Swordsmanship
 
 		void GameFinish()
 		{
-			for (int i = 0; i < players.Length; i++) {
-				if (players [i].GetComponent<SwordsmanCharacter>().isDead ()) {
-					//if (players [i].layer == LayerMask.NameToLayer("EnemyLayer"))
-					//	SceneManager.LoadScene ("WinScene");
-					//else
-					//	SceneManager.LoadScene ("LoseScene");
+			//for (int i = 0; i < players.Length; i++) {
+			//	if (players [i].GetComponent<SwordsmanCharacter>().isDead ()) {
+			//		//if (players [i].layer == LayerMask.NameToLayer("EnemyLayer"))
+			//		//	SceneManager.LoadScene ("WinScene");
+			//		//else
+			//		//	SceneManager.LoadScene ("LoseScene");
 					
-				}
-			}
+			//	}
+			//}
+            if(!playerCharacter_Character.enabled)
+            {
+                StartCoroutine(GotoLoseScene());
+            }
+            
 		}
+
+        IEnumerator GotoLoseScene()
+        {
+            yield return new WaitForSeconds(5.0f);
+            SceneManager.LoadScene("LoseScene");
+        }
 
 		// Update is called once per frame
 		void Update () {
@@ -93,9 +116,27 @@ namespace Swordsmanship
 		}
 
 
-
-        GameObject GenerateEnemy()
+        int numPlayers = 0;
+        void GenerateEnemy()
         {
+            for( int i = players.Count - 1; i >= 0; --i)
+            {
+                if (!players[i].GetComponent<SwordsmanCharacter>().enabled)
+                {
+                    players.Remove(players[i]);
+                }
+            }
+
+            numPlayers = players.Count;
+
+
+            Debug.Log(numPlayers);
+
+            if(numPlayers > 4)
+            {
+                return;
+            }
+
             int name_idx = 0;
             int birth_idx = 0;
             //TODO: random name
@@ -105,8 +146,7 @@ namespace Swordsmanship
             newEnemy.tag = "Human";
             newEnemy.layer = LayerMask.NameToLayer("EnemyLayer");
 
-
-            return newEnemy;
+            players.Add(newEnemy);
         }
     }
 }
