@@ -146,6 +146,8 @@ namespace Swordsmanship
             newEnemy.tag = "Human";
             newEnemy.layer = LayerMask.NameToLayer("EnemyLayer");
 
+            //newEnemy.GetComponent<SwordsmanCharacter>().swordsmanStatus.setHP(20);
+
             players.Add(newEnemy);
         }
     }

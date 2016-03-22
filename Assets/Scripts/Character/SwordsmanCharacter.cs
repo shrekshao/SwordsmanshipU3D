@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Swordsmanship
 {
-	[RequireComponent(typeof(Rigidbody))]
+	//[RequireComponent(typeof(Rigidbody))]
 	//[RequireComponent(typeof(CapsuleCollider))]
 	[RequireComponent(typeof(Animator))]
 	public class SwordsmanCharacter: MonoBehaviour
@@ -52,7 +52,7 @@ namespace Swordsmanship
         public bool BattleReady;
 
         //---swordsman status---
-        SwordsmanStatus swordsmanStatus { get; set; }
+        public SwordsmanStatus swordsmanStatus { get; set; }
 
         //---HP bar---
         public GUIBarScript hpBar;
@@ -544,8 +544,11 @@ namespace Swordsmanship
             m_Animator.SetLayerWeight(0, 1.0f);
             m_Animator.SetLayerWeight(1, 0.0f);
 
-            
+
             //Destroy(GetComponent<Collider>());
+            Destroy(GetComponent<Collider>());
+            Destroy(GetComponent<Rigidbody>());
+            //GetComponent<Collider>().enabled = false;
             //gameObject.tag = "";
             this.enabled = false;
             //Destroy(this);

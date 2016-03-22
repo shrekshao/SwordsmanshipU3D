@@ -15,6 +15,7 @@ namespace Swordsmanship
         
         public SwordsmanStatus(){
             setHP( 100 );
+            //setHP(10);
         }
         
         public bool loseHP( int lostHP ) {
