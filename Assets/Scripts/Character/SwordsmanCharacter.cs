@@ -131,7 +131,9 @@ namespace Swordsmanship
         {
             //tmp
             skills = new SpecialMoveSkill[3];
-            skills[1] = new SpecialMoveSkill();
+            skills[0] = new BurningGround();
+            skills[1] = new TornadoSword();
+            skills[2] = new Thunder();
         }
 
 
@@ -515,10 +517,7 @@ namespace Swordsmanship
 
             //---lose HP and update HP bar---
             int lostHP = Random.Range( 10, 20 );
-            GameObject mLoseHP = Instantiate( 
-                loseHP, 
-                gameObject.transform.position + new Vector3( 0, 1, 0 ), 
-                gameObject.transform.rotation ) as GameObject;
+            GameObject mLoseHP = Instantiate( loseHP, transform.position + new Vector3( 0, 1, 0 ), transform.rotation ) as GameObject;
 
             mLoseHP.GetComponent< TextMesh >().text = "-" + lostHP;
             mLoseHP.GetComponent<TextMesh>().color = color;
