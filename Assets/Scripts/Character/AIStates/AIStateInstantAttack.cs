@@ -22,7 +22,22 @@ namespace Swordsmanship
         {
             
             Vector3 disVec3 = ai.target.position - ai.character.transform.position;
-            ai.character.Move(disVec3.normalized * 0.5f, false, false);
+
+            float distant = disVec3.magnitude;
+
+            float approach = 0.7f;
+
+            //if(distant > 2.0f)
+            //{
+            //    approach = 3.0f;
+            //}
+            //else
+            //{
+            //    approach = 0.5f;
+            //}
+
+
+            ai.character.Move(disVec3.normalized * approach, false, false);
 
 
             bool finishAttack = ai.NormalAttack();
