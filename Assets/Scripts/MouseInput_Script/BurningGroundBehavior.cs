@@ -18,14 +18,15 @@ namespace Swordsmanship
 	        GameObject[] enemies = EnemyUtil.GetEnemies();
 
 	        for( int i = 0; i < 3; ++i ) {
-	            foreach( GameObject enemy in enemies ) {
-	                yield return new WaitForSeconds( 1 );
+	            yield return new WaitForSeconds( 1 );
 
+	            foreach( GameObject enemy in enemies ) {
                     Swordsmanship.SwordsmanCharacter c = enemy.GetComponent<Swordsmanship.SwordsmanCharacter>();
                     
                     if(c)
                     {
                         c.BeHit(attacker, 160);
+                        Debug.Log( "flag" );
                     }
                     
 	            }
