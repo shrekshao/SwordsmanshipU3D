@@ -7,7 +7,7 @@ namespace Swordsmanship
     [Serializable]
     public class SwordsmanStatus
     {
-        
+
         int hp;
         int mp;
         int strength;

@@ -524,11 +524,15 @@ namespace Swordsmanship
 
             mLoseHP.GetComponent< TextMesh >().text = "-" + lostHP;
             mLoseHP.GetComponent<TextMesh>().color = color;
-            swordsmanStatus.loseHP( lostHP );
-            if( hpBar != null ) hpBar.Value = swordsmanStatus.getHP() / 100.0f;
 
-			// health bar updata
-			healthBar.transform.localScale = new Vector3(swordsmanStatus.getHP() / 100.0f,healthBar.transform.localScale.y,healthBar.transform.localScale.z);
+            swordsmanStatus.loseHP( lostHP );
+
+            if ( hpBar != null ) hpBar.Value = swordsmanStatus.getHP() / 100.0f;
+            
+            // health bar updata
+            healthBar.GetComponent<HealthBarScript>().UpdateHPRatio(swordsmanStatus.getHP() / 20.0f);
+
+
 
             //be Knocked back
             Vector3 dir = transform.position - attacker_gb.transform.position;

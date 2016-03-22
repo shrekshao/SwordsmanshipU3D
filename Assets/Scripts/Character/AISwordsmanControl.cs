@@ -82,6 +82,10 @@ namespace Swordsmanship
             aiState = new AIStateNormal();
             playerGO = GameObject.FindGameObjectWithTag("Player");
             playerSwordsman = playerGO.GetComponent<SwordsmanCharacter>();
+
+
+            //hack hp
+            character.swordsmanStatus.setHP(20);
         }
 
 
