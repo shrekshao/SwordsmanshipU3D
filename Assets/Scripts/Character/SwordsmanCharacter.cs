@@ -528,8 +528,7 @@ namespace Swordsmanship
             Vector3 dir = transform.position - attacker_gb.transform.position;
 
             GetComponent<Rigidbody>().AddForce(knockbackForce * dir.normalized);
-
-
+            
             if(isDead())
             {
                 GoDie();
