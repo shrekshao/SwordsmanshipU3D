@@ -65,15 +65,23 @@ namespace Swordsmanship
 			//{
 			//	LockEnemyRotation ();
 			//}
-			LockEnemyRotation();
+
+			if (!LockEnemyRotation ()) 
+			{
+				if (!Input.GetKey ("mouse 0") && !Input.GetKey ("mouse 1")
+						&& swordmanCharacter.m_specialMoveIndex == -1) 
+				{
+					HandleRotationMovement ();
+				}
+			}
         }
 
-		protected void LockEnemyRotation()
+		protected bool LockEnemyRotation()
 		{
 
 			GameObject obj = EnemyUtil.FindLockEnemy (playerObj.transform);
 			if (obj == null)
-				return;
+				return false;
 
 			Vector3 error = obj.transform.position - transform.position;
 			error.y = 0;
@@ -83,6 +91,7 @@ namespace Swordsmanship
 			m_TransformTargetRot = Quaternion.Euler(0f, m_LookAngle, 0f);
 			transform.localRotation = m_TransformTargetRot;
 
+			return true;
 		}
 
         private void OnDisable()
