@@ -20,7 +20,14 @@ namespace Swordsmanship
 	        for( int i = 0; i < 3; ++i ) {
 	            foreach( GameObject enemy in enemies ) {
 	                yield return new WaitForSeconds( 1 );
-	                enemy.GetComponent< Swordsmanship.SwordsmanCharacter >().BeHit( attacker, 160 );
+
+                    Swordsmanship.SwordsmanCharacter c = enemy.GetComponent<Swordsmanship.SwordsmanCharacter>();
+                    
+                    if(c)
+                    {
+                        c.BeHit(attacker, 160);
+                    }
+                    
 	            }
 	        }
 	    }

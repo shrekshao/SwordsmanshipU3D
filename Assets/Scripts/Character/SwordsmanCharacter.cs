@@ -79,6 +79,11 @@ namespace Swordsmanship
 			return swordsmanStatus.getHP () > 0 ? false : true; 	
 		}
 
+        void Awake()
+        {
+            swordsmanStatus = new SwordsmanStatus();
+        }
+
         void Start()
 		{
 			m_Animator = GetComponent<Animator>();
@@ -102,7 +107,7 @@ namespace Swordsmanship
             InitSpecialMoveSkills();
 
             //---character status---
-            swordsmanStatus = new SwordsmanStatus();
+            
             
             BattleReady = false;
 
@@ -515,6 +520,11 @@ namespace Swordsmanship
 
         public void BeHit(GameObject attacker_gb, float knockbackForce = 160)
         {
+            if(!this.enabled)
+            {
+                return;
+            }
+
             Debug.Log("Be Hit!!!");
             m_Animator.SetTrigger("Damaged");
 
