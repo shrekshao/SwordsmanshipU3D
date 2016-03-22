@@ -27,10 +27,17 @@ namespace Swordsmanship
 
         }
 
+
+        GameObject playerCharacter;
+        SwordsmanCharacter playerCharacter_Character;
+
 		void StorePlayer()
 		{
 			GameObject[] gos = GameObject.FindGameObjectsWithTag("Human") as GameObject[];
 			GameObject[] gos2 = GameObject.FindGameObjectsWithTag ("Player") as GameObject[];
+
+            playerCharacter = gos2[0];
+            playerCharacter_Character = playerCharacter.GetComponent<SwordsmanCharacter>();
 
 			var objList = new System.Collections.Generic.List<GameObject>();
 
@@ -80,7 +87,18 @@ namespace Swordsmanship
 					
 			//	}
 			//}
+            if(!playerCharacter_Character.enabled)
+            {
+                StartCoroutine(GotoLoseScene());
+            }
+            
 		}
+
+        IEnumerator GotoLoseScene()
+        {
+            yield return new WaitForSeconds(5.0f);
+            SceneManager.LoadScene("LoseScene");
+        }
 
 		// Update is called once per frame
 		void Update () {
