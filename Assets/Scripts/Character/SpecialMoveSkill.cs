@@ -51,11 +51,16 @@ namespace Swordsmanship
 
         public override void CastSpecialMoveEffect(int stage_id, GameObject caster) {
             if( stage_id == 4 ) {
+
+                //---spawn burning ground---
 				GameObject spell = GameObject.Instantiate(
                     Resources.Load("Particles/" + magicCastName), 
                     caster.transform.position + new Vector3( 0, 0.1f, 0 ), 
                     caster.transform.rotation
                     ) as GameObject;
+                
+                //---deal damage to all enemies---
+                spell.GetComponent< BurningGroundBehavior >().dealProlongedDamage( spell );
             }
         }
     }
@@ -69,12 +74,17 @@ namespace Swordsmanship
 
         public override void CastSpecialMoveEffect(int stage_id, GameObject caster) {
             if( true || stage_id == 0 ) {
+
+                //---spawn thunder---
 				GameObject spell = GameObject.Instantiate(
                     Resources.Load("Particles/" + magicCastName), 
                     caster.transform.position/* + new Vector3(UnityEngine.Random.Range( 3, 5 ), 0, UnityEngine.Random.Range( 3, 5 ) )*/,  
                     caster.transform.rotation
                     ) as GameObject;
                 spell.transform.Rotate( new Vector3( -90, 0, 0 ) );
+
+                //---deal damage to surrouding enemies---
+                spell.GetComponent< ThunderBehavior >().dealDamage( spell );
             }
         }
     }
