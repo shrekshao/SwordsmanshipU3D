@@ -110,9 +110,17 @@ namespace Swordsmanship
                 respawnEnemyTime = MAX_RESPAWN_ENEMY_TIME;
             }
 
+            if (players.Count <= 1)
+            {
+                GenerateEnemy();
+                respawnEnemyTime = MAX_RESPAWN_ENEMY_TIME;
+            }
+
 
             HandlePause();
             GameFinish();
+
+
 
         }
 
@@ -120,6 +128,8 @@ namespace Swordsmanship
         int numPlayers = 0;
         void GenerateEnemy()
         {
+            
+
             for( int i = players.Count - 1; i >= 0; --i)
             {
                 if (!players[i].GetComponent<SwordsmanCharacter>().enabled)
@@ -147,7 +157,8 @@ namespace Swordsmanship
             newEnemy.tag = "Human";
             newEnemy.layer = LayerMask.NameToLayer("EnemyLayer");
 
-            //newEnemy.GetComponent<SwordsmanCharacter>().swordsmanStatus.setHP(20);
+            newEnemy.GetComponent<SwordsmanCharacter>().swordsmanStatus.setHP(30);
+            newEnemy.GetComponent<SwordsmanCharacter>().swordsmanStatus.setHP(30);
 
             players.Add(newEnemy);
         }
