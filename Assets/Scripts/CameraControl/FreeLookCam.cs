@@ -50,27 +50,28 @@ namespace Swordsmanship
 
         protected void Update()
         {
-			if (!Input.GetKey ("mouse 0") && !Input.GetKey ("mouse 1")
-			   && swordmanCharacter.m_specialMoveIndex == -1) 
-			{
-				HandleRotationMovement ();
-			}
+//			if (!Input.GetKey ("mouse 0") && !Input.GetKey ("mouse 1")
+//			   && swordmanCharacter.m_specialMoveIndex == -1) 
+//			{
+//				HandleRotationMovement ();
+//			}
 
 			if (m_LockCursor && Input.GetMouseButtonUp(0))
             {
                 Cursor.lockState = m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
                 Cursor.visible = !m_LockCursor;
             }
-			if (Input.GetKey (KeyCode.Q) || Input.GetKey("mouse 2")) 
-			{
-				LockEnemyRotation ();
-			}
+			//if (Input.GetKey (KeyCode.Q) || Input.GetKey("mouse 2")) 
+			//{
+			//	LockEnemyRotation ();
+			//}
+			LockEnemyRotation();
         }
 
 		protected void LockEnemyRotation()
 		{
 
-			GameObject obj = enemyUtil.FindLockEnemy (playerObj.transform);
+			GameObject obj = EnemyUtil.FindLockEnemy (playerObj.transform);
 			if (obj == null)
 				return;
 
@@ -78,7 +79,7 @@ namespace Swordsmanship
 			error.y = 0;
 
 			float desiredAngle = Mathf.Atan2 (error.x, error.z) * 180.0f / Mathf.PI;
-			m_LookAngle = desiredAngle;
+			m_LookAngle = Mathf.LerpAngle(m_LookAngle, desiredAngle,Time.deltaTime * m_TurnSpeed);
 			m_TransformTargetRot = Quaternion.Euler(0f, m_LookAngle, 0f);
 			transform.localRotation = m_TransformTargetRot;
 
