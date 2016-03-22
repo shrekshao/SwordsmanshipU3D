@@ -22,7 +22,7 @@ public class TextFlashScript : MonoBehaviour {
         enabled = false;
 
         //tmp
-        init();
+        //init();
 	}
 	
 	// Update is called once per frame
@@ -40,7 +40,7 @@ public class TextFlashScript : MonoBehaviour {
         {
             sign = 1.0f;
             enabled = false;
-            init();
+            //init();
         }
 
 

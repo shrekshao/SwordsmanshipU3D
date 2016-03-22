@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +19,12 @@ namespace Swordsmanship
         int MAX_RESPAWN_ENEMY_TIME = 800;
         int respawnEnemyTime;
 
+		[SerializeField]
+		Text nKillText;
+		int nKills = 0;
+
+		GameObject playerCharacter;
+		SwordsmanCharacter playerCharacter_Character;
 
         // Use this for initialization
         void Start () {
@@ -26,12 +33,30 @@ namespace Swordsmanship
             //respawnEnemyTime = MAX_RESPAWN_ENEMY_TIME;
             respawnEnemyTime = 1;
 
+			//register delegate
+			SwordsmanCharacter.dieEvent += HandleDieEvent;
+			UpdateText ();
         }
 
+		void HandleDieEvent(GameObject obj)
+		{
+			players.Remove (obj);
+			IncreaseNKills ();
+			UpdateText ();
+		}
 
-        GameObject playerCharacter;
-        SwordsmanCharacter playerCharacter_Character;
+		void IncreaseNKills()
+		{
+			nKills++;
+			UpdateText ();
+		}
 
+		void UpdateText()
+		{
+			nKillText.text = nKills.ToString() + " KILLS";
+			nKillText.GetComponent<TextFlashScript> ().init ();
+		}
+			
 		void StorePlayer()
 		{
 			GameObject[] gos = GameObject.FindGameObjectsWithTag("Human") as GameObject[];
@@ -158,7 +183,7 @@ namespace Swordsmanship
             newEnemy.layer = LayerMask.NameToLayer("EnemyLayer");
 
             newEnemy.GetComponent<SwordsmanCharacter>().swordsmanStatus.setHP(30);
-            newEnemy.GetComponent<SwordsmanCharacter>().swordsmanStatus.setHP(30);
+            newEnemy.GetComponent<SwordsmanCharacter>().swordsmanStatus.setMaxHP(30);
 
             players.Add(newEnemy);
         }
