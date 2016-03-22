@@ -5,7 +5,7 @@ namespace Swordsmanship
 {
 public class ApplicationGlobals : MonoBehaviour {
 
-	public static string selectedCharacterName;
+	public static string selectedCharacterName = "Swordsman-SpecialDi";
 
 	// Use this for initialization
 	void Start () {

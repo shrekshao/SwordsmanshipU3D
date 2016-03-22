@@ -540,6 +540,8 @@ namespace Swordsmanship
         {
             m_Animator.SetTrigger("Death");
 
+            IdleClearStates();
+
             m_Animator.SetLayerWeight(0, 1.0f);
             m_Animator.SetLayerWeight(1, 0.0f);
 
