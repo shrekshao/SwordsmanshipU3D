@@ -7,15 +7,14 @@ namespace Swordsmanship
     [Serializable]
     public class SwordsmanStatus
     {
-
-        int hp;
-        int mp;
-        int strength;
-        int agility;
+        public int maxHP;
+        public int hp;
+        //int mp;
+        //int strength;
+        //int agility;
         
         public SwordsmanStatus(){
-            setHP( 100 );
-            //setHP(10);
+            setHP( maxHP );
         }
         
         public bool loseHP( int lostHP ) {
