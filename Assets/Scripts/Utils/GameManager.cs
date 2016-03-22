@@ -8,14 +8,24 @@ namespace Swordsmanship
 
 		private float timeScale;
 
-		private GameObject[] players;
+        //private GameObject[] players;
+        System.Collections.Generic.List<GameObject> players;
+        //ArrayList players;
 
-		// Use this for initialization
-		void Start () {
+        //public EnemyGenerator enemyGenerator;
+        public Transform[] birthPoint;
+
+        int MAX_RESPAWN_ENEMY_TIME = 800;
+        int respawnEnemyTime;
+
+
+        // Use this for initialization
+        void Start () {
 			timeScale = Time.timeScale;
 			StorePlayer ();
+            respawnEnemyTime = MAX_RESPAWN_ENEMY_TIME;
 
-		}
+        }
 
 		void StorePlayer()
 		{
@@ -34,7 +44,10 @@ namespace Swordsmanship
 				objList.Add (player);
 			}
 
-			players = objList.ToArray ();
+
+            //players = objList.ToArray ();
+            //players = objList;
+            players = objList;
 		}
 
 		void HandlePause()
@@ -58,23 +71,64 @@ namespace Swordsmanship
 
 		void GameFinish()
 		{
-			for (int i = 0; i < players.Length; i++) {
-				if (players [i].GetComponent<SwordsmanCharacter>().isDead ()) {
-					//if (players [i].layer == LayerMask.NameToLayer("EnemyLayer"))
-					//	SceneManager.LoadScene ("WinScene");
-					//else
-					//	SceneManager.LoadScene ("LoseScene");
+			//for (int i = 0; i < players.Length; i++) {
+			//	if (players [i].GetComponent<SwordsmanCharacter>().isDead ()) {
+			//		//if (players [i].layer == LayerMask.NameToLayer("EnemyLayer"))
+			//		//	SceneManager.LoadScene ("WinScene");
+			//		//else
+			//		//	SceneManager.LoadScene ("LoseScene");
 					
-				}
-			}
+			//	}
+			//}
 		}
 
 		// Update is called once per frame
 		void Update () {
+            respawnEnemyTime -= 1;
+            if(respawnEnemyTime <= 0)
+            {
+                GenerateEnemy();
+                respawnEnemyTime = MAX_RESPAWN_ENEMY_TIME;
+            }
+
 
 			HandlePause ();
 			GameFinish ();
 
 		}
-	}
+
+
+        int numPlayers = 0;
+        void GenerateEnemy()
+        {
+            for( int i = players.Count - 1; i >= 0; --i)
+            {
+                if (!players[i].GetComponent<SwordsmanCharacter>().enabled)
+                {
+                    players.Remove(players[i]);
+                }
+            }
+
+            numPlayers = players.Count;
+
+
+            Debug.Log(numPlayers);
+
+            if(numPlayers > 4)
+            {
+                return;
+            }
+
+            int name_idx = 0;
+            int birth_idx = 0;
+            //TODO: random name
+
+            //GameObject newEnemy = Instantiate(Resources.Load(enemyName[name_idx]),birthPoint[birth_idx].position, Quaternion.identity) as GameObject;
+            GameObject newEnemy = Instantiate(Resources.Load("AI-Di"), birthPoint[birth_idx].position, Quaternion.identity) as GameObject;
+            newEnemy.tag = "Human";
+            newEnemy.layer = LayerMask.NameToLayer("EnemyLayer");
+
+            players.Add(newEnemy);
+        }
+    }
 }

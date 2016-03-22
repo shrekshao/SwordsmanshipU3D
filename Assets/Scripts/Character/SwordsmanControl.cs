@@ -75,6 +75,11 @@ namespace Swordsmanship
 
 			// special move handler
 			SpecialMoveHandle ();
+
+            if(!m_Character.enabled)
+            {
+                this.enabled = false;
+            }
         }
 
 

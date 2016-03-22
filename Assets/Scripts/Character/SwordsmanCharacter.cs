@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Swordsmanship
 {
 	[RequireComponent(typeof(Rigidbody))]
-	[RequireComponent(typeof(CapsuleCollider))]
+	//[RequireComponent(typeof(CapsuleCollider))]
 	[RequireComponent(typeof(Animator))]
 	public class SwordsmanCharacter: MonoBehaviour
 	{
@@ -544,6 +544,9 @@ namespace Swordsmanship
             m_Animator.SetLayerWeight(0, 1.0f);
             m_Animator.SetLayerWeight(1, 0.0f);
 
+            
+            //Destroy(GetComponent<Collider>());
+            //gameObject.tag = "";
             this.enabled = false;
             //Destroy(this);
         }
