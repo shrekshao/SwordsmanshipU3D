@@ -60,10 +60,10 @@ namespace Swordsmanship
 		{
 			for (int i = 0; i < players.Length; i++) {
 				if (players [i].GetComponent<SwordsmanCharacter>().isDead ()) {
-					if (players [i].layer == LayerMask.NameToLayer("EnemyLayer"))
-						SceneManager.LoadScene ("WinScene");
-					else
-						SceneManager.LoadScene ("LoseScene");
+					//if (players [i].layer == LayerMask.NameToLayer("EnemyLayer"))
+					//	SceneManager.LoadScene ("WinScene");
+					//else
+					//	SceneManager.LoadScene ("LoseScene");
 					
 				}
 			}

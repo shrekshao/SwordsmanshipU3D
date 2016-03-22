@@ -17,8 +17,9 @@ namespace Swordsmanship
             setHP( 100 );
         }
         
-        public void loseHP( int lostHP ) {
+        public bool loseHP( int lostHP ) {
             setHP( getHP() - lostHP );
+            return hp <= 0;
         }
         
         public int getHP() {

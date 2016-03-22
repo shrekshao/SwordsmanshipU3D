@@ -87,6 +87,11 @@ namespace Swordsmanship
 
         private void Update()
         {
+            if (!character.enabled)
+            {
+                this.enabled = false;
+                return;
+            }
             //if (target != null)
             //    agent.SetDestination(target.position);
 
@@ -119,7 +124,7 @@ namespace Swordsmanship
             //}
 
             //character.BlockRight();
-            
+
 
 
             attackCD -= Time.deltaTime;
@@ -137,6 +142,7 @@ namespace Swordsmanship
             {
                 aiState = aiState.Update(this);
             }
+            
             
         }
 
