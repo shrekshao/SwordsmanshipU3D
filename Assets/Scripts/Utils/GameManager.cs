@@ -10,12 +10,20 @@ namespace Swordsmanship
 
 		private GameObject[] players;
 
-		// Use this for initialization
-		void Start () {
+        //public EnemyGenerator enemyGenerator;
+        public Transform[] birthPoint;
+
+        int MAX_RESPAWN_ENEMY_TIME = 1000;
+        int respawnEnemyTime;
+
+
+        // Use this for initialization
+        void Start () {
 			timeScale = Time.timeScale;
 			StorePlayer ();
+            respawnEnemyTime = MAX_RESPAWN_ENEMY_TIME;
 
-		}
+        }
 
 		void StorePlayer()
 		{
@@ -71,10 +79,34 @@ namespace Swordsmanship
 
 		// Update is called once per frame
 		void Update () {
+            respawnEnemyTime -= 1;
+            if(respawnEnemyTime <= 0)
+            {
+                GenerateEnemy();
+                respawnEnemyTime = MAX_RESPAWN_ENEMY_TIME;
+            }
+
 
 			HandlePause ();
 			GameFinish ();
 
 		}
-	}
+
+
+
+        GameObject GenerateEnemy()
+        {
+            int name_idx = 0;
+            int birth_idx = 0;
+            //TODO: random name
+
+            //GameObject newEnemy = Instantiate(Resources.Load(enemyName[name_idx]),birthPoint[birth_idx].position, Quaternion.identity) as GameObject;
+            GameObject newEnemy = Instantiate(Resources.Load("AI-Di"), birthPoint[birth_idx].position, Quaternion.identity) as GameObject;
+            newEnemy.tag = "Human";
+            newEnemy.layer = LayerMask.NameToLayer("EnemyLayer");
+
+
+            return newEnemy;
+        }
+    }
 }
