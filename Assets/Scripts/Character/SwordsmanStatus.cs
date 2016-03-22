@@ -7,8 +7,8 @@ namespace Swordsmanship
     [Serializable]
     public class SwordsmanStatus
     {
-        public int maxHP;
-        public int hp;
+        public int maxHP = 100;
+        public int hp = 100;
         //int mp;
         //int strength;
         //int agility;
@@ -33,6 +33,10 @@ namespace Swordsmanship
 
         public void setMaxHP( int _maxHP ) {
             maxHP = _maxHP;
+        }
+
+        public int getMaxHP() {
+            return maxHP;
         }
     }
 }

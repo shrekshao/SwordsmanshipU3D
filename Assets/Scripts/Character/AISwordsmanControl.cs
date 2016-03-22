@@ -85,6 +85,7 @@ namespace Swordsmanship
 
 
             //hack hp
+            character.swordsmanStatus.setMaxHP(20);
             character.swordsmanStatus.setHP(20);
         }
 

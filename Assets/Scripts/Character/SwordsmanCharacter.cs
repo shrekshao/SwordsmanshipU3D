@@ -527,10 +527,14 @@ namespace Swordsmanship
 
             swordsmanStatus.loseHP( lostHP );
 
-            if ( hpBar != null ) hpBar.Value = swordsmanStatus.getHP() / 100.0f;
+            if ( hpBar != null ) hpBar.Value = (float)swordsmanStatus.getHP() / (float)swordsmanStatus.getMaxHP();
             
             // health bar updata
-            healthBar.GetComponent<HealthBarScript>().UpdateHPRatio(swordsmanStatus.getHP() / 20.0f);
+            if(healthBar != null)
+            {
+                healthBar.GetComponent<HealthBarScript>().UpdateHPRatio((float)swordsmanStatus.getHP() / (float)swordsmanStatus.getMaxHP());
+            }
+            
 
 
 
