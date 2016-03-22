@@ -70,6 +70,9 @@ namespace Swordsmanship
         public static int hash_attackRightIdle = Animator.StringToHash("UpperBody.SwingRightIdle");
         public static int hash_attackStabIdle = Animator.StringToHash("UpperBody.StabIdle");
 
+		// health bar 
+		[SerializeField] GameObject healthBar;
+
 		// character died statues
 		public bool isDead()
 		{
@@ -104,12 +107,12 @@ namespace Swordsmanship
             BattleReady = false;
 
             //---HP bar---
-            if( hpBar != null ) {
-                hpBar.Position = new Vector2( 
-                    offsetX > -1 ? offsetX : Screen.width + offsetX, 
-                    offsetY > -1 ? offsetY : Screen.width + offsetY 
-                    );
-            }
+			if (hpBar != null) {
+				hpBar.Position = new Vector2 (
+					offsetX > -1 ? offsetX : Screen.width + offsetX, 
+					offsetY > -1 ? offsetY : Screen.width + offsetY 
+				);
+			}
 		}
 
         void InitSwordOnBack(string sword_name)
@@ -524,6 +527,9 @@ namespace Swordsmanship
             swordsmanStatus.loseHP( lostHP );
             if( hpBar != null ) hpBar.Value = swordsmanStatus.getHP() / 100.0f;
 
+			// health bar updata
+			healthBar.transform.localScale = new Vector3(swordsmanStatus.getHP() / 100.0f,healthBar.transform.localScale.y,healthBar.transform.localScale.z);
+
             //be Knocked back
             Vector3 dir = transform.position - attacker_gb.transform.position;
 
@@ -570,6 +576,19 @@ namespace Swordsmanship
         }
         
 
-        
+        // face enemy
+		public void FaceEnemy()
+		{
+			GameObject obj = EnemyUtil.FindLockEnemy (transform);
+			if (obj == null)
+				return;
+			
+			Vector3 error = obj.transform.position - transform.position;
+			error.y = 0;
+
+			float desiredAngle = Mathf.Atan2 (error.x, error.z) * 180.0f / Mathf.PI;
+			transform.localRotation = Quaternion.Euler (0, desiredAngle, 0);
+				//Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0,desiredAngle,0),Time.deltaTime * 10);
+		}
     }
 }

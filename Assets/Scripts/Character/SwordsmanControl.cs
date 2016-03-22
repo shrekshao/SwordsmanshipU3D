@@ -235,20 +235,23 @@ namespace Swordsmanship
                 case MouseMovementsInput.Attack_SwingLeftIdle:
                     m_Character.AttackSwingLeftIdle();
                     break;
-                case MouseMovementsInput.Attack_SwingLeft:
-                    m_Character.AttackSwingLeftAttack();
+				case MouseMovementsInput.Attack_SwingLeft:
+					m_Character.AttackSwingLeftAttack ();
+					m_Character.FaceEnemy ();
                     break;
                 case MouseMovementsInput.Attack_SwingRightIdle:
                     m_Character.AttackSwingRightIdle();
                     break;
                 case MouseMovementsInput.Attack_SwingRight:
                     m_Character.AttackSwingRightAttack();
+					m_Character.FaceEnemy ();
                     break;
                 case MouseMovementsInput.Attack_StabIdle:
                     m_Character.AttackStabIdle();
                     break;
                 case MouseMovementsInput.Attack_Stab:
                     m_Character.AttackStabAttack();
+					m_Character.FaceEnemy ();
                     break;
 
                 case MouseMovementsInput.Block_Front:

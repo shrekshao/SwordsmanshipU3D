@@ -102,16 +102,16 @@ namespace Swordsmanship
 
 		// Update is called once per frame
 		void Update () {
-            respawnEnemyTime -= 1;
-            if(respawnEnemyTime <= 0)
-            {
-                GenerateEnemy();
-                respawnEnemyTime = MAX_RESPAWN_ENEMY_TIME;
-            }
-
-
-			HandlePause ();
-			GameFinish ();
+//            respawnEnemyTime -= 1;
+//            if(respawnEnemyTime <= 0)
+//            {
+//                GenerateEnemy();
+//                respawnEnemyTime = MAX_RESPAWN_ENEMY_TIME;
+//            }
+//
+//
+//			HandlePause ();
+//			GameFinish ();
 
 		}
 
