@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyUtil : MonoBehaviour {
 
 	[SerializeField] private const float LockDistance = 5.0f;
-	private GameObject[] enemies;
+	public static GameObject[] enemies;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +25,11 @@ public class EnemyUtil : MonoBehaviour {
 			}
 		}
 		enemies = enemyList.ToArray ();
+	}
+
+	static public GameObject[] GetEnemies()
+	{
+		return enemies;
 	}
 
 	public GameObject FindLockEnemy(Transform currentTransform,float distance = LockDistance)
