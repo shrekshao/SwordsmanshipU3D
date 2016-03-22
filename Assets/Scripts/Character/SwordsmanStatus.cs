@@ -31,6 +31,9 @@ namespace Swordsmanship
             hp = _hp;
         }
 
+        public void setMaxHP( int _maxHP ) {
+            maxHP = _maxHP;
+        }
     }
 }
 
