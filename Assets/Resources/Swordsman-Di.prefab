@@ -1810,6 +1810,8 @@ MonoBehaviour:
   hpBar: {fileID: 11404020}
   offsetX: 0
   offsetY: 0
+  loseHP: {fileID: 109520, guid: 9b5922802cddb36449b4699faa601779, type: 2}
+  color: {r: 0.90344834, g: 1, b: 0, a: 1}
 --- !u!114 &11470314
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2552,6 +2554,26 @@ Prefab:
       propertyPath: hpBar
       value: 
       objectReference: {fileID: 11404020}
+    - target: {fileID: 0}
+      propertyPath: color.r
+      value: 0.90344834
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: loseHP
+      value: 
+      objectReference: {fileID: 109520, guid: 9b5922802cddb36449b4699faa601779, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 186968}

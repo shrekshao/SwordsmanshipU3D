@@ -59,6 +59,12 @@ namespace Swordsmanship
         public float offsetX;
         public float offsetY;
 
+        //---lose HP---
+        public GameObject loseHP;
+
+        //---personal color---
+        public Color color;
+
         // animator state hash
         public static int hash_attackLeftIdle = Animator.StringToHash("UpperBody.SwingLeftIdle");
         public static int hash_attackRightIdle = Animator.StringToHash("UpperBody.SwingRightIdle");
@@ -94,12 +100,10 @@ namespace Swordsmanship
 
             //---character status---
             swordsmanStatus = new SwordsmanStatus();
-
-
+            
             BattleReady = false;
-            //---HP bar---
 
-            //hpBar = GetComponentInChildren< GUIBarScript >();
+            //---HP bar---
             if( hpBar != null ) {
                 hpBar.Position = new Vector2( 
                     offsetX > -1 ? offsetX : Screen.width + offsetX, 
@@ -510,7 +514,15 @@ namespace Swordsmanship
             m_Animator.SetTrigger("Damaged");
 
             //---lose HP and update HP bar---
-            swordsmanStatus.loseHP( Random.Range( 10, 20 ) );
+            int lostHP = Random.Range( 10, 20 );
+            GameObject mLoseHP = Instantiate( 
+                loseHP, 
+                gameObject.transform.position + new Vector3( 0, 1, 0 ), 
+                gameObject.transform.rotation ) as GameObject;
+
+            mLoseHP.GetComponent< TextMesh >().text = "-" + lostHP;
+            mLoseHP.GetComponent<TextMesh>().color = color;
+            swordsmanStatus.loseHP( lostHP );
             if( hpBar != null ) hpBar.Value = swordsmanStatus.getHP() / 100.0f;
 
             //be Knocked back
