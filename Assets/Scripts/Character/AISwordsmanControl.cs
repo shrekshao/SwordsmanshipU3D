@@ -46,6 +46,17 @@ namespace Swordsmanship
         SwordsmanCharacter playerSwordsman { get; set; }
 
 
+        //tmp
+        public float idle_rate = 0.1f;
+
+        public float attack_idle = 1.0f;
+        public float attack_speed = 1.5f;
+
+        public float sprint_distance = 3.0f;
+
+        
+
+
         private void Start()
         {
             // get the components on the object we need ( should not be null due to require component so no need to check )
@@ -232,7 +243,7 @@ namespace Swordsmanship
                     }
                     
                     prepare = true;
-                    attackCD = 1.0f;
+                    attackCD = attack_idle;
                 }
                 else
                 {
@@ -249,7 +260,7 @@ namespace Swordsmanship
                             break;
                     }
                     prepare = false;
-                    attackCD = 1.5f;
+                    attackCD = attack_speed;
                 }
             }
             //}

@@ -73,6 +73,11 @@ namespace Swordsmanship
 		// health bar 
 		[SerializeField] GameObject healthBar;
 
+		// die event handler delegate
+		// delete player event
+		public delegate void DieEvent(GameObject obj);
+		public static event DieEvent dieEvent;
+
 		// character died statues
 		public bool isDead()
 		{
@@ -576,6 +581,8 @@ namespace Swordsmanship
             //gameObject.tag = "";
             this.enabled = false;
             //Destroy(this);
+
+			dieEvent (this.gameObject);
         }
 
         

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +19,12 @@ namespace Swordsmanship
         int MAX_RESPAWN_ENEMY_TIME = 800;
         int respawnEnemyTime;
 
+		[SerializeField]
+		Text nKillText;
+		int nKills = 0;
+
+		GameObject playerCharacter;
+		SwordsmanCharacter playerCharacter_Character;
 
         // Use this for initialization
         void Start () {
@@ -26,12 +33,30 @@ namespace Swordsmanship
             //respawnEnemyTime = MAX_RESPAWN_ENEMY_TIME;
             respawnEnemyTime = 1;
 
+			//register delegate
+			SwordsmanCharacter.dieEvent += HandleDieEvent;
+			UpdateText ();
         }
 
+		void HandleDieEvent(GameObject obj)
+		{
+			players.Remove (obj);
+			IncreaseNKills ();
+			UpdateText ();
+		}
 
-        GameObject playerCharacter;
-        SwordsmanCharacter playerCharacter_Character;
+		void IncreaseNKills()
+		{
+			nKills++;
+			UpdateText ();
+		}
 
+		void UpdateText()
+		{
+			nKillText.text = nKills.ToString() + " KILLS";
+			nKillText.GetComponent<TextFlashScript> ().init ();
+		}
+			
 		void StorePlayer()
 		{
 			GameObject[] gos = GameObject.FindGameObjectsWithTag("Human") as GameObject[];
@@ -149,7 +174,7 @@ namespace Swordsmanship
             }
 
             int name_idx = 0;
-            int birth_idx = 0;
+            int birth_idx = Random.Range(0, birthPoint.Length+1);
             //TODO: random name
 
             //GameObject newEnemy = Instantiate(Resources.Load(enemyName[name_idx]),birthPoint[birth_idx].position, Quaternion.identity) as GameObject;
@@ -158,7 +183,22 @@ namespace Swordsmanship
             newEnemy.layer = LayerMask.NameToLayer("EnemyLayer");
 
             newEnemy.GetComponent<SwordsmanCharacter>().swordsmanStatus.setHP(30);
-            newEnemy.GetComponent<SwordsmanCharacter>().swordsmanStatus.setHP(30);
+            newEnemy.GetComponent<SwordsmanCharacter>().swordsmanStatus.setMaxHP(30);
+
+
+            //ai parameter adjust
+            if(nKills > 3)
+            {
+                AISwordsmanControl ai = newEnemy.GetComponent<AISwordsmanControl>();
+                ai.idle_rate = 0.0f;
+                ai.sprint_distance = 2.0f;
+
+                ai.attack_idle = 0.1f;
+                ai.attack_speed = 0.5f;
+            }
+
+
+
 
             players.Add(newEnemy);
         }
