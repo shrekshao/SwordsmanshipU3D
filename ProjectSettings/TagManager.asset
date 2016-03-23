@@ -14,6 +14,8 @@ TagManager:
   - Special3Controller
   - SpecialSystem
   - Wall
+  - Pattern System Controller
+  - SoundSystem
   layers:
   - Default
   - TransparentFX
