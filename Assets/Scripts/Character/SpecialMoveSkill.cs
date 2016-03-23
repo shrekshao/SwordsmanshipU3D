@@ -10,6 +10,13 @@ namespace Swordsmanship
         protected String magicCastName;
         //tmp
         protected int num_stages;
+        protected SoundSystem soundSystem;
+
+        public SpecialMoveSkill() {
+
+            //---cache reference to sound system---
+            soundSystem = GameObject.FindGameObjectWithTag( "SoundSystem" ).GetComponent< SoundSystem >();
+        }
 
         public int getStages() {
             return num_stages;
@@ -38,12 +45,15 @@ namespace Swordsmanship
                 //spell.GetComponent<MagicCast>().InitMagicCast_Tracking(caster, GameObject.Find("AI-Di").transform);
 
 				spell.GetComponent<MagicCast>().InitMagicCast(caster, MagicCastType.AccelerateMoving);
+
+                //---play sound---
+                soundSystem.play( ( int )SOUND_ID.SOUND_TORNADO, caster );
             }
         }
     }
 
     public class BurningGround : SpecialMoveSkill {
-        
+
         public BurningGround() {
             num_stages = 4;
             magicCastName = "Burning Ground";
@@ -61,6 +71,9 @@ namespace Swordsmanship
                 
                 //---deal damage to all enemies---
                 spell.GetComponent< BurningGroundBehavior >().dealProlongedDamage( spell );
+
+                //---play sound---
+                soundSystem.play( ( int )SOUND_ID.SOUND_FIRE, caster );
             }
         }
     }
@@ -85,6 +98,9 @@ namespace Swordsmanship
 
                 //---deal damage to surrouding enemies---
                 spell.GetComponent< ThunderBehavior >().dealDamage( spell );
+
+                //---play sound---
+                soundSystem.play( ( int )SOUND_ID.SOUND_THUNDER, caster );
             }
         }
     }
