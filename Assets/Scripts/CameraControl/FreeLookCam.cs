@@ -29,7 +29,8 @@ namespace Swordsmanship
 		private Quaternion m_PivotTargetRot;
 		private Quaternion m_TransformTargetRot;
 		private SwordsmanCharacter swordmanCharacter;
-		private EnemyUtil enemyUtil;
+		//private EnemyUtil enemyUtil;
+		private bool freeMove = false;
 
         protected override void Awake()
         {
@@ -45,7 +46,7 @@ namespace Swordsmanship
 			m_Target = playerObj.transform;
 
 			swordmanCharacter = playerObj.GetComponent<SwordsmanCharacter> ();
-			enemyUtil = GameObject.Find ("EnemyUtilityObj").GetComponent<EnemyUtil> ();
+			//enemyUtil = GameObject.Find ("EnemyUtilityObj").GetComponent<EnemyUtil> ();
         }
 
         protected void Update()
@@ -66,16 +67,30 @@ namespace Swordsmanship
 			//	LockEnemyRotation ();
 			//}
 
-			if (!LockEnemyRotation ()) 
+			if (freeMove) 
 			{
 				if (!Input.GetKey ("mouse 0") && !Input.GetKey ("mouse 1")
-						&& swordmanCharacter.m_specialMoveIndex == -1) 
-				{
+					&& swordmanCharacter.m_specialMoveIndex == -1) {
 					HandleRotationMovement ();
 				}
+			} 
+			else 
+			{
+				if (!LockEnemyRotation ()) {
+					if (!Input.GetKey ("mouse 0") && !Input.GetKey ("mouse 1")
+					    && swordmanCharacter.m_specialMoveIndex == -1) {
+						HandleRotationMovement ();
+					}
+				}
 			}
-        }
 
+			if (Input.GetKeyDown (KeyCode.Q)) 
+			{
+				freeMove = !freeMove;
+			}
+
+        }
+			
 		protected bool LockEnemyRotation()
 		{
 

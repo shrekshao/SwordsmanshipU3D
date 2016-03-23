@@ -650,7 +650,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 2.1
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -1173,10 +1173,10 @@ MonoBehaviour:
   m_Target: {fileID: 0}
   m_AutoTargetPlayer: 1
   m_UpdateType: 1
-  m_MoveSpeed: 3
-  m_TurnSpeed: 4
+  m_MoveSpeed: 6
+  m_TurnSpeed: 8
   m_TurnSmoothing: 1
-  m_TiltMax: 60
+  m_TiltMax: 90
   m_TiltMin: 30
   m_LockCursor: 0
   m_VerticalAutoReturn: 1
