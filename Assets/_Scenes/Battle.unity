@@ -4965,6 +4965,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   birthPoint:
   - {fileID: 25645519}
+  - {fileID: 1705904262}
+  - {fileID: 941146202}
   nKillText: {fileID: 1517141088}
 --- !u!4 &351618975
 Transform:
@@ -7831,7 +7833,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 543240684}
-  m_LocalRotation: {x: -0.159915, y: 0.6887868, z: -0.15991499, w: 0.6887867}
+  m_LocalRotation: {x: -0.15991502, y: 0.68878686, z: -0.159915, w: 0.68878675}
   m_LocalPosition: {x: 0.214, y: -0.487, z: 0.22600007}
   m_LocalScale: {x: 1.3972845, y: 1, z: 1}
   m_Children: []
@@ -12182,6 +12184,33 @@ Transform:
   - {fileID: 1527580975}
   m_Father: {fileID: 1291783613}
   m_RootOrder: 136
+--- !u!1 &941146201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 941146202}
+  m_Layer: 0
+  m_Name: birthPoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &941146202
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 941146201}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.777, y: 0, z: 1.083}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
 --- !u!1 &950492115
 GameObject:
   m_ObjectHideFlags: 0
@@ -16094,7 +16123,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1211107457}
-  m_LocalRotation: {x: -0.159915, y: 0.6887868, z: -0.15991499, w: 0.6887867}
+  m_LocalRotation: {x: -0.15991502, y: 0.68878686, z: -0.159915, w: 0.68878675}
   m_LocalPosition: {x: -0.313, y: -0.487, z: 0.226}
   m_LocalScale: {x: 1.3972846, y: 1, z: 1}
   m_Children: []
@@ -23257,6 +23286,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1291783613}
   m_RootOrder: 233
+--- !u!1 &1705904261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1705904262}
+  m_Layer: 0
+  m_Name: birthPoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1705904262
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1705904261}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.272, y: 0, z: 2.286}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
 --- !u!4 &1707454234 stripped
 Transform:
   m_PrefabParentObject: {fileID: 426458, guid: 48b773a8d00e1a94faa93729185dc87c, type: 2}

@@ -174,7 +174,7 @@ namespace Swordsmanship
             }
 
             int name_idx = 0;
-            int birth_idx = 0;
+            int birth_idx = Random.Range(0, birthPoint.Length+1);
             //TODO: random name
 
             //GameObject newEnemy = Instantiate(Resources.Load(enemyName[name_idx]),birthPoint[birth_idx].position, Quaternion.identity) as GameObject;
@@ -184,6 +184,21 @@ namespace Swordsmanship
 
             newEnemy.GetComponent<SwordsmanCharacter>().swordsmanStatus.setHP(30);
             newEnemy.GetComponent<SwordsmanCharacter>().swordsmanStatus.setMaxHP(30);
+
+
+            //ai parameter adjust
+            if(nKills > 3)
+            {
+                AISwordsmanControl ai = newEnemy.GetComponent<AISwordsmanControl>();
+                ai.idle_rate = 0.0f;
+                ai.sprint_distance = 2.0f;
+
+                ai.attack_idle = 0.1f;
+                ai.attack_speed = 0.5f;
+            }
+
+
+
 
             players.Add(newEnemy);
         }

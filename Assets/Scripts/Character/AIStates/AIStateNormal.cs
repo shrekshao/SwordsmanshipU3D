@@ -16,10 +16,12 @@ namespace Swordsmanship
     public class AIStateNormal : AIState
     {
         public const int MAX_IDLE_TIME = 100;
-        public const float IDLE_RATE = 0.1f;
-        public const float SPECIAL_RATE = 0.0001f;
 
-        public const float SPRINT_DISTANCE = 3.0f;
+        public float IDLE_RATE = 0.1f;
+
+        public float SPECIAL_RATE = 0.0001f;
+
+        public float SPRINT_DISTANCE = 3.0f;
 
         
         float attackRadius = 0.7f;
