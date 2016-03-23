@@ -25,15 +25,10 @@ namespace Swordsmanship
 
         private PatternSystemController psController;
         private SpecialSystem specialSystem;
+        private SoundSystem soundSystem;
 
         private void Start()
         {
-            //---get pattern system controller---
-            psController = GameObject.FindGameObjectWithTag( "PatternSystemController" ).GetComponent< PatternSystemController >();
-
-            //---get special system---
-            specialSystem = GameObject.FindGameObjectWithTag( "SpecialSystem" ).GetComponent< SpecialSystem >();
-
             // get the transform of the main camera
             if (Camera.main != null)
             {
@@ -58,6 +53,15 @@ namespace Swordsmanship
 			//special move initialization
 			//m_Character.m_specialMoveIndex = -1;
 			m_specialMoveStage = 0;
+
+            //---cache reference to pattern system controller---
+            psController = GameObject.FindGameObjectWithTag( "PatternSystemController" ).GetComponent< PatternSystemController >();
+
+            //---cache reference to special system---
+            specialSystem = GameObject.FindGameObjectWithTag( "SpecialSystem" ).GetComponent< SpecialSystem >();
+
+            //---cache reference to sound system---
+            soundSystem = GameObject.FindGameObjectWithTag( "SoundSystem" ).GetComponent< SoundSystem >();
         }
 
 
@@ -236,6 +240,7 @@ namespace Swordsmanship
                     m_Character.AttackSwingLeftIdle();
                     break;
 				case MouseMovementsInput.Attack_SwingLeft:
+                    soundSystem.play( ( int )SOUND_ID.SOUND_SWING, gameObject );
 					m_Character.AttackSwingLeftAttack ();
 					m_Character.FaceEnemy ();
                     break;
@@ -243,6 +248,7 @@ namespace Swordsmanship
                     m_Character.AttackSwingRightIdle();
                     break;
                 case MouseMovementsInput.Attack_SwingRight:
+                    soundSystem.play( ( int )SOUND_ID.SOUND_SWING, gameObject );
                     m_Character.AttackSwingRightAttack();
 					m_Character.FaceEnemy ();
                     break;
@@ -250,6 +256,7 @@ namespace Swordsmanship
                     m_Character.AttackStabIdle();
                     break;
                 case MouseMovementsInput.Attack_Stab:
+                    soundSystem.play( ( int )SOUND_ID.SOUND_SWING, gameObject );
                     m_Character.AttackStabAttack();
 					m_Character.FaceEnemy ();
                     break;
