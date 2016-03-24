@@ -1,13 +1,17 @@
+![](img/logo.png)
+
 # Drag n Sword
 
 Drag n Sword is a sword fighting game in Unity3D. Battle Scheme is learnt from Mount&Blade and 流星蝴蝶剑.
 
 By Shuai Shao, Zimeng Yang, and Liang Peng. 
 
-## Screenshots
+## Vimeo
 
-<img src="./img/capture1.png"></img>
-<img src="./img/capture2.png"></img>
+[![](img/ds-vimeo.png)](https://vimeo.com/160144184)
+
+## Screenshots
+![](img/capture2.png)
 
 ## Design Concept
 
